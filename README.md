@@ -1,8 +1,37 @@
-# React + Vite
+## Packages to be installed:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- ```bash
+npm i @reduxjs/toolkit
+``` -->
+<!-- ```bash
+npm i react-redux
+``` -->
+```bash
+npm i react-router-dom
+```
+<!-- ```bash
+npm i appwrite
+``` -->
+<!-- ```bash
+npm i @tinymce/tinymce-react
+``` -->
+<!-- ```bash
+npm i html-react-parser
+``` -->
+```bash
+npm i react-hook-form
+```
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+<!-- ```bash
+npm i react-loading-indicators
+``` -->
+```bash
+npm i -D daisyui@latest
+```
+<!-- - ### Inline:
+```bash
+npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-react html-react-parser react-hook-form react-loading-indicators
+``` -->
