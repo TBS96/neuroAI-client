@@ -25,9 +25,9 @@ npm i react-hook-form
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
-<!-- ```bash
+```bash
 npm i react-loading-indicators
-``` -->
+```
 ```bash
 npm i -D daisyui@latest
 ```
