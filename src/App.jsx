@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const App = () => {
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return !loading ? (
     <div>

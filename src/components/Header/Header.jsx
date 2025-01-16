@@ -19,11 +19,13 @@ function Header() {
             name: 'Login',
             slug: '/login',
             // active: !authStatus
+            active: true
         },
         {
             name: 'Signup',
             slug: '/signup',
             // active: !authStatus
+            active: true
         },
         {
             name: 'Contact',
