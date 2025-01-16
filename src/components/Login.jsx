@@ -39,7 +39,7 @@ function Login () {
                     <div className='space-y-5'>
                         <Input
                             label='Email: '
-                            placeholder='you@voodoo.com'
+                            placeholder='example@domain.com'
                             type='email'
                             {...register('email', {
                                 required: true,
