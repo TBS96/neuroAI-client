@@ -2,7 +2,7 @@ import React from 'react'
 
 function Login() {
     return (
-        <div>Login</div>
+        <div className='h-screen grid place-content-center text-2xl bg-yellow-300'>Login</div>
     )
 }
 
