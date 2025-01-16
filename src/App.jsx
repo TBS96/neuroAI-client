@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Atom } from 'react-loading-indicators'
-import { Container, Header } from './components';
+import { Container, Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
@@ -16,6 +16,7 @@ const App = () => {
           <Outlet />
         </main>
         </Container>
+        <Footer />
       </div>
     </div>
   ) : (
