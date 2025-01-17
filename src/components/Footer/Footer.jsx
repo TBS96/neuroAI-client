@@ -141,7 +141,7 @@ function Footer() {
                             <h3 className="text-gray-400 uppercase font-semibold mb-4">
                                 {section.title}
                             </h3>
-                            <ul className="flex justify-center">
+                            <ul className="md:flex justify-center">
                                 {section.links.map((link) => (
                                     <li key={link.name} className="p-4">
                                         <Link
