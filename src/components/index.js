@@ -3,7 +3,8 @@ import Header from "./Header/Header";
 import Container from "./container/Container";
 import Button from "./Button";
 import Footer from "./Footer/Footer";
-import Login from './Login'
+import Login from './Login';
+import Signup from "./Signup";
 
 export {
     Input,
@@ -11,5 +12,6 @@ export {
     Container,
     Button,
     Footer,
-    Login
+    Login,
+    Signup,
 }

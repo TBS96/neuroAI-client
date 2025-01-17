@@ -1,8 +1,11 @@
 import React from 'react'
+import { Signup as SignupComponent } from '../components'
 
 function Signup() {
     return (
-        <div className='h-screen grid place-content-center text-2xl bg-yellow-300'>Signup</div>
+        <div>
+            <SignupComponent />
+        </div>
     )
 }
 
