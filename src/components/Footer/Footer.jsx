@@ -84,13 +84,43 @@ function Footer() {
                 <div className='mt-8 text-center border-t border-t-gray-700 pt-4 text-sm'>
                     <p>
                         &copy; 2025 | All Rights Reserved by{' '}
-                        <Link
-                            to='https://github.com/tbs96'
-                            className='btn btn-ghost hover:underline underline-offset-4 decoration-error'
-                            target='_blank'
-                        >
-                            Prantik Ghosh
-                        </Link>
+                        <div className='md:flex flex-wrap justify-center'>
+                            <Link
+                                to='https://github.com/Mahvish16'
+                                className='btn btn-ghost hover:underline underline-offset-4 decoration-error hover:text-pink-400'
+                                target='_blank'
+                            >
+                                Mahvish Ruhi
+                            </Link>
+                            <Link
+                                to='https://github.com/Sayan-ezioo'
+                                className='btn btn-ghost hover:underline underline-offset-4 decoration-amber-500 hover:text-error'
+                                target='_blank'
+                            >
+                                Sayan Bhattacharya
+                            </Link>
+                            <Link
+                                to='https://github.com/tbs96'
+                                className='btn btn-ghost hover:underline underline-offset-4 decoration-green-500 hover:text-yellow-400'
+                                target='_blank'
+                            >
+                                Prantik Ghosh
+                            </Link>
+                            <Link
+                                to='https://github.com/'
+                                className='btn btn-ghost hover:underline underline-offset-4 decoration-pink-500 hover:text-violet-400'
+                                target='_blank'
+                            >
+                                Sanchita Kar
+                            </Link>
+                            <Link
+                                to='https://github.com/'
+                                className='btn btn-ghost hover:underline underline-offset-4 decoration-violet-500 hover:text-lime-500'
+                                target='_blank'
+                            >
+                                Arghyakamal Ghosh
+                            </Link>
+                        </div>
                     </p>
                 </div>
             </div>

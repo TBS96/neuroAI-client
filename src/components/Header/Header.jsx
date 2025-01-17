@@ -49,7 +49,7 @@ function Header() {
                     </Link>
                 </div>
                 <button onClick={() => setMenubar(!menubar)} className='btn btn-circle skeleton md:hidden'>
-                    {menubar ? 'x' : 'Menu'}
+                    {menubar ? '✘' : '︾'}
                 </button>
                 <ul className={`absolute md:relative top-[72px] left-0 md:top-0 md:left-auto shadow-2xl shadow-slate-600 md:shadow-none bg-blue-900/80 glass md:bg-none backdrop-blur-lg md:backdrop-blur-none border-b md:border-none border-gray-100 md:bg-transparent w-full md:w-auto flex flex-col md:flex-row items-center md:items-center space-y-4 md:space-y-0 md:space-x-6 px-4 py-4 md:px-0 md:py-0 z-50 transition-all duration-300 ${menubar ? 'block' : 'hidden md:flex'}`}>
                     {navItems.map((item) => 
