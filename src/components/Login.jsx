@@ -63,7 +63,7 @@ function Login () {
                             <input type='checkbox' className='hidden' id='show' onChange={() => setShowPass(!showPass)} />
                             <label htmlFor="show" className='btn btn-square btn-outline'>{showPass ? 'hide' : 'show'}</label>
                         </div>
-                        <Button type='submit' className='w-full hover:bg-green-500'>Sign in</Button>
+                        <Button type='submit' className='w-full hover:bg-green-600'>Sign in</Button>
                     </div>
                 </form>
             </div>

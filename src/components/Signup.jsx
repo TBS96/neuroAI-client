@@ -114,7 +114,7 @@ function Signup () {
                             <input type='checkbox' className='hidden' id='show' onChange={() => setShowPass(!showPass)} />
                             <label htmlFor="show" className='btn btn-square btn-outline'>{showPass ? 'hide' : 'show'}</label>
                         </div>
-                        <Button type='submit' className='w-full hover:bg-blue-700'>
+                        <Button type='submit' className='w-full hover:bg-green-600'>
                             Create Account
                         </Button>
                     </div>
