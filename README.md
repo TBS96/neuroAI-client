@@ -1,5 +1,7 @@
 ## Packages to be installed:
 
+### Client side:
+
 <!-- ```bash
 npm i @reduxjs/toolkit
 ``` -->
@@ -9,15 +11,6 @@ npm i react-redux
 ```bash
 npm i react-router-dom
 ```
-<!-- ```bash
-npm i appwrite
-``` -->
-<!-- ```bash
-npm i @tinymce/tinymce-react
-``` -->
-<!-- ```bash
-npm i html-react-parser
-``` -->
 ```bash
 npm i react-hook-form
 ```
@@ -31,7 +24,39 @@ npm i react-loading-indicators
 ```bash
 npm i -D daisyui@latest
 ```
-<!-- - ### Inline:
 ```bash
-npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-react html-react-parser react-hook-form react-loading-indicators
-``` -->
+npm i socket.io-client
+```
+
+
+<details>
+<summary>Inline</summary>
+
+```bash
+npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest socket.io-client
+```
+
+</details>
+
+
+### Server side:
+
+```bash
+npm i express
+```
+```bash
+npm i cors
+```
+```bash
+npm i socket.io
+```
+
+
+<details>
+<summary>Inline</summary>
+
+```bash
+npm i express cors socket.io
+```
+
+</details>

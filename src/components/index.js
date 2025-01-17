@@ -6,6 +6,7 @@ import Footer from "./Footer/Footer";
 import Login from './Login';
 import Signup from "./Signup";
 import Logo from "./Logo";
+import ChatBot from "./ChatBot";
 
 export {
     Input,
@@ -16,4 +17,5 @@ export {
     Login,
     Signup,
     Logo,
+    ChatBot,
 }

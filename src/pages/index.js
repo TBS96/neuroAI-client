@@ -3,6 +3,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Contact from "./Contact";
 import About from "./About";
+import ChatBot from './ChatBot';
 
 export {
     Home,
@@ -10,4 +11,5 @@ export {
     Signup,
     Contact,
     About,
+    ChatBot,
 }
