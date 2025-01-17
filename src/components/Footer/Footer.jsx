@@ -119,7 +119,7 @@ function Footer() {
                     {/* Footer Sections */}
                     {additionalLinks.map((section, index) => (
                         <div key={index} className="w-full md:w-auto text-center">
-                            <h3 className="font-semibold text-lg text-gray-400 uppercase mb-4">{section.title}</h3>
+                            <h3 className="font-semibold text-lg text-gray-400 uppercase my-4 md:my-0">{section.title}</h3>
                             <ul className="mt-2">
                                 {section.links.map((link, idx) => (
                                     <li key={idx} className="mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300">
