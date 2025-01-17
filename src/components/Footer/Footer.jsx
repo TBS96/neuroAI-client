@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../Logo';
 
 function Footer() {
 
@@ -54,7 +55,7 @@ function Footer() {
 
                     <div className='w-full md:w-1/3 text-center border-b md:border-none pb-8 md:pb-0'>
                         <Link to='/'>
-                            Logo
+                            <Logo width='100px' />
                         </Link>
                     </div>
 

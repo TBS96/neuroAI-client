@@ -5,6 +5,7 @@ import Button from "./Button";
 import Footer from "./Footer/Footer";
 import Login from './Login';
 import Signup from "./Signup";
+import Logo from "./Logo";
 
 export {
     Input,
@@ -14,4 +15,5 @@ export {
     Footer,
     Login,
     Signup,
+    Logo,
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Logo from '../Logo';
 
 function Header() {
 
@@ -44,7 +45,7 @@ function Header() {
             <nav className='flex items-center justify-between max-w-7xl mx-auto px-4'>
                 <div className='mr-4'>
                     <Link>
-                        Logo
+                        <Logo width='100%' />
                     </Link>
                 </div>
                 <button onClick={() => setMenubar(!menubar)} className='btn btn-circle skeleton md:hidden'>
