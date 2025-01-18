@@ -151,7 +151,9 @@ const teamMembers = [
 
 const Contact = () => {
     return (
-        <div className="py-12 bg-gray-50 min-h-screen">
+        <div className="py-12 min-h-screen">
+            {/* TODO */}
+            {/* <div className='bg-cover bg-no-repeat bg-center min-h-screen relative' style={{ backgroundImage: "url('public/contact.svg')", filter: "blur(8px)" }}></div> */}
             <div className="container mx-auto px-6 sm:px-12">
                 <h2 className="text-3xl font-bold text-center text-gray-800">
                     Meet Our Team
@@ -163,7 +165,7 @@ const Contact = () => {
                     {teamMembers.map((member, index) => (
                         <div
                             key={index}
-                            className={`group p-6 rounded-lg shadow-lg ${member.color} hover:shadow-xl transition`}
+                            className={`group p-6 rounded-lg shadow-lg ${member.color} hover:shadow-2xl hover:shadow-[${member.color}] hover:scale-105 transition`}
                         >
                             <div className="flex items-center space-x-4">
                                 <img
