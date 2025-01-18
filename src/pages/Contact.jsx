@@ -121,7 +121,7 @@ const teamMembers = [
     {
         name: "Arghyakamal Ghosh",
         roll: '2300012xxxx, CSE',
-        role: "Frontend Developer and Documentation Specialist",
+        role: "Documentation Engineer",
         github: "https://github.com/",
         githubIcon: (
             <svg
