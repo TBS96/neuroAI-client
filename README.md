@@ -1,3 +1,29 @@
+# neuroAI(client) - Personal Mental Health Assistant - (src wip)
+
+## Prerequisites to be installed on your machine:
+- Git
+- NodeJS
+
+## Getting started:
+
+To run the project in your local machine:
+- Clone/download this repo.
+- Make sure you have NodeJS v18.x or above.
+- Run in terminal:
+```bash
+cd neuroAI-client && npm i
+```
+- This will install all the required pkgs as per `package.json` file.
+- Now run:
+```bash
+npm run dev
+```
+- This will generate a url like this:
+```bash
+http://localhost:5173/
+```
+
+
 ## Packages to be installed:
 
 ### Client side:
