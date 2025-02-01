@@ -86,3 +86,62 @@ npm i express cors socket.io
 ```
 
 </details>
+
+
+### Folder structure
+```bash
+.
+├── eslint.config.js
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── public
+│   ├── contact.svg
+│   ├── favicon
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── favicon.ico
+│   │   └── site.webmanifest
+│   └── neuroAI-icon.svg
+├── README.md
+├── src
+│   ├── App.css
+│   ├── App.jsx
+│   ├── assets
+│   │   └── react.svg
+│   ├── components
+│   │   ├── Button.jsx
+│   │   ├── ChatBot.jsx
+│   │   ├── container
+│   │   │   └── Container.jsx
+│   │   ├── Footer
+│   │   │   └── Footer.jsx
+│   │   ├── Header
+│   │   │   └── Header.jsx
+│   │   ├── index.js
+│   │   ├── Input.jsx
+│   │   ├── Login.jsx
+│   │   ├── Logo.jsx
+│   │   └── Signup.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   └── pages
+│       ├── About.jsx
+│       ├── ChatBot.jsx
+│       ├── Contact.jsx
+│       ├── Home.jsx
+│       ├── index.js
+│       ├── Login.jsx
+│       └── Signup.jsx
+├── tailwind.config.js
+├── tree.txt
+├── vercel.json
+└── vite.config.js
+
+11 directories, 45 files
+```
