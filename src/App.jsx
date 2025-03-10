@@ -9,15 +9,13 @@ const App = () => {
 
   return !loading ? (
     <div>
-      <div>
-        <Header />
-        <Container>
+      <Header />
+      <Container>
         <main>
           <Outlet />
         </main>
-        </Container>
-        <Footer />
-      </div>
+      </Container>
+      <Footer />
     </div>
   ) : (
     <div className='grid place-content-center w-full min-h-screen'>
