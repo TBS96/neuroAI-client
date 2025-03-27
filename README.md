@@ -16,7 +16,7 @@ cd neuroAI-client && npm i
 - This will install all the required pkgs as per `package.json` file.
 - Now run:
 ```bash
-npm run dev
+npm run dev -- --host
 ```
 - This will generate a url like this:
 ```bash
