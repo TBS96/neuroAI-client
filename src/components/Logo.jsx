@@ -4,9 +4,9 @@ function Logo({width = '100px'}) {
     return (
         <a href='/' className=''>
             <img 
-                src='/favicon/apple-touch-icon.png'
+                src='https://i.ibb.co/R4Yv6dLV/android-chrome-192x192-removebg-preview.png'
                 alt='NeuroAI Logo'
-                className='btn rounded-2xl h-16'
+                className='h-16'
                 style={{width}}
             />
         </a>
