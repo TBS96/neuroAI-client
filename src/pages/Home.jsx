@@ -21,7 +21,7 @@ const Home = () => {
                     </p>
                     <div className='mt-6'>
                         <Link to='/chatbot'>
-                            <Button className='bg-[#14b8a6] text-white font-medium text-lg shadow-md hover:bg-[#128a7d] transition duration-300'>
+                            <Button className='btn-accent btn-block font-medium text-lg shadow-md transition-all duration-300 skeleton hover:text-primary'>
                                 TEST YOUR MENTAL HEALTH NOW!
                             </Button>
                         </Link>
