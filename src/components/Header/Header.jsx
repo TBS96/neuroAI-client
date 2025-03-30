@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import Logo from '../Logo';
+import { useNavigate, NavLink } from 'react-router-dom'
+import Logo from '../Logo'
 
-function Header() {
+const Header = () => {
 
     const navigate = useNavigate();
-
-    const location = useLocation();
 
     const [menubar, setMenubar] = useState(false);
 
@@ -41,26 +39,136 @@ function Header() {
     ];
 
     return (
-        <header className='py-1 shadow-2xl shadow-slate-600 bg-blue-900 border-b border-gray-100 backdrop-blur-lg bg-opacity-30 text-white dark:text-gray-200 sticky top-0 z-50'>
-            <nav className='flex items-center justify-between max-w-7xl mx-auto px-4'>
-                <div className='mr-4'>
-                    <div onClick={() => navigate('/')}>
-                        <Logo width='100%' />
-                    </div>
+        <header className='w-full bg-gray-900/10 backdrop-blur-sm shadow-black/30 shadow-2xl sticky top-0 z-50'>
+            <nav className='max-w-7xl mx-auto px-4 py-4 flex justify-between items-center'>
+                {/* Logo */}
+                <div onClick={() => navigate('/')} className='cursor-pointer max-w-[100px]'>
+                    <Logo width='100%' />
                 </div>
-                <button onClick={() => setMenubar(!menubar)} className='btn btn-circle skeleton md:hidden'>
-                    {menubar ? '✘' : '︾'}
-                </button>
-                <ul className={`absolute md:relative top-[72px] left-0 md:top-0 md:left-auto shadow-2xl shadow-slate-600 md:shadow-none bg-blue-900/80 glass md:bg-none backdrop-blur-lg md:backdrop-blur-none border-b md:border-none border-gray-100 md:bg-transparent w-full md:w-auto flex flex-col md:flex-row items-center md:items-center space-y-4 md:space-y-0 md:space-x-6 px-4 py-4 md:px-0 md:py-0 z-50 transition-all duration-300 ${menubar ? 'block' : 'hidden md:flex'}`}>
-                    {navItems.map((item) => 
-                        item.active ? (
-                            <li key={item.name} className={`w-full md:w-auto ${location.pathname === item.slug ? 'bg-black rounded-full' : ''}`}>
-                                <button onClick={() => navigate(item.slug)} className='btn btn-ghost w-full md:w-auto text-left md:text-center hover:bg-primary px-6 py-2 duration-200 rounded-full'>{item.name}</button>
+
+                {/* Theme Dropdown (Mobile & Tablet) */}
+                {/* <div className='dropdown dropdown-center md:hidden'>
+                    <div tabIndex={0} role='button' className='btn btn-ghost'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                        </svg>
+
+                        <svg
+                            width='12px'
+                            height='12px'
+                            className='inline-block h-2 w-2 fill-current opacity-60'
+                            xmlns='http://www.w3.org/2000/svg'
+                            viewBox='0 0 2048 2048'
+                        >
+                            <path d='M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z'></path>
+                        </svg>
+                    </div>
+                    <ul tabIndex={0} className='dropdown-content h-60 overflow-auto bg-base-300/90 rounded-box p-2 shadow-2xl'>
+                        {themes.map((t) => (
+                            <li key={t}>
+                                <input
+                                    type='radio'
+                                    name='theme-dropdown'
+                                    className={`theme-controller w-full btn btn-sm btn-ghost justify-start ${theme === t ? 'underline underline-offset-4' : ''}`}
+                                    aria-label={t.charAt(0).toUpperCase() + t.slice(1)}
+                                    value={t}
+                                    checked={theme === t}
+                                    onChange={() => setTheme(t)}
+                                />
                             </li>
-                        ) : null
-                    )}
+                        ))}
+                    </ul>
+                </div> */}
+
+                {/* Desktop Navigation */}
+                <ul className='hidden md:flex space-x-6'>
+                    {navItems.map(({ name, slug }) => (
+                        <li key={slug}>
+                            <NavLink
+                                to={slug}
+                                className={({ isActive }) =>
+                                    `btn btn-block btn-ghost transition ${isActive ? 'bg-base-300 underline underline-offset-4' : 'hover:underline hover:underline-offset-4'}`}
+                            >
+                                {name}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
+
+                {/* Desktop Theme Dropdown (Right Side) */}
+                {/* <div className='dropdown dropdown-center hidden md:block'>
+                    <div tabIndex={0} role='button' className='btn btn-ghost'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                        </svg>
+
+                        <svg
+                            width='12px'
+                            height='12px'
+                            className='inline-block h-2 w-2 fill-current opacity-60'
+                            xmlns='http://www.w3.org/2000/svg'
+                            viewBox='0 0 2048 2048'
+                        >
+                            <path d='M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z'></path>
+                        </svg>
+                    </div>
+                    <ul tabIndex={0} className='dropdown-content h-60 overflow-auto bg-base-300/90 rounded-box w-40 p-2 shadow-2xl'>
+                        {themes.map((t) => (
+                            <li key={t}>
+                                <input
+                                    type='radio'
+                                    name='theme-dropdown'
+                                    className={`theme-controller w-full btn btn-sm btn-ghost justify-start ${theme === t ? 'underline underline-offset-4' : ''}`}
+                                    aria-label={t.charAt(0).toUpperCase() + t.slice(1)}
+                                    value={t}
+                                    checked={theme === t}
+                                    onChange={() => setTheme(t)}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                </div> */}
+
+                {/* Mobile Menu Button */}
+                <button
+                    className='md:hidden focus:outline-none cursor-pointer'
+                    onClick={() => setMenubar(!menubar)}
+                    aria-expanded={menubar}
+                    aria-label='Toggle Menu'
+                >
+                    <svg
+                        className='w-8 h-8 text-white'
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                    >
+                        {menubar ? (
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                        ) : (
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16m-7 6h7' />
+                        )}
+                    </svg>
+                </button>
             </nav>
+
+            {/* Mobile Dropdown */}
+            <ul className={`md:hidden bg-gray-900/10 backdrop-blur-3xl transition-all px-2 duration-300 ${menubar ? 'block' : 'hidden'}`}>
+                {navItems.map(({ name, slug }) => (
+                    <li key={slug}>
+                        <NavLink
+                            to={slug}
+                            className={({ isActive }) =>
+                                `btn btn-block btn-ghost my-2 text-center transition ${isActive ? 'bg-base-300' : ''
+                                }`
+                            }
+                            onClick={() => setMenubar(false)}
+                        >
+                            {name}
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
         </header>
     )
 }
