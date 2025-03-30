@@ -7,6 +7,9 @@ const Home = () => {
         <main>
             {/* Hero Section */}
             <section
+                // TODO:
+                // className='relative h-[100vh] bg-cover md:bg-contain bg-no-repeat bg-center flex items-center justify-center'
+                // className='relative h-[100vh] md:bg-cover bg-[length:100%_auto] bg-no-repeat bg-center flex items-center justify-center'
                 className='relative h-[100vh] bg-cover bg-no-repeat bg-center flex items-center justify-center'
                 style={{ backgroundImage: "url('https://i.ibb.co/3kq40pK/home-hero.jpg')" }}>
                 <div className='text-center px-6 md:px-12'>
