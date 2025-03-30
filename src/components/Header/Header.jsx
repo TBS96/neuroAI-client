@@ -42,7 +42,7 @@ const Header = () => {
         <header className='w-full bg-gray-900/10 backdrop-blur-sm shadow-black/30 shadow-2xl sticky top-0 z-50'>
             <nav className='max-w-7xl mx-auto px-4 py-4 flex justify-between items-center'>
                 {/* Logo */}
-                <div onClick={() => navigate('/')} className='cursor-pointer max-w-[100px]'>
+                <div onClick={() => navigate('/')} className='max-w-[100px]'>
                     <Logo width='100%' />
                 </div>
 
