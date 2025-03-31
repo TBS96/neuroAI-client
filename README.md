@@ -51,6 +51,9 @@ npm i react-loading-indicators
 npm i -D daisyui@latest
 ```
 ```bash
+npm i react-simple-typewriter
+```
+```bash
 npm i socket.io-client
 ```
 
@@ -59,7 +62,7 @@ npm i socket.io-client
 <summary>Inline</summary>
 
 ```bash
-npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest socket.io-client
+npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest react-simple-typewriter socket.io-client
 ```
 
 </details>
