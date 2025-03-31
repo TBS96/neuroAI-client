@@ -27,7 +27,7 @@ const TestimonialsSection = () => {
                                 <p className='italic'>'{testimonial.quote}'</p>
                                 <div className='mt-4'>
                                     <h4 className='text-lg font-medium'>{testimonial.author}</h4>
-                                    <p className='text-sm text-base-100 font-semibold'>{testimonial.role}</p>
+                                    <p className='text-sm text-secondary font-semibold'>{testimonial.role}</p>
                                 </div>
                             </div>
                         ))}
