@@ -16,7 +16,7 @@ const Home = () => {
                     <h1 className='bg-clip-text text-transparent bg-gradient-to-r from-[#14b8a6] to-[#7520e4] text-4xl md:text-6xl font-bold'>
                         Mental Health Starts with You
                     </h1>
-                    <p className='mt-4 text-gray-700 text-lg font-bold md:text-xl'>
+                    <p className='mt-4 text-base-300 text-lg font-bold md:text-xl'>
                         Neuro AI supports you on your journey toward better mental health.
                     </p>
                     <div className='mt-6'>
