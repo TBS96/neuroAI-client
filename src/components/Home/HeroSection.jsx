@@ -20,8 +20,8 @@ const HeroSection = () => {
                         </p>
                         <div className='mt-6'>
                             <Link to='/chatbot'>
-                                <Button className='btn-block btn-primary font-medium md:text-lg'>
-                                    TEST YOUR MENTAL HEALTH NOW!
+                                <Button className='btn-block btn-primary font-medium md:text-lg capitalize md:uppercase'>
+                                    Test your mental health now!
                                 </Button>
                             </Link>
                         </div>
