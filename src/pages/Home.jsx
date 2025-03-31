@@ -10,21 +10,25 @@ const Home = () => {
                 // TODO:
                 // className='relative h-[100vh] bg-cover md:bg-contain bg-no-repeat bg-center flex items-center justify-center'
                 // className='relative h-[100vh] md:bg-cover bg-[length:100%_auto] bg-no-repeat bg-center flex items-center justify-center'
-                className='relative h-[100vh] bg-cover bg-no-repeat bg-center flex items-center justify-center'
-                style={{ backgroundImage: "url('https://i.ibb.co/3kq40pK/home-hero.jpg')" }}>
-                <div className='text-center px-6 md:px-12'>
-                    <h1 className='bg-clip-text text-transparent bg-gradient-to-r from-[#14b8a6] to-[#7520e4] text-4xl md:text-6xl font-bold'>
-                        Mental Health Starts with You
-                    </h1>
-                    <p className='mt-4 text-base-300 text-lg font-bold md:text-xl'>
-                        Neuro AI supports you on your journey toward better mental health.
-                    </p>
-                    <div className='mt-6'>
-                        <Link to='/chatbot'>
-                            <Button className='btn-accent btn-block font-medium text-lg shadow-md transition-all duration-300 skeleton hover:text-primary'>
-                                TEST YOUR MENTAL HEALTH NOW!
-                            </Button>
-                        </Link>
+                className='hero min-h-screen'
+                style={{ backgroundImage: "url(https://i.ibb.co/3kq40pK/home-hero.jpg)" }}
+            >
+                <div className='hero-overlay'></div>
+                <div className='hero-content'>
+                    <div className='text-center px-6 md:px-12'>
+                        <h1 className='bg-clip-text text-transparent bg-gradient-to-r from-[#14b82f] to-[#6504e4] text-4xl md:text-6xl font-bold'>
+                            Mental Health Starts with You
+                        </h1>
+                        <p className='mt-4 text-base-300 text-lg font-bold md:text-xl'>
+                            Neuro AI supports you on your journey toward better mental health.
+                        </p>
+                        <div className='mt-6'>
+                            <Link to='/chatbot'>
+                                <Button className='btn-block btn-primary font-medium text-lg'>
+                                    TEST YOUR MENTAL HEALTH NOW!
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
