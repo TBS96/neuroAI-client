@@ -7,6 +7,10 @@ import Login from './Login';
 import Signup from "./Signup";
 import Logo from "./Logo";
 import ChatBot from "./ChatBot";
+import HeroSection from "./Home/HeroSection";
+import FeaturesSection from "./Home/FeaturesSection";
+import HowItWorksSection from "./Home/HowItWorksSection";
+import TestimonialsSection from "./Home/TestimonialsSection";
 
 export {
     Input,
@@ -18,4 +22,8 @@ export {
     Signup,
     Logo,
     ChatBot,
+    HeroSection,
+    FeaturesSection,
+    HowItWorksSection,
+    TestimonialsSection,
 }
