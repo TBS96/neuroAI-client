@@ -1,7 +1,6 @@
 import React from 'react'
 import { FeaturesSection, HeroSection, HowItWorksSection, TestimonialsSection } from '../components'
 
-
 const Home = () => {
     return (
         <main>
