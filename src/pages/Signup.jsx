@@ -3,9 +3,10 @@ import { Signup as SignupComponent } from '../components'
 
 function Signup() {
     return (
-        <div>
+        <>
+            <title>neuroAI | Signup</title>
             <SignupComponent />
-        </div>
+        </>
     )
 }
 
