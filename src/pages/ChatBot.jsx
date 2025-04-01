@@ -3,9 +3,10 @@ import { ChatBot as ChatbotComponent } from '../components/index'
 
 function ChatBot() {
     return (
-        <div>
+        <>
+            <title>neuroAI | Chatbot</title>
             <ChatbotComponent></ChatbotComponent>
-        </div>
+        </>
     )
 }
 

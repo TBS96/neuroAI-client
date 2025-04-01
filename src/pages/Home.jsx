@@ -3,12 +3,15 @@ import { FeaturesSection, HeroSection, HowItWorksSection, TestimonialsSection } 
 
 const Home = () => {
     return (
-        <main>
-            <HeroSection />
-            <FeaturesSection />
-            <HowItWorksSection />
-            <TestimonialsSection />
-        </main>
+        <>
+            <title>neuroAI | Home</title>
+            <main>
+                <HeroSection />
+                <FeaturesSection />
+                <HowItWorksSection />
+                <TestimonialsSection />
+            </main>
+        </>
     )
 }
 
