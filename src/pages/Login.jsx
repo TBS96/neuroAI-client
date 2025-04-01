@@ -3,9 +3,10 @@ import { Login as LoginComponent } from '../components'
 
 function Login() {
     return (
-        <div>
+        <>
+            <title>neuroAI | Login</title>
             <LoginComponent />
-        </div>
+        </>
     )
 }
 
