@@ -22,12 +22,12 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: '/contact',
-        element: <Contact />
-      },
-      {
         path: '/about',
         element: <About />
+      },
+      {
+        path: '/contact',
+        element: <Contact />
       },
       {
         path: '/chatbot',

@@ -23,16 +23,6 @@ const Header = () => {
             active: true
         },
         {
-            name: 'Contact',
-            slug: '/contact',
-            active: true
-        },
-        {
-            name: 'About',
-            slug: '/about',
-            active: true
-        },
-        {
             name: 'Login',
             slug: '/login',
             // active: !authStatus
@@ -42,6 +32,16 @@ const Header = () => {
             name: 'Signup',
             slug: '/signup',
             // active: !authStatus
+            active: true
+        },
+        {
+            name: 'About',
+            slug: '/about',
+            active: true
+        },
+        {
+            name: 'Contact',
+            slug: '/contact',
             active: true
         },
     ];
