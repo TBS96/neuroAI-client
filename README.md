@@ -104,21 +104,23 @@ npm i express cors socket.io
 ├── index.html
 ├── package.json
 ├── package-lock.json
-├── postcss.config.js
 ├── public
-│   ├── contact.svg
-│   ├── favicon
-│   │   ├── android-chrome-192x192.png
-│   │   ├── android-chrome-512x512.png
-│   │   ├── apple-touch-icon.png
-│   │   ├── favicon-16x16.png
-│   │   ├── favicon-32x32.png
-│   │   ├── favicon.ico
-│   │   └── site.webmanifest
-│   └── neuroAI-icon.svg
+│   ├── apple-touch-icon-180x180.png
+│   ├── favicon.ico
+│   ├── maskable-icon-512x512.png
+│   ├── neuroAI-icon.svg
+│   ├── pwa-192x192.png
+│   ├── pwa-512x512.png
+│   └── pwa-64x64.png
 ├── README.md
+├── Reports_PPT
+│   ├── Personalised mental health assistant app With AI-Powered chatbot-final.pptx
+│   ├── Personalized Mental Health Assistant.docx
+│   ├── Personalized Mental Health Assistant.pdf
+│   ├── Questions.jsx
+│   ├── questions.txt
+│   └── Results.jsx
 ├── src
-│   ├── App.css
 │   ├── App.jsx
 │   ├── assets
 │   │   └── react.svg
@@ -131,6 +133,11 @@ npm i express cors socket.io
 │   │   │   └── Footer.jsx
 │   │   ├── Header
 │   │   │   └── Header.jsx
+│   │   ├── Home
+│   │   │   ├── FeaturesSection.jsx
+│   │   │   ├── HeroSection.jsx
+│   │   │   ├── HowItWorksSection.jsx
+│   │   │   └── TestimonialsSection.jsx
 │   │   ├── index.js
 │   │   ├── Input.jsx
 │   │   ├── Login.jsx
@@ -146,10 +153,10 @@ npm i express cors socket.io
 │       ├── index.js
 │       ├── Login.jsx
 │       └── Signup.jsx
-├── tailwind.config.js
-├── tree.txt
 ├── vercel.json
-└── vite.config.js
+├── vite.config.js
+└── .vscode
+    └── tasks.json
 
-11 directories, 45 files
+12 directories, 47 files
 ```
