@@ -139,16 +139,23 @@ function Signup() {
                             </button>
                         </div>
 
-                        <div className="text-sm text-base-content/70 bg-base-100/50 p-3 rounded-md">
-                            <p className='font-bold'>Password must contain:</p>
-                            <ul className="list-disc pl-5">
-                                <li>At least 8 characters</li>
-                                <li>At least one uppercase letter</li>
-                                <li>At least one lowercase letter</li>
-                                <li>At least one number</li>
-                                <li>At least one special character (!@#$%^&*)</li>
-                            </ul>
+                        <div tabIndex={0} className="collapse collapse-plus bg-base-100 border-base-300 border">
+                            <input type="checkbox" className='peer' />
+                            <div className="collapse-title font-semibold bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">Password Constraints</div>
+                            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                                <div className="text-sm text-base-content/70 bg-base-100/50 p-3 rounded-md">
+                                    <p className='font-bold'>Password must contain:</p>
+                                    <ul className="list-disc pl-5">
+                                        <li>At least 8 characters</li>
+                                        <li>At least one uppercase letter</li>
+                                        <li>At least one lowercase letter</li>
+                                        <li>At least one number</li>
+                                        <li>At least one special character (!@#$%^&*)</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
                         <Button type='submit' className='w-full'>
                             Create Account
                         </Button>
