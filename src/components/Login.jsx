@@ -71,7 +71,7 @@ function Login() {
                             </button>
                         </div>
 
-                        <Button type='submit' className='w-full hover:bg-green-600'>Sign in</Button>
+                        <Button type='submit' className='w-full'>Sign in</Button>
                     </div>
                 </form>
             </div>
