@@ -3,7 +3,7 @@ import React from 'react'
 const FeaturesSection = () => {
     return (
         <>
-            <section className='py-16 my-16 bg-gray-100/50 hover:shadow-2xl transition-all duration-300 ease-in-out' id='features'>
+            <section className='py-16 my-16 rounded-xl bg-gray-100/50 hover:shadow-2xl transition-all duration-300 ease-in-out' id='features'>
                 <div className='container mx-auto px-6 md:px-12 text-center'>
                     <h2 className='text-3xl md:text-4xl font-semibold'>
                         A better way to improve your mental health

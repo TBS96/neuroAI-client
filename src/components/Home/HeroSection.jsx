@@ -7,7 +7,7 @@ const HeroSection = () => {
     return (
         <>
             <section
-                className='hero min-h-screen hover:shadow-2xl transition-all duration-300 ease-in-out'
+                className='hero rounded-xl min-h-screen hover:shadow-2xl transition-all duration-300 ease-in-out'
                 style={{ backgroundImage: "url(https://i.ibb.co/3kq40pK/home-hero.jpg)" }}
             >
                 <div className='hero-overlay'></div>
