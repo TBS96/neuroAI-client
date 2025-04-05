@@ -76,6 +76,7 @@ function Signup() {
                             label='Age: '
                             placeholder='Age'
                             type='number'
+                            min={10}
                             {...register('age', {
                                 required: true,
                             })}
