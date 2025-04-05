@@ -85,7 +85,7 @@ function Signup() {
                             label='Address: '
                             placeholder='Street Address'
                             type='text'
-                            autocomplete='street-address'
+                            autoComplete='street-address'
                             {...register('address', {
                                 required: true,
                             })}
