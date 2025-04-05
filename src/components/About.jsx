@@ -39,7 +39,7 @@ const About = () => {
                         ].map(({ title, desc }, index) => (
                             <div
                                 key={index}
-                                className='p-6 skeleton shadow-md rounded-md text-left hover:shadow-2xl transition-all duration-300 hover:rotate-2 hover:cursor-pointer'
+                                className='p-6 skeleton shadow-md rounded-md text-left hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:cursor-pointer'
                             >
                                 <h3 className='text-2xl text-accent font-semibold mb-4'>{title}</h3>
                                 <p className='italic text-base'>{desc}</p>
