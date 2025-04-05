@@ -12,7 +12,7 @@ import FeaturesSection from "./Home/FeaturesSection";
 import HowItWorksSection from "./Home/HowItWorksSection";
 import TestimonialsSection from "./Home/TestimonialsSection";
 import About from "./About";
-
+import Contact from "./Contact";
 
 export {
     Input,
@@ -29,4 +29,5 @@ export {
     HowItWorksSection,
     TestimonialsSection,
     About,
+    Contact
 }
