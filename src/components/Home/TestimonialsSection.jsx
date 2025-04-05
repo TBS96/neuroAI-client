@@ -22,12 +22,18 @@ const TestimonialsSection = () => {
                                 author: 'Michael T.',
                                 role: 'Neuro AI User',
                             },
-                        ].map((testimonial, index) => (
+                        ].map(({quote, author, role}, index) => (
                             <div key={index} className='p-6 skeleton shadow-md rounded-md text-left hover:shadow-2xl transition-all duration-300 hover:rotate-2 hover:cursor-pointer'>
-                                <p className='italic'>'{testimonial.quote}'</p>
+                                <p className='italic'>
+                                    '{quote}'
+                                </p>
                                 <div className='mt-4'>
-                                    <h4 className='text-lg font-medium'>{testimonial.author}</h4>
-                                    <p className='text-sm text-secondary font-semibold'>{testimonial.role}</p>
+                                    <h4 className='text-lg font-medium'>
+                                        {author}
+                                    </h4>
+                                    <p className='text-sm text-secondary font-semibold'>
+                                        {role}
+                                    </p>
                                 </div>
                             </div>
                         ))}

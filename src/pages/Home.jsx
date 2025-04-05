@@ -5,12 +5,10 @@ const Home = () => {
     return (
         <>
             <title>neuroAI | Home</title>
-            <main>
-                <HeroSection />
-                <FeaturesSection />
-                <HowItWorksSection />
-                <TestimonialsSection />
-            </main>
+            <HeroSection />
+            <FeaturesSection />
+            <HowItWorksSection />
+            <TestimonialsSection />
         </>
     )
 }

@@ -62,12 +62,15 @@ npm i vite-plugin-pwa -D
 ```bash
 npm i @vite-pwa/assets-generator -D
 ```
+```bash
+npm i lucide-react
+```
 
 <details>
 <summary>Inline</summary>
 
 ```bash
-npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest react-simple-typewriter socket.io-client vite-plugin-pwa -D @vite-pwa/assets-generator -D
+npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest react-simple-typewriter socket.io-client vite-plugin-pwa -D @vite-pwa/assets-generator -D lucide-react
 ```
 
 </details>

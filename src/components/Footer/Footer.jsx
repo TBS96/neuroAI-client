@@ -126,11 +126,11 @@ function Footer() {
                     <div className='border-b md:border-none border-b-gray-700 w-full md:w-0'></div>
 
                     {/* Footer Sections */}
-                    {additionalLinks.map((section, index) => (
+                    {additionalLinks.map(({links, title}, index) => (
                         <div key={index} className='w-full md:w-auto text-center'>
-                            <h3 className='font-semibold text-lg text-gray-400 uppercase my-4 md:my-0'>{section.title}</h3>
+                            <h3 className='font-semibold text-lg text-gray-400 uppercase my-4 md:my-0'>{title}</h3>
                             <ul className='mt-2'>
-                                {section.links.map((link, idx) => (
+                                {links.map((link, idx) => (
                                     <li key={idx} className='mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300'>
                                         <Link to='/'>
                                             {link}
@@ -146,20 +146,20 @@ function Footer() {
 
                 {/* Social Links */}
                 <div className='flex flex-wrap justify-center mt-8'>
-                    {footerLinks.map((section) => (
-                        <div key={section.title} className='text-center'>
+                    {footerLinks.map(({links, title}) => (
+                        <div key={title} className='text-center'>
                             <h3 className='text-gray-400 uppercase font-semibold mb-4'>
-                                {section.title}
+                                {title}
                             </h3>
                             <ul className='md:flex justify-center'>
-                                {section.links.map((link) => (
-                                    <li key={link.name} className='p-4'>
+                                {links.map(({name, path, icon, btnColorClassName}) => (
+                                    <li key={name} className='p-4'>
                                         <Link
-                                            to={link.path}
-                                            className={`btn btn-soft ${link.btnColorClassName} hover:translate-x-1 hover:-translate-y-1 duration-200 transition-all ease-in-out`}
+                                            to={path}
+                                            className={`btn btn-soft ${btnColorClassName} hover:translate-x-1 hover:-translate-y-1 duration-200 transition-all ease-in-out`}
                                             target='_blank'
                                         >
-                                            {link.icon}
+                                            {icon}
                                         </Link>
                                     </li>
                                 ))}
@@ -172,7 +172,7 @@ function Footer() {
                 <div className='mt-8 text-center border-t border-t-gray-700 pt-4 text-sm'>
                     <div>
                         &copy; {new Date().getFullYear()}{' '}
-                        <Link to='/' className='text-blue-400 hover:text-blue-500'>
+                        <Link to='/' className='text-primary transition-all duration-200 hover:link font-medium'>
                             neuroAI
                         </Link>{' '}
                         | All Rights Reserved by{' '}
