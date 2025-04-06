@@ -5,7 +5,7 @@ import { Github, Mail } from 'lucide-react'
 const teamMembers = [
     {
         name: 'Mahvish Ruhi',
-        roll: '2300012xxxx, CSE',
+        roll: '23000121025, CSE',
         role: 'Backend Developer',
         github: 'https://github.com/Mahvish16',
         mail: 'mailto:mahvish.ruhi@gmail.com',
@@ -41,7 +41,7 @@ const teamMembers = [
     },
     {
         name: 'Arghyakamal Ghosh',
-        roll: '2300012xxxx, CSE',
+        roll: '23000121026, CSE',
         role: 'Documentation Engineer',
         github: 'https://github.com/',
         mail: 'mailto:arghyakamalghosh19@gmail.com',
