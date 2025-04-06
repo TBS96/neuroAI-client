@@ -4,7 +4,7 @@ import { Error as ErrorPage } from '../components/index'
 const Error = () => {
     return (
         <>
-            <title>Error</title>
+            <title>neuroAI | 404</title>
             <ErrorPage />
         </>
     )
