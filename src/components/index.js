@@ -13,6 +13,8 @@ import HowItWorksSection from "./Home/HowItWorksSection";
 import TestimonialsSection from "./Home/TestimonialsSection";
 import About from "./About";
 import Contact from "./Contact";
+import Error from "./Error";
+
 
 export {
     Input,
@@ -29,5 +31,6 @@ export {
     HowItWorksSection,
     TestimonialsSection,
     About,
-    Contact
+    Contact,
+    Error,
 }
