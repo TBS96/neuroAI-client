@@ -32,7 +32,7 @@ const teamMembers = [
     },
     {
         name: 'Sanchita Kar',
-        roll: '2300012xxxx, CSE',
+        roll: '23000121019, CSE',
         role: 'Frontend Developer',
         github: 'https://github.com/',
         mail: 'mailto:karsanchita50@gmail.com',
