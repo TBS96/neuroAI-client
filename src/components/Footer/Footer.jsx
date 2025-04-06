@@ -9,15 +9,54 @@ function Footer() {
     const additionalLinks = [
         {
             title: 'Quick Links',
-            links: ['Features', 'How It Works', 'Testimonials'],
+            links: [
+                {
+                    name: 'Features',
+                    url: '#',
+                },
+                {
+                    name: 'How It Works',
+                    url: '#',
+                },
+                {
+                    name: 'Testimonials',
+                    url: '#',
+                },
+            ],
         },
         {
             title: 'Company',
-            links: ['About Us', 'Remedy', 'Contact'],
+            links: [
+                {
+                    name: 'About Us',
+                    url: '/about',
+                },
+                {
+                    name: 'Remedy',
+                    url: '/chatbot',
+                },
+                {
+                    name: 'Contact',
+                    url: '/contact',
+                },
+            ],
         },
         {
             title: 'Legal',
-            links: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+            links: [
+                {
+                    name: 'Privacy Policy',
+                    url: '/',
+                },
+                {
+                    name: 'Terms of Service',
+                    url: '/',
+                },
+                {
+                    name: 'Cookie Policy',
+                    url: '/',
+                },
+            ],
         },
     ];
 
@@ -130,10 +169,10 @@ function Footer() {
                         <div key={index} className='w-full md:w-auto text-center'>
                             <h3 className='font-semibold text-lg text-gray-400 uppercase my-4 md:my-0'>{title}</h3>
                             <ul className='mt-2'>
-                                {links.map((link, idx) => (
+                                {links.map(({name, url}, idx) => (
                                     <li key={idx} className='mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300'>
-                                        <Link to='/'>
-                                            {link}
+                                        <Link to={url}>
+                                            {name}
                                         </Link>
                                     </li>
                                 ))}
