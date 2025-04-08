@@ -28,7 +28,7 @@ const HeroSection = () => {
                         </p>
                         <div className='mt-6'>
                             <Link to='/chatbot'>
-                                <Button className='btn-primary font-medium md:text-lg capitalize md:uppercase'>
+                                <Button className='btn-primary font-medium md:text-lg capitalize md:uppercase' data-aos='fade-up'>
                                     Test your mental health now!
                                 </Button>
                             </Link>
