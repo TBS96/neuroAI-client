@@ -39,7 +39,7 @@ const About = () => {
                         ].map(({ title, desc }, index) => {
                             const aos = index === 0 ? 'fade-down' : 'fade-up';
                             return (
-                                <div key={index} data-aos={aos}  data-aos-delay='700'>
+                                <div key={index} data-aos={aos} data-aos-delay='700'>
                                     <div className='p-6 skeleton shadow-md rounded-md text-left hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:cursor-pointer'
                                     >
                                         <h3 className='text-2xl text-accent font-semibold mb-4'>{title}</h3>
