@@ -152,7 +152,7 @@ function Footer() {
     ];
 
     return (
-        <footer className='bg-slate-900/60 backdrop-blur-sm py-10 border-t-2 border-t-gray-700 rounded-t-4xl'>
+        <footer className='bg-slate-900/60 backdrop-blur-sm py-10 border-t-2 border-t-gray-700 rounded-t-4xl' data-aos='zoom-in-down'>
             <div className='container mx-auto px-4'>
 
                 {/* Upper Footer */}
