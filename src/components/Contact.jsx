@@ -28,7 +28,7 @@ const teamMembers = [
         github: 'https://github.com/tbs96',
         mail: 'mailto:prantik.fdev@gmail.com',
         color: 'bg-success/60',
-        image: 'https://i.ibb.co/dwmH5RhP/PrantikG.jpg',
+        image: 'https://i.ibb.co/PzVThCGG/PrantiKG.jpg',
     },
     {
         name: 'Sanchita Kar',
