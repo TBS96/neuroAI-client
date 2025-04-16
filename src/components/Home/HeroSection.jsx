@@ -23,10 +23,10 @@ const HeroSection = () => {
                                 deleteSpeed={70}
                             />_
                         </span>with You!</h1>
-                        <p className='mt-4 text-base-300 text-lg font-bold md:text-xl'>
+                        <p className='mt-4 text-base-300 text-lg font-bold md:text-xl'  data-aos='fade-down' data-aos-delay='700'>
                             Neuro AI supports you on your journey toward better mental health.
                         </p>
-                        <div className='mt-6'>
+                        <div className='mt-6' data-aos='fade-up' data-aos-delay='700'>
                             <Link to='/chatbot'>
                                 <Button className='btn-primary font-medium md:text-lg capitalize md:uppercase'>
                                     Test your mental health now!

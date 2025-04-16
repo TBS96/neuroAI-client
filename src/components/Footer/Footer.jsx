@@ -152,7 +152,7 @@ function Footer() {
     ];
 
     return (
-        <footer className='bg-slate-900/60 backdrop-blur-sm py-10 border-t-2 border-t-gray-700 rounded-t-4xl'>
+        <footer className='bg-slate-900/60 backdrop-blur-sm py-10 border-t-2 border-t-gray-700 rounded-t-4xl' data-aos='zoom-in-down'>
             <div className='container mx-auto px-4'>
 
                 {/* Upper Footer */}
@@ -215,21 +215,30 @@ function Footer() {
                             neuroAI
                         </Link>{' '}
                         | All Rights Reserved by{' '}
-                        {teamMembers.map((member, index) => (
+                        {teamMembers.map(({name, url, className}, index) => (
                             <div className='flex md:inline-flex justify-center' key={index}>
                                 <Link
-                                    to={member.url}
-                                    className={member.className}
+                                    to={url}
+                                    className={className}
                                     target='_blank'
                                     rel='noopener noreferrer'
                                 >
-                                    {member.name}
+                                    {name}
                                 </Link>
                                 {index < teamMembers.length - 1 && ' '}
                             </div>
                         ))}
                     </div>
                 </div>
+                
+                <div className='my-4 border border-gray-700'></div>
+                <p className='mt-1 text-xs italic text-center'>
+                    Crafted with care by <span className='font-semibold text-accent hover:link'>
+                        <Link to={teamMembers[2].url}>
+                            {teamMembers[2].name}
+                        </Link>
+                    </span>
+                </p>
             </div>
         </footer>
     )

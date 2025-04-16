@@ -3,7 +3,10 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home, Login, Signup, Contact, About, ChatBot, Error } from './pages/index.js'
-// import Error from './pages/Error.jsx'
+import Aos from 'aos'
+
+
+Aos.init();
 
 const router = createBrowserRouter([
   {
