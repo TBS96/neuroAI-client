@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const HowItWorksSection = () => {
     return (
         <>
-            <section className='py-16 my-16 bg-white/10 hover:shadow-2xl transition-all duration-300 ease-in-out'>
+            <section className='py-16 my-16 rounded-xl bg-white/10 hover:shadow-2xl transition-all duration-300 ease-in-out'>
                 <div className='container mx-auto px-6 md:px-12 text-center'>
                     <h2 className='text-3xl md:text-4xl font-semibold' data-aos='fade-right'>How It Works</h2>
                     <div className='mt-12 grid gap-8 md:grid-cols-3'>
