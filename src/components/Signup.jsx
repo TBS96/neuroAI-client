@@ -26,8 +26,8 @@ function Signup() {
                         <Logo width='100%' />
                     </span>
                 </div>
-                <h2 className='text-center text-2xl font-bold leading-tight'>Sign up to create an account</h2>
-                <p className='mt-2 text-center text-base text-base-content/45'>
+                <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Sign up to create an account</h2>
+                <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Already have an account?&nbsp;
                     <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline'>
                         Sign In
@@ -103,6 +103,7 @@ function Signup() {
                                 label='Password: '
                                 placeholder='••••••••'
                                 type={showPass ? 'text' : 'password'}
+                                data-aos='zoom-in-right'
                                 {...register('password', {
                                     required: true,
                                     maxLength: 16,
@@ -113,6 +114,7 @@ function Signup() {
                                 type='button'
                                 onClick={() => setShowPass(!showPass)}
                                 className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all'
+                                data-aos='fade-up'
                             >
                                 {!showPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
                             </button>
@@ -122,6 +124,7 @@ function Signup() {
                                 label='Confirm Password: '
                                 placeholder='••••••••'
                                 type={showConfirmPass ? 'text' : 'password'}
+                                data-aos='zoom-in-right'
                                 {...register('confirmPassword', {
                                     required: true,
                                     maxLength: 16,
@@ -135,12 +138,13 @@ function Signup() {
                                 type='button'
                                 onClick={() => setShowConfirmPass(!showConfirmPass)}
                                 className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all'
+                                data-aos='fade-up'
                             >
                                 {!showConfirmPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
                             </button>
                         </div>
 
-                        <div tabIndex={0} className="collapse collapse-plus bg-base-100 border-base-300 border">
+                        <div tabIndex={0} className="collapse collapse-plus bg-base-100 border-base-300 border" data-aos='zoom-in-right'>
                             <input type="checkbox" className='peer' />
                             <div className="collapse-title font-semibold bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">Password Constraints</div>
                             <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
@@ -157,7 +161,7 @@ function Signup() {
                             </div>
                         </div>
 
-                        <Button type='submit' className='w-full'>
+                        <Button type='submit' className='w-full' data-aos='fade-up'>
                             Create Account
                         </Button>
                     </div>
