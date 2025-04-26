@@ -31,20 +31,23 @@ const ChatBot = () => {
 
     const sendMessage = async () => {
 
-        if (message.trim() !== '') {
-            let messageContent = {
-                room: room,
-                content: {
-                    author: userName,
-                    message: message,
-                    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                },
-            };
-
-            await socket.emit('send_message', messageContent);
-            setMessageList([...messageList, messageContent.content]);
-            setMessage('');
+        if (message.trim() === '') {
+            document.getElementById('emptyInputAreaModal').showModal();
+            return;
         }
+
+        let messageContent = {
+            room: room,
+            content: {
+                author: userName,
+                message: message,
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            },
+        };
+
+        await socket.emit('send_message', messageContent);
+        setMessageList([...messageList, messageContent.content]);
+        setMessage('');
     };
 
     const chatContainerRef = useRef(null);
@@ -99,6 +102,17 @@ const ChatBot = () => {
                         Send
                     </Button>
                 </div>
+
+                {/* Modal */}
+                <dialog id='emptyInputAreaModal' className='modal'>
+                    <div className='modal-box'>
+                        <h3 className='font-bold text-lg'>Warning!</h3>
+                        <p className='py-4'>Please enter a message before sending.</p>
+                    </div>
+                    <form method='dialog' className='modal-backdrop'>
+                        <button>Close</button>
+                    </form>
+                </dialog>
 
             </div>
 
