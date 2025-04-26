@@ -64,18 +64,22 @@ const ChatBot = () => {
             <div className='h-96 border mx-auto w-full max-w-6xl p-2 rounded-lg flex flex-col'>
 
                 {/* messages */}
-                <div ref={chatContainerRef} data-aos='fade-up' className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
-                    {messageList.map((val, key) => {
-                        const isCurrentUser = val.author === userName;
+                <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
+                    {messageList.map(({author, message, timestamp}, key) => {
+                        const isCurrentUser = author === userName;
                         return (
                             // messageContainer
-                            <div key={key} className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} my-2`} id={isCurrentUser ? 'You' : val.author}>
+                            <div 
+                                key={key} 
+                                className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} my-2`} 
+                                id={isCurrentUser ? 'You' : author}
+                            >
                                 {' '}
-                                <div className={`max-w-xs p-3 rounded-lg chat-bubble  ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-success'}`}>
-                                    <span className='block font-semibold text-base-300'>{isCurrentUser ? 'You' : val.author}</span>
+                                <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble  ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-success'}`}>
+                                    <span className='block font-semibold text-base-300'>{isCurrentUser ? 'You' : author}</span>
                                     <div className='flex flex-col gap-1'>
-                                        <span>{val.message}</span> {" "}
-                                        <span className='text-xs text-base-100 self-end'>{val.timestamp}</span>
+                                        <span>{message}</span> {" "}
+                                        <span className='text-xs text-base-100 self-end'>{timestamp}</span>
                                     </div>
                                 </div>
                             </div>
