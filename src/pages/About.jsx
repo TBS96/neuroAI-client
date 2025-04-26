@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { About as AboutComponent } from '../components/index'
 
 const About = () => {
+
+    useEffect(() => {
+        document.title = 'neuroAI | About'
+    }, []);
+
     return (
         <>
-            <title>neuroAI | About</title>
             <AboutComponent />
         </>
     )

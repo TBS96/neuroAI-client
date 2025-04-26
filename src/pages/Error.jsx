@@ -2,9 +2,11 @@ import React from 'react'
 import { Error as ErrorPage } from '../components/index'
 
 const Error = () => {
+
+    document.title = 'neuroAI | 404';
+
     return (
         <>
-            <title>neuroAI | 404</title>
             <ErrorPage />
         </>
     )
