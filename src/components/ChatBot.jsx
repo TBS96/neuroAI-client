@@ -59,7 +59,7 @@ const ChatBot = () => {
     }, [messageList]);
 
     return (
-        <div className='grid place-items-center min-h-screen tab-content overflow-x-auto scroll-auto'>
+        <div className='grid place-items-center min-h-screen tab-content overflow-x-auto scroll-auto' data-aos='fade-up' data-aos-duration='1000'>
 
             <div className='h-96 border mx-auto w-full max-w-6xl p-2 rounded-lg flex flex-col'>
 
@@ -88,7 +88,7 @@ const ChatBot = () => {
                 </div>
 
                 {/* messageInputs */}
-                <div className='join'>
+                <div className='join' data-aos='fade-right' data-aos-duration='1500'>
                     <Input
                         type='text'
                         onChange={(e) => { setMessage(e.target.value) }}
