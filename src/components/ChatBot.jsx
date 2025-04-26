@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
 import { Button, Input } from './index';
 
@@ -31,20 +31,32 @@ const ChatBot = () => {
 
     const sendMessage = async () => {
 
-        if (message.trim() !== '') {
-            let messageContent = {
-                room: room,
-                content: {
-                    author: userName,
-                    message: message
-                },
-            };
-
-            await socket.emit('send_message', messageContent);
-            setMessageList([...messageList, messageContent.content]);
-            setMessage('');
+        if (message.trim() === '') {
+            document.getElementById('emptyInputAreaModal').showModal();
+            return;
         }
+
+        let messageContent = {
+            room: room,
+            content: {
+                author: userName,
+                message: message,
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            },
+        };
+
+        await socket.emit('send_message', messageContent);
+        setMessageList([...messageList, messageContent.content]);
+        setMessage('');
     };
+
+    const chatContainerRef = useRef(null);
+
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messageList]);
 
     return (
         <div className='grid place-items-center min-h-screen tab-content overflow-x-auto scroll-auto'>
@@ -52,7 +64,7 @@ const ChatBot = () => {
             <div className='h-96 border mx-auto w-full max-w-6xl p-2 rounded-lg flex flex-col'>
 
                 {/* messages */}
-                <div className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
+                <div ref={chatContainerRef} data-aos='fade-up' className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
                     {messageList.map((val, key) => {
                         const isCurrentUser = val.author === userName;
                         return (
@@ -60,8 +72,11 @@ const ChatBot = () => {
                             <div key={key} className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} my-2`} id={isCurrentUser ? 'You' : val.author}>
                                 {' '}
                                 <div className={`max-w-xs p-3 rounded-lg chat-bubble  ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-success'}`}>
-                                    <span className='block font-semibold'>{isCurrentUser ? 'You' : val.author}</span>
-                                    <span>{val.message}</span>
+                                    <span className='block font-semibold text-base-300'>{isCurrentUser ? 'You' : val.author}</span>
+                                    <div className='flex flex-col gap-1'>
+                                        <span>{val.message}</span> {" "}
+                                        <span className='text-xs text-base-100 self-end'>{val.timestamp}</span>
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -70,20 +85,34 @@ const ChatBot = () => {
 
                 {/* messageInputs */}
                 <div className='join'>
-                    <Input 
+                    <Input
                         type='text'
                         onChange={(e) => { setMessage(e.target.value) }}
                         value={message}
                         className='input join-item'
                         placeholder='Type a Message...'
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') sendMessage();
+                        }}
                     />
-                    <Button 
+                    <Button
                         onClick={sendMessage}
                         className='join-item rounded-r-full skeleton'
                     >
                         Send
                     </Button>
                 </div>
+
+                {/* Modal */}
+                <dialog id='emptyInputAreaModal' className='modal'>
+                    <div className='modal-box'>
+                        <h3 className='font-bold text-lg'>Warning!</h3>
+                        <p className='py-4'>Please enter a message before sending.</p>
+                    </div>
+                    <form method='dialog' className='modal-backdrop'>
+                        <button>Close</button>
+                    </form>
+                </dialog>
 
             </div>
 
