@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FeaturesSection, HeroSection, HowItWorksSection, TestimonialsSection } from '../components'
 
 const Home = () => {
+
+    useEffect(() => {
+        document.title = 'neuroAI | Home';
+    });
+
     return (
         <>
-            <title>neuroAI | Home</title>
             <HeroSection />
             <FeaturesSection />
             <HowItWorksSection />

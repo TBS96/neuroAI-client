@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BlinkBlur } from 'react-loading-indicators'
+import { LifeLine } from 'react-loading-indicators'
 import { Container, Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 3000);
   }, []);
 
   return !loading ? (
@@ -25,7 +25,7 @@ const App = () => {
     </div>
   ) : (
     <div className='grid place-content-center w-full min-h-screen'>
-      <BlinkBlur easing='ease-in' speedPlus={0} text='neuroAI' size='large' />
+      <LifeLine easing='ease-in' speedPlus={0} text='neuroAI' size='large' />
     </div>
   )
 }

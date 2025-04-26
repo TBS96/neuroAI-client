@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Login as LoginComponent } from '../components'
 
 function Login() {
+
+    useEffect(() => {
+        document.title = 'neuroAI | Login'
+    }, []);
+
     return (
         <>
-            <title>neuroAI | Login</title>
             <LoginComponent />
         </>
     )
