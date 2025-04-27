@@ -32,12 +32,12 @@ const Header = () => {
             slug: '/contact',
             active: true
         },
-        {
-            name: 'Login',
-            slug: '/login',
-            // active: !authStatus
-            active: true
-        },
+        // {
+        //     name: 'Login',
+        //     slug: '/login',
+        //     // active: !authStatus
+        //     active: true
+        // },
         {
             name: 'Signup',
             slug: '/signup',
