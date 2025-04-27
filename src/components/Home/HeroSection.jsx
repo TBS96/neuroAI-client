@@ -13,10 +13,11 @@ const HeroSection = () => {
                 <div className='hero-overlay'></div>
                 <div className='hero-content'>
                     <div className='text-center px-6 md:px-12'>
-                        <h1 className='text-4xl md:text-6xl font-bold'>Mental Health <span className='bg-clip-text text-transparent bg-gradient-to-r from-[#14b82f] to-[#6504e4] block md:inline-block'>
+                        <h1 className='text-4xl md:text-5xl font-bold'>Mental Health <span className='bg-clip-text text-transparent bg-gradient-to-r from-[#14b82f] to-[#6504e4] block md:inline-block'>
                             <Typewriter
                                 words={['begins', 'grows', 'thrives', 'shines', 'heals', 'matters', 'blooms', 'rises']}
                                 loop={Infinity}
+                                cursor={true}
                                 cursorBlinking={true}
                                 typeSpeed={130}
                                 delaySpeed={1200}
