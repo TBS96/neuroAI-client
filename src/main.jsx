@@ -4,6 +4,8 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home, Login, Register, Contact, About, ChatBot, Error, ForgottenPassword } from './pages/index.js'
 import Aos from 'aos'
+import { Provider } from 'react-redux'
+import store from './store/store.js'
 
 
 Aos.init();
@@ -51,5 +53,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 )
