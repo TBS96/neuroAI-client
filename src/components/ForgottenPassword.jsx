@@ -11,7 +11,7 @@ const ForgottenPassword = () => {
 
     const [error, setError] = useState('');
 
-    const [data, setData] = useState('');
+    const [serverError, setServerError] = useState('');
 
     const onSubmit = (data) => {
         console.log(`Forgot Password Data: ${data}`);
@@ -43,8 +43,14 @@ const ForgottenPassword = () => {
                     />
 
                     {error && (
-                        <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100'>
+                        <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
                             {data.email} doesn't exist in our database.
+                        </p>
+                    )}
+
+                    {serverError && (
+                        <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                            {serverError}
                         </p>
                     )}
 
