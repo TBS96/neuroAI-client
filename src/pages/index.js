@@ -5,6 +5,7 @@ import Contact from "./Contact";
 import About from "./About";
 import ChatBot from './ChatBot';
 import Error from './Error';
+import ForgottenPassword from './ForgottenPassword'
 
 export {
     Home,
@@ -14,4 +15,5 @@ export {
     About,
     ChatBot,
     Error,
+    ForgottenPassword
 }
