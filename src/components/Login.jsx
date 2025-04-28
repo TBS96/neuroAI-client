@@ -29,8 +29,8 @@ function Login() {
                 <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Sign in to your account</h2>
                 <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Don&apos;t have any account?&nbsp;
-                    <Link to='/signup' className='font-medium text-primary transition-all duration-200 hover:link'>
-                        Sign Up
+                    <Link to='/register' className='font-medium text-primary transition-all duration-200 hover:link'>
+                        Register
                     </Link>
                 </p>
                 {error &&

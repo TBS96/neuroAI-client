@@ -4,7 +4,7 @@ import Container from "./container/Container";
 import Button from "./Button";
 import Footer from "./Footer/Footer";
 import Login from './Login';
-import Signup from "./Signup";
+import Register from "./Register";
 import Logo from "./Logo";
 import ChatBot from "./ChatBot";
 import HeroSection from "./Home/HeroSection";
@@ -23,7 +23,7 @@ export {
     Button,
     Footer,
     Login,
-    Signup,
+    Register,
     Logo,
     ChatBot,
     HeroSection,
