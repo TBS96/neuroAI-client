@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from './index'
 import { Eye, EyeClosed } from 'lucide-react';
 
-function Signup() {
+function Register() {
 
     const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ function Signup() {
                         <Logo width='100%' />
                     </span>
                 </div>
-                <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Sign up to create an account</h2>
+                <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Register to create an account</h2>
                 <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Already have an account?&nbsp;
                     <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline'>
@@ -171,4 +171,4 @@ function Signup() {
     )
 }
 
-export default Signup
+export default Register

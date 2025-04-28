@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { Signup as SignupComponent } from '../components'
+import { Register as RegisterComponent } from '../components'
 
 function Signup() {
 
     useEffect(() => {
-        document.title = 'neuroAI | Signup';
+        document.title = 'neuroAI | Register';
     }, []);;
 
     return (
         <>
-            <SignupComponent />
+            <RegisterComponent />
         </>
     )
 }
