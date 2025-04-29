@@ -80,7 +80,7 @@ function Login() {
                                 {...register('password', {
                                     required: true,
                                     maxLength: 16,
-                                    minLength: 8
+                                    minLength: 6
                                 })}
                             />
                             <button
