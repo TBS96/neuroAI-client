@@ -1,8 +1,5 @@
 import axios from 'axios'
 import conf from '../conf/conf';
-import { useNavigate } from 'react-router-dom'
-
-const navigate = useNavigate();
 
 const API = axios.create({
     baseURL: conf.backendUrl,
@@ -51,7 +48,7 @@ API.interceptors.response.use(
             catch (err) {
                 console.error(`Refresh token failed`, err);
                 localStorage.clear();   // clear all stored tokens
-                navigate('/login');
+                window.location.href = '/login';
             }
         }
         return Promise.reject(error);
