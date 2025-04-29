@@ -1,21 +1,26 @@
 import API from "./api";
 
 // Login fn. to authenticate user
-export const loginUser = async (credentials) => {
+export const loginUserApi = async (credentials) => {
     try {
-        const res = await API.post('/login', credentials);
+        const res = await API.post('/login/', credentials);
         return res.data;    // Return the tokens after successful login
     }
     catch (err) {
         console.error(`Login failed: ${err}`);
-        throw err;      // Throw error to be caught in the component
+
+        // Normalize and rethrow a more informative error
+        const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
+        const customError = new Error(message);
+        customError.response = err.response;
+        throw customError;
     }
 };
 
 // Register fn. to register a new user
 export const register = async (formData) => {
     try {
-        const res = await API.post('/register', formData);
+        const res = await API.post('/register/', formData);
         return res.data;    // Return the response after registration
     }
     catch (err) {
@@ -26,28 +31,24 @@ export const register = async (formData) => {
 
 // Refresh access token using refresh token
 export const refreshAccessToken = async () => {
-    try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        if (!refreshToken) throw new Error('No refresh token available');
 
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    if (!refreshToken) {
+        console.warn('No refresh token found! Skipping refresh request.');
+        return null;
+    }
+
+    try {
         const res = await API.post('/api/token/refresh/', {refresh: refreshToken});
         // Return the new access token
         return res.data.access;
     }
     catch (err) {
-        console.error(`Failed to refresh token: ${err}`);
-        throw err;      // Throw error to be handled in API interceptors
+        console.error("Failed to refresh token:", err.response?.data?.message || err.message);
+        return null;
     }
 };
-
-
-
-
-
-
-
-
-
 
 
 
