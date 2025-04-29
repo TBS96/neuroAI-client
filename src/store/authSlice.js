@@ -19,7 +19,9 @@ export const loginUser = createAsyncThunk('auth/loginUser',
             return data;
         }
         catch (error) {
-            return thunkAPI.rejectWithValue(error.response?.data || {message: 'Login failed'});
+            console.error("Axios error:", error);
+            // console.log("Backend full error response:", error.response?.data); // Debugging backend error
+            return thunkAPI.rejectWithValue(error.response?.data?.message || 'Login failed.');
         }
     }
 );
@@ -47,6 +49,7 @@ const authSlice = createSlice({
             localStorage.setItem('authData', JSON.stringify(action.payload));
         })
         .addCase(loginUser.rejected, (state, action) => {
+            // console.log(`Redux rejected payload: ${action.payload}`);
             state.loading = false;
             state.status = false;
             state.error = action.payload;

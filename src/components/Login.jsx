@@ -37,25 +37,16 @@ function Login() {
                 console.log('login success');
                 navigate('/');
             }
-            else {
-                // setError(responseUserData.payload?.message || 'Login failed');
-                console.log('Login failed');
-            }
         }
-
         catch (err) {
             console.error("Login Error:", err);
-        
-            // Ensure we handle error safely
-            const errorMessage = err.response?.data?.message || 'Login failed. Please check your credentials.';
-            
-            if (typeof errorMessage === 'object') {
-                setError(JSON.stringify(errorMessage)); // Convert object to string
-            } else {
-                setError(errorMessage);
-            }
+
+            // Check if error was rejected by Redux Toolkit
+            const errorMessage = err || 'Login failed. Please check your credentials.';
+
+            setError(errorMessage);
+            console.log("Stored error in state:", errorMessage);
         }
-              
     };
 
     return (
@@ -76,11 +67,11 @@ function Login() {
 
                 {error && (
                     <p className='text-error mt-8 text-center bg-error-content animate-pulse'>
-                        {typeof error === 'string' ? error : JSON.stringify(error)}
+                        {error}
                     </p>
                 )}
 
-                <form 
+                <form
                     onSubmit={handleSubmit(login)}
                     className='mt-8 form-control'
                 >
