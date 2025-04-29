@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from './index'
 import { Eye, EyeClosed } from 'lucide-react';
+import { loginUser } from '../api/authApi'
 
 function Login() {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const { register, handleSubmit } = useForm();
 
@@ -16,7 +20,22 @@ function Login() {
 
     const [showPass, setShowPass] = useState(false);
 
-    const login = () => { };
+    const login = async (credentials) => {
+        setError('');
+        setData(credentials);
+        try {
+            const responseUserData = await loginUser(credentials);
+            const { refresh, access } = responseUserData;   // Extract refresh and access tokens from the response
+            localStorage.setItem('refreshToken', refresh);
+            localStorage.setItem('accessToken', access);
+            dispatch(login({responseUserData}));
+            navigate('/');
+        }
+        catch (err) {
+            console.error(err);
+            setError(`Login failed! Please check credentials.`)
+        }
+    };
 
     return (
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0 scroll-smooth' id='signupTarget'>
