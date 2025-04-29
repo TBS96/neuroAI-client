@@ -10,7 +10,7 @@ export const loginUserApi = async (credentials) => {
         console.error(`Login failed: ${err}`);
 
         // Normalize and rethrow a more informative error
-        const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
+        const message = err.response?.data?.message || 'Login failed. Please check your credentials.';  // TODO: dont show hardcoded error msgs. instead show the response coming from backend
         const customError = new Error(message);
         customError.response = err.response;
         throw customError;
