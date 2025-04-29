@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from './index'
 import { Eye, EyeClosed } from 'lucide-react';
-import { loginUser } from '../api/authApi'
+import { loginUser } from '../store/authSlice'
 
 function Login() {
 
@@ -24,17 +24,38 @@ function Login() {
         setError('');
         setData(credentials);
         try {
-            const responseUserData = await loginUser(credentials);
-            const { refresh, access } = responseUserData;   // Extract refresh and access tokens from the response
-            localStorage.setItem('refreshToken', refresh);
-            localStorage.setItem('accessToken', access);
-            dispatch(login({responseUserData}));
-            navigate('/');
+            // Dispatch the async thunk to login the user
+            const responseUserData = await dispatch(loginUser(credentials)).unwrap();    // Use the async thunk
+
+            // console.log(`Backend response: ${JSON.stringify(responseUserData)}`);
+
+            if (responseUserData && responseUserData.access) {
+                // If login is successful
+                const { refresh, access } = responseUserData;
+                localStorage.setItem('refreshToken', refresh);
+                localStorage.setItem('accessToken', access);
+                console.log('login success');
+                navigate('/');
+            }
+            else {
+                // setError(responseUserData.payload?.message || 'Login failed');
+                console.log('Login failed');
+            }
         }
+
         catch (err) {
-            console.error(err);
-            setError(`Login failed! Please check credentials.`)
+            console.error("Login Error:", err);
+        
+            // Ensure we handle error safely
+            const errorMessage = err.response?.data?.message || 'Login failed. Please check your credentials.';
+            
+            if (typeof errorMessage === 'object') {
+                setError(JSON.stringify(errorMessage)); // Convert object to string
+            } else {
+                setError(errorMessage);
+            }
         }
+              
     };
 
     return (
@@ -52,10 +73,17 @@ function Login() {
                         Register
                     </Link>
                 </p>
-                {error &&
-                    <p className='text-error mt-8 text-center bg-error-content animate-pulse'>{error}</p>
-                }
-                <form onSubmit={handleSubmit(login)} className='mt-8 form-control'>
+
+                {error && (
+                    <p className='text-error mt-8 text-center bg-error-content animate-pulse'>
+                        {typeof error === 'string' ? error : JSON.stringify(error)}
+                    </p>
+                )}
+
+                <form 
+                    onSubmit={handleSubmit(login)}
+                    className='mt-8 form-control'
+                >
                     <div className='space-y-5'>
                         <Input
                             label='Email: '
@@ -68,9 +96,11 @@ function Login() {
                                 }
                             })}
                         />
-                        {error &&
+
+                        {error && data.email && (
                             <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100'>{data.email} doesn't exist in our database. Please Sign Up!</p>
-                        }
+
+                        )}
 
                         <div className='relative'>
                             <Input
@@ -124,3 +154,12 @@ function Login() {
 }
 
 export default Login
+
+
+
+// NOTES:
+// dispatch(loginUser(credentials)) will resolve to the latest action that has been dispatched by that thunk.
+
+// With .unwrap(), i.e., dispatch(loginUser(credentials)).unwrap(), it will resolve to the value of the fulfilled action, or throw on a rejected action.
+
+// The idea here is that you should be able to dispatch an asyncThunk without having to catch it every time, but only if you really want to write more logic based on it.
