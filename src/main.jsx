@@ -6,6 +6,7 @@ import { Home, Login, Register, Contact, About, ChatBot, Error, ForgottenPasswor
 import Aos from 'aos'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
+import { AuthLayout } from './components/index.js'
 
 
 Aos.init();
@@ -22,15 +23,27 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        )
       },
       {
         path: '/forgotten-password',
-        element: <ForgottenPassword />
+        element: (
+          <AuthLayout authentication={false}>
+            <ForgottenPassword />
+          </AuthLayout>
+        )
       },
       {
         path: '/register',
-        element: <Register />
+        element: (
+          <AuthLayout authentication={false}>
+            <Register />
+          </AuthLayout>
+        )
       },
       {
         path: '/about',
@@ -42,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/chatbot',
-        element: <ChatBot />
+        element: (
+          <AuthLayout authentication>
+            <ChatBot />
+          </AuthLayout>
+        )
       },
       {
         path: '*',
