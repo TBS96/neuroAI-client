@@ -54,6 +54,19 @@ export const refreshAccessToken = async () => {
     }
 };
 
+// Logout fn. to invalidate user session
+export const logoutUserApi = async () => {
+    try {
+        const res = await API.post('/logout/');
+        return res.data;
+    }
+    catch (err) {
+        console.error(`Logout failed: ${err}`);
+        const message = err.response?.data?.message || 'Logout failed. Please try again';
+        throw new Error(message);
+    }
+};
+
 
 
 
