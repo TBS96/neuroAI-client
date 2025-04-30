@@ -3,6 +3,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import Logo from '../Logo'
 import { useSelector } from 'react-redux';
 import LogoutBtn from './LogoutBtn';
+import UserBadge from './UserBadge';
 
 const themes = ['light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'haloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter', 'dim', 'nord', 'sunset', 'caramellatte', 'abyss', 'silk'];
 
@@ -57,6 +58,8 @@ const Header = () => {
                 <div onClick={() => navigate('/')} className='max-w-[100px]'>
                     <Logo width='100%' />
                 </div>
+
+                {authStatus && <UserBadge />}
 
                 {/* Theme Dropdown (Mobile & Tablet) */}
                 <div className='dropdown dropdown-center md:hidden'>

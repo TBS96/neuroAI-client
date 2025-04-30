@@ -16,6 +16,7 @@ import Contact from "./Contact";
 import Error from "./Error";
 import ForgottenPassword from "./ForgottenPassword";
 import AuthLayout from "./AuthLayout";
+import UserBadge from "./Header/UserBadge";
 
 export {
     Input,
@@ -36,4 +37,5 @@ export {
     Error,
     ForgottenPassword,
     AuthLayout,
+    UserBadge,
 }
