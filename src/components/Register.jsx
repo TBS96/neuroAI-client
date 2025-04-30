@@ -3,10 +3,14 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from './index'
 import { Eye, EyeClosed } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../store/authSlice';
 
 function Register() {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, watch } = useForm();
 
@@ -16,7 +20,20 @@ function Register() {
 
     const [showConfirmPass, setShowConfirmPass] = useState(false);
 
-    const create = () => { };
+    const registerAccount = async (formData) => {
+        setError('');
+
+        try {
+            const responseUserData = await dispatch(registerUser(formData)).unwrap();
+            console.log(`Registration successful: ${responseUserData}`);
+            navigate('/');
+        }
+        catch (err) {
+            const errorMessage = typeof err === 'object' ? (err.email ? err.email[0] : JSON.stringify(err)) : err;
+            setError(errorMessage);
+            console.error(`Registration error: ${errorMessage}`);
+        }
+    };
 
     return (
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0'>
@@ -33,9 +50,14 @@ function Register() {
                         Sign In
                     </Link>
                 </p>
-                {error && <p className='text-error mt-8 text-center'>{error}</p>}
 
-                <form onSubmit={handleSubmit(create)} className='mt-8 form-control'>
+                {error &&
+                    <p className='text-error mt-8 text-center bg-error-content animate-pulse'>
+                        {error}
+                    </p>
+                }
+
+                <form onSubmit={handleSubmit(registerAccount)} className='mt-8 form-control'>
                     <div className='space-y-5'>
                         <Input
                             label='Full Name: '
@@ -49,10 +71,11 @@ function Register() {
                             label='Email: '
                             placeholder='example@domain.com'
                             type='email'
+                            className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
                                 required: true,
                                 validate: {
-                                    matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                    matchPattern: (value) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(value) ||
                                         'Email address must be a valid address',
                                 }
                             })}
@@ -107,7 +130,7 @@ function Register() {
                                 {...register('password', {
                                     required: true,
                                     maxLength: 16,
-                                    minLength: 8,
+                                    minLength: 6,
                                 })}
                             />
                             <button
@@ -119,7 +142,7 @@ function Register() {
                                 {!showPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
                             </button>
                         </div>
-                        <div className='relative'>
+                        {/* <div className='relative'>
                             <Input
                                 label='Confirm Password: '
                                 placeholder='••••••••'
@@ -128,7 +151,7 @@ function Register() {
                                 {...register('confirmPassword', {
                                     required: true,
                                     maxLength: 16,
-                                    minLength: 8,
+                                    minLength: 6,
                                     validate: {
                                         matchPattern: (value) => value === watch('password') || 'Passwords do not match',
                                     }
@@ -142,7 +165,7 @@ function Register() {
                             >
                                 {!showConfirmPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
                             </button>
-                        </div>
+                        </div> */}
 
                         <div tabIndex={0} className="collapse collapse-plus bg-base-100 border-base-300 border" data-aos='zoom-in-right'>
                             <input type="checkbox" className='peer' />
