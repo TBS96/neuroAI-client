@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import Logo from '../Logo'
+import { useSelector } from 'react-redux';
+import LogoutBtn from './LogoutBtn';
 
 const themes = ['light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'haloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter', 'dim', 'nord', 'sunset', 'caramellatte', 'abyss', 'silk'];
 
 const Header = () => {
+
+    const authStatus = useSelector(state => state.auth.status);
 
     const navigate = useNavigate();
 
@@ -41,10 +45,9 @@ const Header = () => {
         {
             name: 'Register',
             slug: '/register',
-            // active: !authStatus
-            active: true
+            active: !authStatus,
         },
-        
+
     ];
 
     return (
@@ -91,17 +94,24 @@ const Header = () => {
 
                 {/* Desktop Navigation */}
                 <ul className='hidden md:flex space-x-6'>
-                    {navItems.map(({ name, slug }) => (
-                        <li key={slug}>
-                            <NavLink
-                                to={slug}
-                                className={({ isActive }) =>
-                                    `btn btn-block btn-ghost transition ${isActive ? 'bg-base-300 underline underline-offset-4' : 'hover:underline hover:underline-offset-4'}`}
-                            >
-                                {name}
-                            </NavLink>
+                    {navItems.map(({ name, slug, active }) =>
+                        active ? (
+                            <li key={slug}>
+                                <NavLink
+                                    to={slug}
+                                    className={({ isActive }) =>
+                                        `btn btn-block btn-ghost transition ${isActive ? 'bg-base-300 underline underline-offset-4' : 'hover:underline hover:underline-offset-4'}`}
+                                >
+                                    {name}
+                                </NavLink>
+                            </li>
+                        ) : null
+                    )}
+                    {authStatus && (
+                        <li>
+                            <LogoutBtn />
                         </li>
-                    ))}
+                    )}
                 </ul>
 
                 {/* Desktop Theme Dropdown (Right Side) */}
@@ -163,20 +173,27 @@ const Header = () => {
 
             {/* Mobile Dropdown */}
             <ul className={`md:hidden bg-gray-900/10 backdrop-blur-3xl transition-all px-2 duration-300 ${menubar ? 'block' : 'hidden'}`}>
-                {navItems.map(({ name, slug }) => (
-                    <li key={slug}>
-                        <NavLink
-                            to={slug}
-                            className={({ isActive }) =>
-                                `btn btn-block btn-ghost my-2 text-center transition ${isActive ? 'bg-base-300' : ''
-                                }`
-                            }
-                            onClick={() => setMenubar(false)}
-                        >
-                            {name}
-                        </NavLink>
+                {navItems.map(({ name, slug, active }) =>
+                    active ? (
+                        <li key={slug}>
+                            <NavLink
+                                to={slug}
+                                className={({ isActive }) =>
+                                    `btn btn-block btn-ghost my-2 text-center transition ${isActive ? 'bg-base-300' : ''
+                                    }`
+                                }
+                                onClick={() => setMenubar(false)}
+                            >
+                                {name}
+                            </NavLink>
+                        </li>
+                    ) : null
+                )}
+                {authStatus && (
+                    <li className='text-center'>
+                        <LogoutBtn />
                     </li>
-                ))}
+                )}
             </ul>
         </header>
     )
