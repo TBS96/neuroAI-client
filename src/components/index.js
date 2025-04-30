@@ -15,7 +15,7 @@ import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
 import ForgottenPassword from "./ForgottenPassword";
-
+import AuthLayout from "./AuthLayout";
 
 export {
     Input,
@@ -34,5 +34,6 @@ export {
     About,
     Contact,
     Error,
-    ForgottenPassword
+    ForgottenPassword,
+    AuthLayout,
 }
