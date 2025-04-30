@@ -18,14 +18,18 @@ export const loginUserApi = async (credentials) => {
 };
 
 // Register fn. to register a new user
-export const register = async (formData) => {
+export const registerUserApi = async (formData) => {
     try {
         const res = await API.post('/register/', formData);
         return res.data;    // Return the response after registration
     }
     catch (err) {
         console.error(`Registration failed: ${err}`);
-        throw err;      // Throw error to be caught in the component
+
+        const message = err.response?.data?.message || 'Registration failed. Please try again';
+        const customError = new Error(message);
+        customError.response = err.response;
+        throw customError;      // Throw error to be caught in the component
     }
 };
 
