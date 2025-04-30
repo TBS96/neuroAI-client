@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { loginUserApi, registerUserApi } from '../api/authApi'
+import API from '../api/api';
 
 // Load user from localStorage if available
 const userFromStorage = JSON.parse(localStorage.getItem('authData'));
@@ -16,7 +17,9 @@ export const loginUser = createAsyncThunk('auth/loginUser',
     async (credentials, thunkAPI) => {
         try {
             const data = await loginUserApi(credentials);   // use the function from authApi.js
-            return data;
+            // TODO: ask backend team to create endpoints to fetch userdata
+            const userProfile = await API.get('/user/profile/');    // get user data
+            return {...data, userData: userProfile};
         }
         catch (error) {
             console.error(`Axios error: ${error}`);
