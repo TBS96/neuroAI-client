@@ -4,16 +4,9 @@ import { Link } from 'react-router-dom';
 
 const UserBadge = () => {
 
-    const [userName, setUserName] = useState('Guest');
-
     const userData = useSelector(state => state.auth.userData);
-    // console.log(`Username: ${JSON.stringify(userData)}`);
-
-    useEffect(() => {
-        if (userData && typeof userData === 'object' && userData.name) {
-            setUserName(userData.name);
-        }
-    }, [userData]);
+    const userName = userData?.name || 'Guest';
+    console.log(`Hello ${userData.email}`);
 
     return (
         <Link to={'/'} className='font-bold px-5 py-1 rounded-2xl bg-base-300'>
