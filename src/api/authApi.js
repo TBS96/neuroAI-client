@@ -1,20 +1,17 @@
 import API from "./api";
 
 // Login fn. to authenticate user
-export const loginUserApi = async (credentials) => {
-    try {
+export const loginUserApi = async (credentials) => { 
+    try { 
         const res = await API.post('/login/', credentials);
-        return res.data;    // Return the tokens after successful login
-    }
-    catch (err) {
-        console.error(`Login failed: ${err}`);
-
-        // Normalize and rethrow a more informative error
-        const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
-        const customError = new Error(message);
-        customError.response = err.response;
-        throw customError;
-    }
+        return { access: res.data.access, refresh: res.data.refresh, }; 
+    } 
+    catch (err) { 
+        console.error(`Login failed: ${err}`); 
+        const message = err.response?.data?.message || 'Login failed. Please check your credentials.'; 
+        const customError = new Error(message); 
+        customError.response = err.response; throw customError; 
+    } 
 };
 
 // Register fn. to register a new user
@@ -33,7 +30,7 @@ export const registerUserApi = async (formData) => {
     }
 };
 
-// Refresh access token using refresh token
+// Refresh access token fn. using refresh token
 export const refreshAccessToken = async () => {
 
     const refreshToken = localStorage.getItem('refreshToken');
@@ -51,6 +48,23 @@ export const refreshAccessToken = async () => {
     catch (err) {
         console.error("Failed to refresh token:", err.response?.data?.message || err.message);
         return null;
+    }
+};
+
+// FetchUserProfile fn. to fetch userdata
+export const fetchUserProfileApi = async (accessToken) => {
+    try {
+        // console.log("fetchUserProfileApi called with token:", accessToken);
+        const res = await API.get('/register/', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        // console.log(`User profile response: ${res.data}`);
+        return res.data;
+    }
+    catch (err) {
+        console.error(`Failed to fetch user profile: ${err.response?.data?.message || err.message}`);
+        throw err;
+        // return null;
     }
 };
 

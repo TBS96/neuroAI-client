@@ -6,7 +6,7 @@ const UserBadge = () => {
 
     const userData = useSelector(state => state.auth.userData);
     const userName = userData?.name || 'Guest';
-    console.log(`Hello ${userData.email}`);
+    // console.log(`Hello ${userData.email}`);
 
     return (
         <Link to={'/'} className='font-bold px-5 py-1 rounded-2xl bg-base-300'>
