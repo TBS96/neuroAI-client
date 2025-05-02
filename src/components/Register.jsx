@@ -29,7 +29,7 @@ function Register() {
             navigate('/');
         }
         catch (err) {
-            const errorMessage = typeof err === 'object' ? (err.email ? err.email[0] : JSON.stringify(err)) : err;
+            const errorMessage = typeof err === 'object' ? (err.email ? err.email[0] : JSON.stringify(err.message)) : err;
             setError(errorMessage);
             console.error(`Registration error: ${errorMessage}`);
         }
