@@ -15,7 +15,7 @@ import TestimonialsSection from "./Home/TestimonialsSection";
 import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
-import ForgottenPassword from "./ForgottenPassword";
+import ForgottenPassword from "./auth/ForgottenPassword";
 import UserBadge from "./Header/UserBadge";
 
 export {

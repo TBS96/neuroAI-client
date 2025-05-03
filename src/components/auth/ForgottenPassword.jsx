@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Input } from './index'
+import { Button, Input } from '../index'
 import { Link } from 'react-router-dom';
 import { ArrowLeftCircle } from 'lucide-react'
 
@@ -32,6 +32,7 @@ const ForgottenPassword = () => {
                     <Input
                         type='email'
                         placeholder='example@domain.com'
+                        className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                         {...register('email', {
                             required: true,
                             validate: {
