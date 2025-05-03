@@ -80,6 +80,7 @@ function Login() {
                             label='Email: '
                             placeholder='example@domain.com'
                             type='email'
+                            className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
                                 required: true,
                                 validate: {
