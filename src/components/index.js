@@ -3,8 +3,9 @@ import Header from "./Header/Header";
 import Container from "./container/Container";
 import Button from "./Button";
 import Footer from "./Footer/Footer";
-import Login from './Login';
-import Register from "./Register";
+import Login from './auth/Login';
+import Register from "./auth/Register";
+import AuthLayout from "./auth/AuthLayout";
 import Logo from "./Logo";
 import ChatBot from "./ChatBot";
 import HeroSection from "./Home/HeroSection";
@@ -15,7 +16,6 @@ import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
 import ForgottenPassword from "./ForgottenPassword";
-import AuthLayout from "./AuthLayout";
 import UserBadge from "./Header/UserBadge";
 
 export {

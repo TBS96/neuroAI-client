@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
-import { Button, Input, Logo } from './index'
+import { Button, Input, Logo } from '../index'
 import { Eye, EyeClosed } from 'lucide-react';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../store/authSlice';
+import { registerUser } from '../../store/authSlice';
 
 function Register() {
 
