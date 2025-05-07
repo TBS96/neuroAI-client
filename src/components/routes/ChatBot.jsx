@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
 import { Button, Input } from '../index';
+import { useSelector } from 'react-redux';
 
 let socket;
 const CONNECTION_PORT = 'localhost:3001/';
@@ -8,7 +9,8 @@ const CONNECTION_PORT = 'localhost:3001/';
 const ChatBot = () => {
 
     const [loggedIn, setLoggedIn] = useState(false);
-    const [userName, setUserName] = useState('');
+    // const [userName, setUserName] = useState('');
+    const userName = useSelector(state => state.auth.userData.name);
     const [room, setRoom] = useState('');
 
     const [message, setMessage] = useState('');
@@ -76,7 +78,7 @@ const ChatBot = () => {
                             >
                                 {' '}
                                 <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble  ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-success'}`}>
-                                    <span className='block font-semibold text-base-300'>{isCurrentUser ? 'You' : author}</span>
+                                    <span className='block font-semibold text-base-300'>{isCurrentUser ? `You (${userName})` : author}</span>
                                     <div className='flex flex-col gap-1'>
                                         <span>{message}</span> {" "}
                                         <span className='text-xs text-base-100 self-end'>{timestamp}</span>
