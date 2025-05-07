@@ -1,10 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Navigate, useParams } from 'react-router-dom';
 
 const UserProfile = () => {
 
     const userData = useSelector((state) => state.auth.userData);
     const { name, email, phone_number, dob, age, address, occupation } = userData;
+
+    const { userName } = useParams();
+
+    if (!userName) return <Navigate to={'/login'} />
+
+    if (userName.toLowerCase() !== name.toLowerCase()) return <Navigate to={'/error'} />
 
     return (
         <section className='min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 py-16 px-4'>

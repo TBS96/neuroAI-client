@@ -21,7 +21,7 @@ const UserBadge = () => {
                 <label htmlFor='my-drawer' aria-label='close sidebar' className='drawer-overlay'></label>
                 <ul className='menu glass text-base-content min-h-full w-80 p-4'>
                     <li>
-                        <Link to={`/profile/:${userName}`} className='btn btn-block mb-2'>View Profile</Link>
+                        <Link to={`/profile/${userName}`} className='btn btn-block mb-2'>View Profile</Link>
                     </li>
                     <li>
                         <LogoutBtn />
