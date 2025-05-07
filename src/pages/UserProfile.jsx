@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { UserProfile as UserProfileComponent } from '../components/index'
 import { useSelector } from 'react-redux';
 
-function Signup() {
+function UserProfile() {
 
     const userName = useSelector(state => state.auth.userData.name);
 
@@ -17,4 +17,4 @@ function Signup() {
     )
 }
 
-export default Signup
+export default UserProfile
