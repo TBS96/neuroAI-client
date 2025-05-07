@@ -102,6 +102,8 @@ npm i express cors socket.io
 ### Folder structure
 ```bash
 .
+├── .env
+├── .env.sample
 ├── eslint.config.js
 ├── .gitignore
 ├── index.html
@@ -124,42 +126,67 @@ npm i express cors socket.io
 │   ├── questions.txt
 │   └── Results.jsx
 ├── src
+│   ├── api
+│   │   ├── api.js
+│   │   └── authApi.js
 │   ├── App.jsx
 │   ├── assets
 │   │   └── react.svg
 │   ├── components
-│   │   ├── Button.jsx
-│   │   ├── ChatBot.jsx
+│   │   ├── auth
+│   │   │   ├── AuthLayout.jsx
+│   │   │   ├── ForgottenPassword.jsx
+│   │   │   ├── Login.jsx
+│   │   │   └── Register.jsx
+│   │   ├── common
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   └── Logo.jsx
 │   │   ├── container
 │   │   │   └── Container.jsx
+│   │   ├── Error.jsx
 │   │   ├── Footer
 │   │   │   └── Footer.jsx
 │   │   ├── Header
-│   │   │   └── Header.jsx
-│   │   ├── Home
-│   │   │   ├── FeaturesSection.jsx
-│   │   │   ├── HeroSection.jsx
-│   │   │   ├── HowItWorksSection.jsx
-│   │   │   └── TestimonialsSection.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── LogoutBtn.jsx
+│   │   │   └── UserBadge.jsx
 │   │   ├── index.js
-│   │   ├── Input.jsx
-│   │   ├── Login.jsx
-│   │   ├── Logo.jsx
-│   │   └── Signup.jsx
+│   │   └── routes
+│   │       ├── About.jsx
+│   │       ├── ChatBot.jsx
+│   │       ├── Contact.jsx
+│   │       └── Home
+│   │           ├── FeaturesSection.jsx
+│   │           ├── HeroSection.jsx
+│   │           ├── HowItWorksSection.jsx
+│   │           └── TestimonialsSection.jsx
+│   ├── conf
+│   │   └── conf.js
 │   ├── index.css
 │   ├── main.jsx
-│   └── pages
-│       ├── About.jsx
-│       ├── ChatBot.jsx
-│       ├── Contact.jsx
-│       ├── Home.jsx
-│       ├── index.js
-│       ├── Login.jsx
-│       └── Signup.jsx
+│   ├── pages
+│   │   ├── About.jsx
+│   │   ├── ChatBot.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Error.jsx
+│   │   ├── ForgottenPassword.jsx
+│   │   ├── Home.jsx
+│   │   ├── index.js
+│   │   ├── Login.jsx
+│   │   └── Register.jsx
+│   └── store
+│       ├── slices
+│       │   └── authSlice.js
+│       └── store.js
 ├── vercel.json
 ├── vite.config.js
 └── .vscode
+    ├── settings.json
     └── tasks.json
 
-12 directories, 47 files
+19 directories, 65 files
 ```
+
+
+<!-- tree -a -I 'node_modules|.git' > README.mdx -->

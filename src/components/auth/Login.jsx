@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from '../index'
 import { Eye, EyeClosed } from 'lucide-react';
-import { loginUser } from '../../store/authSlice'
+import { loginUser } from '../../store/slices/authSlice'
 
 function Login() {
 
