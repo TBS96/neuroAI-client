@@ -110,11 +110,11 @@ const Header = () => {
                             </li>
                         ) : null
                     )}
-                    {authStatus && (
+                    {/* {authStatus && (
                         <li>
                             <LogoutBtn />
                         </li>
-                    )}
+                    )} */}
                 </ul>
 
                 {/* Desktop Theme Dropdown (Right Side) */}
@@ -192,11 +192,11 @@ const Header = () => {
                         </li>
                     ) : null
                 )}
-                {authStatus && (
+                {/* {authStatus && (
                     <li className='text-center'>
                         <LogoutBtn />
                     </li>
-                )}
+                )} */}
             </ul>
         </header>
     )
