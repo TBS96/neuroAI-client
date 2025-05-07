@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
-import { Button, Input } from './index';
+import { Button, Input } from '../index';
 
 let socket;
 const CONNECTION_PORT = 'localhost:3001/';

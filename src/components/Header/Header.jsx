@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import Logo from '../Logo'
+import { Logo } from '../index'
 import { useSelector } from 'react-redux';
 import LogoutBtn from './LogoutBtn';
 import UserBadge from './UserBadge';

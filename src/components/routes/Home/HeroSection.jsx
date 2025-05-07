@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from '../index'
+import { Button } from '../../index'
 import { Typewriter } from 'react-simple-typewriter'
 
 const HeroSection = () => {
