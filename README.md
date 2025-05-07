@@ -156,11 +156,12 @@ npm i express cors socket.io
 │   │       ├── About.jsx
 │   │       ├── ChatBot.jsx
 │   │       ├── Contact.jsx
-│   │       └── Home
-│   │           ├── FeaturesSection.jsx
-│   │           ├── HeroSection.jsx
-│   │           ├── HowItWorksSection.jsx
-│   │           └── TestimonialsSection.jsx
+│   │       ├── Home
+│   │       │   ├── FeaturesSection.jsx
+│   │       │   ├── HeroSection.jsx
+│   │       │   ├── HowItWorksSection.jsx
+│   │       │   └── TestimonialsSection.jsx
+│   │       └── UserProfile.jsx
 │   ├── conf
 │   │   └── conf.js
 │   ├── index.css
@@ -174,7 +175,8 @@ npm i express cors socket.io
 │   │   ├── Home.jsx
 │   │   ├── index.js
 │   │   ├── Login.jsx
-│   │   └── Register.jsx
+│   │   ├── Register.jsx
+│   │   └── UserProfile.jsx
 │   └── store
 │       ├── slices
 │       │   └── authSlice.js
@@ -185,7 +187,7 @@ npm i express cors socket.io
     ├── settings.json
     └── tasks.json
 
-19 directories, 65 files
+19 directories, 67 files
 ```
 
 
