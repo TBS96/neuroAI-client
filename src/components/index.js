@@ -18,6 +18,7 @@ import Error from "./Error";
 import ForgottenPassword from "./auth/ForgottenPassword";
 import UserBadge from "./Header/UserBadge";
 import UserProfile from "./routes/UserProfile";
+import PasswordResetConfirm from "./auth/PasswordResetConfirm";
 
 export {
     Input,
@@ -40,4 +41,5 @@ export {
     AuthLayout,
     UserBadge,
     UserProfile,
+    PasswordResetConfirm,
 }

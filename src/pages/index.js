@@ -7,6 +7,7 @@ import ChatBot from './ChatBot';
 import Error from './Error';
 import ForgottenPassword from './ForgottenPassword'
 import UserProfile from './UserProfile';
+import PasswordResetConfirm from './PasswordResetConfirm';
 
 export {
     Home,
@@ -17,5 +18,6 @@ export {
     ChatBot,
     Error,
     ForgottenPassword,
-    UserProfile
+    UserProfile,
+    PasswordResetConfirm
 }

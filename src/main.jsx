@@ -46,6 +46,14 @@ const router = createBrowserRouter([
         )
       },
       {
+        path: '/password_reset/confirm/:token',
+        element: (
+          <AuthLayout authentication={false}>
+            <PasswordResetConfirm />
+          </AuthLayout>
+        )
+      },
+      {
         path: '/register',
         element: (
           <AuthLayout authentication={false}>
