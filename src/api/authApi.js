@@ -99,9 +99,9 @@ export const requestPasswordResetApi = async (email) => {
 };
 
 // Confirm Password reset API
-export const confirmPasswordResetApi = async ({ token, password }) => {
+export const confirmPasswordResetApi = async ({ token, password, confirmPassword }) => {
     try {
-        const res = await API.post(`/password_reset/confirm/${token}`, { token, password });
+        const res = await API.post(`/password_reset/confirm/${token}/`, { password, confirmpassword: confirmPassword });
         return res.data;
     }
     catch (err) {

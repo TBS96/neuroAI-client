@@ -26,7 +26,7 @@ const PasswordResetConfirm = () => {
         setSuccessMessage('');
 
         try {
-            const res = await dispatch(confirmPasswordReset({ token, password: data.password })).unwrap();
+            const res = await dispatch(confirmPasswordReset({ token, password: data.password, confirmPassword: data.confirmPassword })).unwrap();
             console.log(`Password reset success: ${res}`);
             setSuccessMessage('Password has been reset successfully. You can now log in.');
             setTimeout(() => navigate('/login', 2500));
@@ -120,7 +120,7 @@ const PasswordResetConfirm = () => {
                     >
                         {loading ? 'Resetting...' : 'Reset Password'}
                     </Button>
-                    
+
                 </div>
             </form>
         </div>

@@ -97,9 +97,9 @@ export const requestPasswordReset = createAsyncThunk('auth/requestPasswordReset'
 
 // Thunk to handle Confirm password reset
 export const confirmPasswordReset = createAsyncThunk('auth/confirmPasswordReset',
-    async ({ token, password }, { rejectWithValue }) => {
+    async ({ token, password, confirmPassword }, { rejectWithValue }) => {
         try {
-            const res = await confirmPasswordResetApi({ token, password });
+            const res = await confirmPasswordResetApi({ token, password, confirmPassword });
             return res;
         }
         catch (error) {
