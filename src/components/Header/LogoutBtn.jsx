@@ -1,13 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { logout } from '../../store/slices/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../../store/slices/authSlice'
 
 function LogoutBtn() {
 
     const dispatch = useDispatch();
 
+    const refreshToken = useSelector(state => state.auth.refreshToken);
+
     const logoutHandler = () => {
-        dispatch(logout());
+        dispatch(logoutUser(refreshToken));
         document.activeElement.blur();
     };
 
