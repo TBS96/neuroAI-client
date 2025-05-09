@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { registerUserApi, loginUserApi, fetchUserProfileApi } from '../../api/authApi'
+import { registerUserApi, loginUserApi, fetchUserProfileApi, logoutUserApi } from '../../api/authApi'
 
 // Load user from localStorage if available
 const userFromStorage = JSON.parse(localStorage.getItem('authData'));
@@ -64,6 +64,19 @@ export const registerUser = createAsyncThunk('auth/registerUser',
         }
         catch (error) {
             return thunkAPI.rejectWithValue(error.response?.data?.message || 'Registration failed');
+        }
+    }
+);
+
+// Thunk to logout user
+export const logoutUser = createAsyncThunk('auth/logoutUser',
+    async (refreshToken, { rejectWithValue }) => {
+        try {
+            await logoutUserApi(refreshToken);     // Backend logout
+            return true;
+        }
+        catch (error) {
+            return rejectWithValue(`Logout failed: ${error.message}`);
         }
     }
 );
@@ -138,7 +151,29 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.status = false;
                 state.error = action.payload || "Login failed";
-            });
+            })
+
+            // LOGOUT USER
+            .addCase(logoutUser.fulfilled, (state) => {
+                // Clear state on successful backend logout
+                state.accessToken = null;
+                state.refreshToken = null;
+                state.userData = null;
+                state.status = false;
+                state.error = null;
+                localStorage.removeItem('authData');
+            })
+
+            //  IF BACKEND FAILS, STILL LOGOUT FRONTEND
+            .addCase(logoutUser.rejected, (state) => {
+                console.warn('Backend logout failed. Forcing frontend logout.');
+                state.accessToken = null;
+                state.refreshToken = null;
+                state.userData = null;
+                state.status = false;
+                state.error = null;
+                localStorage.removeItem('authData');
+            })
     }
 });
 
