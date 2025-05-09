@@ -95,7 +95,19 @@ export const requestPasswordReset = createAsyncThunk('auth/requestPasswordReset'
     }
 );
 
-
+// Thunk to handle Confirm password reset
+export const confirmPasswordReset = createAsyncThunk('auth/confirmPasswordReset',
+    async ({ token, password }, { rejectWithValue }) => {
+        try {
+            const res = await confirmPasswordResetApi({ token, password });
+            return res;
+        }
+        catch (error) {
+            console.error(`Confirm password reset request failed: ${error}`)
+            return rejectWithValue(error.response?.data?.message || 'Password reset confirmation failed');
+        }
+    }
+);
 
 // Auth slice
 const authSlice = createSlice({
@@ -207,6 +219,20 @@ const authSlice = createSlice({
             .addCase(requestPasswordReset.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload || 'Password reset request failed';
+            })
+
+            // CONFIRM PASSWORD RESET REQUEST
+            .addCase(confirmPasswordReset.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(confirmPasswordReset.fulfilled, (state, action) => {
+                state.loading = false;
+                console.log(`Password reset confirmed: ${action.payload}`);
+            })
+            .addCase(confirmPasswordReset.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || 'Password reset confirmation failed';
             })
     }
 });

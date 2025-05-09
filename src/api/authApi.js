@@ -98,6 +98,21 @@ export const requestPasswordResetApi = async (email) => {
     }
 };
 
+// Confirm Password reset API
+export const confirmPasswordResetApi = async ({ token, password }) => {
+    try {
+        const res = await API.post(`/password_reset/confirm/${token}`, { token, password });
+        return res.data;
+    }
+    catch (err) {
+        console.error(`Password reset request failed: ${err}`);
+        const message = err.response?.data?.message || 'Password reset request failed. Please try again';
+        const customError = new Error(message);
+        customError.response = err.response;
+        throw customError;
+    }
+};
+
 
 
 
