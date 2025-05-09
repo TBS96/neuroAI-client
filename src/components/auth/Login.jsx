@@ -115,7 +115,7 @@ function Login() {
                         </div>
 
                         <span className='relative flex items-center justify-end'>
-                            <Link to='/forgotten-password' className='link link-accent'>Forgotten Password?</Link>
+                            <Link to='/password_reset' className='link link-accent'>Forgotten Password?</Link>
                         </span>
 
                         <Button type='submit' className='w-full'>Sign in</Button>
