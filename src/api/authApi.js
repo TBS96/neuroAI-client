@@ -1,17 +1,17 @@
 import API from "./api";
 
 // Login fn. to authenticate user
-export const loginUserApi = async (credentials) => { 
-    try { 
+export const loginUserApi = async (credentials) => {
+    try {
         const res = await API.post('/login/', credentials);
-        return { access: res.data.access, refresh: res.data.refresh, }; 
-    } 
-    catch (err) { 
-        console.error(`Login failed: ${err}`); 
-        const message = err.response?.data?.message || 'Login failed. Please check your credentials.'; 
-        const customError = new Error(message); 
-        customError.response = err.response; throw customError; 
-    } 
+        return { access: res.data.access, refresh: res.data.refresh, };
+    }
+    catch (err) {
+        console.error(`Login failed: ${err}`);
+        const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
+        const customError = new Error(message);
+        customError.response = err.response; throw customError;
+    }
 };
 
 // Register fn. to register a new user
@@ -41,7 +41,7 @@ export const refreshAccessToken = async () => {
     }
 
     try {
-        const res = await API.post('/api/token/refresh/', {refresh: refreshToken});
+        const res = await API.post('/api/token/refresh/', { refresh: refreshToken });
         // Return the new access token
         return res.data.access;
     }
@@ -80,6 +80,21 @@ export const logoutUserApi = async (refreshToken) => {
         console.error(`Logout failed: ${err}`);
         const message = err.response?.data?.message || 'Logout failed. Please try again';
         throw new Error(message);
+    }
+};
+
+// Password Reset request API
+export const requestPasswordResetApi = async (email) => {
+    try {
+        const res = await API.post('/password_reset/', { email });
+        return res.data;
+    }
+    catch (err) {
+        console.error(`Password reset request failed: ${err}`);
+        const message = err.response?.data?.message || 'Password reset request failed. Please try again';
+        const customError = new Error(message);
+        customError.response = err.response;
+        throw customError;
     }
 };
 
