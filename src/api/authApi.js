@@ -69,9 +69,11 @@ export const fetchUserProfileApi = async (accessToken) => {
 };
 
 // Logout fn. to invalidate user session
-export const logoutUserApi = async () => {
+export const logoutUserApi = async (refreshToken) => {
     try {
-        const res = await API.post('/logout/');
+        const res = await API.post('/logout/', {
+            refresh: refreshToken,
+        });
         return res.data;
     }
     catch (err) {
