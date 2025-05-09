@@ -6,16 +6,7 @@ const UserProfile = () => {
 
     const userData = useSelector(state => state.auth.userData);
 
-    // TODO: fix direct logout from userprofile page. Current issue: shows error page when trying to logout from user profile page.
-    // const { userName } = useParams();
-    
-    
-    // if (!userData) return <Navigate to={'/'} />
     const { name, email, phone_number, dob, age, address, occupation } = userData;
-
-    // const actualUserName = name?.toLowerCase().split(' ')[0];
-
-    // if (userName.toLowerCase() !== actualUserName) return <Navigate to={'/error'} />
 
     return (
         <section className='min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 py-16 px-4'>
