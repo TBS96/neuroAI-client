@@ -22,6 +22,10 @@ npm run dev -- --host
 ```bash
 http://localhost:5173/
 ```
+- For dev purpose change the url in neuroAI-server/Mentalhealth/NeuroAI/`views.py` in class `RequestPasswordReset`:
+```bash
+reset_url = f'http://localhost:5173/password_reset/confirm/{token}'
+```
 
 
 ## Packages to be installed:
@@ -137,6 +141,7 @@ npm i express cors socket.io
 │   │   │   ├── AuthLayout.jsx
 │   │   │   ├── ForgottenPassword.jsx
 │   │   │   ├── Login.jsx
+│   │   │   ├── PasswordResetConfirm.jsx
 │   │   │   └── Register.jsx
 │   │   ├── common
 │   │   │   ├── Button.jsx
@@ -175,6 +180,7 @@ npm i express cors socket.io
 │   │   ├── Home.jsx
 │   │   ├── index.js
 │   │   ├── Login.jsx
+│   │   ├── PasswordResetConfirm.jsx
 │   │   ├── Register.jsx
 │   │   └── UserProfile.jsx
 │   └── store
@@ -187,7 +193,7 @@ npm i express cors socket.io
     ├── settings.json
     └── tasks.json
 
-19 directories, 67 files
+19 directories, 68 files
 ```
 
 
