@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { ForgottenPassword as ForgottenPasswordComponent } from '../components'
 
-function Signup() {
+function ForgottenPassword() {
 
     useEffect(() => {
         document.title = 'neuroAI | Forgotten Password';
@@ -14,4 +14,4 @@ function Signup() {
     )
 }
 
-export default Signup
+export default ForgottenPassword
