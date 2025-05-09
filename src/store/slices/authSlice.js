@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { registerUserApi, loginUserApi, fetchUserProfileApi, logoutUserApi } from '../../api/authApi'
+import { registerUserApi, loginUserApi, fetchUserProfileApi, logoutUserApi, requestPasswordResetApi, confirmPasswordResetApi } from '../../api/authApi'
 
 // Load user from localStorage if available
 const userFromStorage = JSON.parse(localStorage.getItem('authData'));
@@ -81,6 +81,22 @@ export const logoutUser = createAsyncThunk('auth/logoutUser',
     }
 );
 
+// Thunk to handle Password reset request
+export const requestPasswordReset = createAsyncThunk('auth/requestPasswordReset',
+    async (email, { rejectWithValue }) => {
+        try {
+            const data = await requestPasswordResetApi(email);
+            return data;     // You can return any data you need from the backend response
+        }
+        catch (error) {
+            console.error(`Password reset request failed: ${error}`);
+            return rejectWithValue(error.message || 'Password reset failed');
+        }
+    }
+);
+
+
+
 // Auth slice
 const authSlice = createSlice({
     name: 'auth',
@@ -93,7 +109,10 @@ const authSlice = createSlice({
             state.status = false;
             state.error = null;
             localStorage.removeItem('authData');
-        }
+        },
+        resetError: (state) => {
+            state.error = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -174,8 +193,23 @@ const authSlice = createSlice({
                 state.error = null;
                 localStorage.removeItem('authData');
             })
+
+            // PASSWORD RESET REQUEST
+            .addCase(requestPasswordReset.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(requestPasswordReset.fulfilled, (state, action) => {
+                state.loading = false;
+                // You can handle the response as needed. For now, we just log the success.
+                console.log(`Password reset requested successfully: ${action.payload}`);
+            })
+            .addCase(requestPasswordReset.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload || 'Password reset request failed';
+            })
     }
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, resetError } = authSlice.actions;
 export default authSlice.reducer;
