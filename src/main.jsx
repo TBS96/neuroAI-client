@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Home, Login, Register, Contact, About, ChatBot, Error, ForgottenPassword, UserProfile } from './pages/index.js'
+import { Home, Login, Register, Contact, About, ChatBot, Error, ForgottenPassword, UserProfile, PasswordResetConfirm } from './pages/index.js'
 import Aos from 'aos'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: '/forgotten-password',
+        path: '/password_reset',
         element: (
           <AuthLayout authentication={false}>
             <ForgottenPassword />
