@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from '../index'
 import { Eye, EyeClosed } from 'lucide-react';
@@ -12,17 +12,23 @@ function Login() {
 
     const dispatch = useDispatch();
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const [error, setError] = useState('');
+    const { loading, error } = useSelector(state => state.auth);
+
+    const [serverError, setServerError] = useState('');
+
+    const [successMessage, setSuccessMessage] = useState('');
 
     const [data, setData] = useState('');
 
     const [showPass, setShowPass] = useState(false);
 
     const login = async (credentials) => {
-        setError('');
+        setServerError('');
+        setSuccessMessage('');
         setData(credentials);
+
         try {
             // Dispatch the async thunk to login the user
             const responseUserData = await dispatch(loginUser(credentials)).unwrap();    // Use the async thunk
@@ -35,19 +41,24 @@ function Login() {
                 localStorage.setItem('refreshToken', refresh);
                 localStorage.setItem('accessToken', access);
                 console.log('login success');
-                navigate('/');
+                setSuccessMessage('Login success, Welcome!');
+                setTimeout(() => navigate('/'), 2500);
             }
         }
         catch (err) {
-            console.error("Login Error:", err);
+            console.error(`Login Error: ${err}`);
 
             // Check if error was rejected by Redux Toolkit
-            const errorMessage = err || 'Login failed. Please check your credentials.';
-
-            setError(errorMessage);
-            console.log("Stored error in state:", errorMessage);
+            setServerError(err || 'Login failed. Please check your credentials.');
+            console.log(`Stored error in state: ${err}`);
         }
     };
+
+    useEffect(() => {
+        if (error) {
+            setSuccessMessage('');
+        }
+    }, [error]);
 
     return (
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0 scroll-smooth' id='signupTarget'>
@@ -65,9 +76,9 @@ function Login() {
                     </Link>
                 </p>
 
-                {error && (
-                    <p className='text-error mt-8 text-center bg-error-content animate-pulse'>
-                        {error}
+                {serverError && (
+                    <p className='text-error mt-8 text-center bg-error-content animate-pulse p-2 rounded'>
+                        {serverError}
                     </p>
                 )}
 
@@ -82,7 +93,7 @@ function Login() {
                             type='email'
                             className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
-                                required: true,
+                                required: 'Email is required',
                                 validate: {
                                     matchPattern: (value) => /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) || 'Email address must be a valid address',
                                 }
@@ -90,7 +101,15 @@ function Login() {
                         />
 
                         {error && data.email && (
-                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100'>{data.email} doesn't exist in our database. Please Sign Up!</p>
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 rounded'>
+                                {data.email} doesn't match with our records. Please enter the correct email or password or <Link to={'/register'} className='font-bold link'>Register</Link>!
+                            </p>
+
+                        )}
+                        {errors.email && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.email.message}
+                            </p>
 
                         )}
 
@@ -100,9 +119,9 @@ function Login() {
                                 placeholder='••••••••'
                                 type={showPass ? 'text' : 'password'}
                                 {...register('password', {
-                                    required: true,
+                                    required: 'Password must be atleast 8 characters',
                                     maxLength: 16,
-                                    minLength: 6
+                                    minLength: 8
                                 })}
                             />
                             <button
@@ -114,11 +133,31 @@ function Login() {
                             </button>
                         </div>
 
+                        {errors.password && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.password.message || 'Password must be atleast 8 characters'}
+                            </p>
+                        )}
+
                         <span className='relative flex items-center justify-end'>
                             <Link to='/password_reset' className='link link-accent'>Forgotten Password?</Link>
                         </span>
 
-                        <Button type='submit' className='w-full'>Sign in</Button>
+                        {successMessage && (
+                            <p className='text-green-500 mt-4 text-center animate-pulse bg-green-100 p-2 rounded'>
+                                {successMessage}
+                            </p>
+                        )}
+
+                        <Button
+                            type='submit'
+                            disabled={loading}
+                            className='w-full'
+                            data-aos='fade-up'
+                            data-aos-duration='1200'
+                        >
+                            {loading ? 'Signing in...' : 'Sign in'}
+                        </Button>
                     </div>
                 </form>
 
