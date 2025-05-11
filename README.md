@@ -11,7 +11,7 @@ To run the project in your local machine:
 - Make sure you have NodeJS v18.x or above.
 - Run in terminal:
 ```bash
-cd neuroAI-client && npm i
+cd neuroAI-client && git checkout testing && npm i
 ```
 - This will install all the required pkgs as per `package.json` file.
 - Now run:
