@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from '../index'
-import { Eye, EyeClosed } from 'lucide-react';
+import { Eye, EyeClosed, LoaderPinwheel } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../store/slices/authSlice';
 
@@ -301,7 +301,13 @@ function Register() {
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >
-                            {loading ? 'Registering...' : 'Register'}
+                            {loading ? (
+                                <span className='flex items-center gap-2'>
+                                    Registering...
+                                    <LoaderPinwheel className='animate-spin text-success' />
+                                </span>
+                            ) : 'Register'
+                            }
                         </Button>
                     </div>
                 </form>

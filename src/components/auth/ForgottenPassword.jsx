@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input } from '../index'
 import { Link } from 'react-router-dom';
-import { ArrowLeftCircle } from 'lucide-react'
+import { ArrowLeftCircle, LoaderPinwheel } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux';
 import { requestPasswordReset } from '../../store/slices/authSlice';
 
@@ -96,7 +96,13 @@ const ForgottenPassword = () => {
                         data-aos='fade-up'
                         data-aos-duration='1200'
                     >
-                        {loading ? 'Sending...' : 'Send Reset Link'}
+                        {loading ? (
+                            <span className='flex items-center gap-2'>
+                                Sending...
+                                <LoaderPinwheel className='animate-spin text-success' />
+                            </span>
+                        ) : 'Send Reset Link'
+                        }
                     </Button>
 
                     <Link to='/login' className='btn btn-dash btn-sm group flex items-center gap-2' data-aos='fade-right' data-aos-duration='1200' data-aos-delay='2000'>

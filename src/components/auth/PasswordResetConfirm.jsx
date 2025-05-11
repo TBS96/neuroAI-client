@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { confirmPasswordReset } from '../../store/slices/authSlice';
 import { Button, Input } from '../index';
+import { LoaderPinwheel } from 'lucide-react';
 
 const PasswordResetConfirm = () => {
 
@@ -54,7 +55,7 @@ const PasswordResetConfirm = () => {
                 </h2>
 
                 <div className='space-y-5'>
-                    
+
                     {serverError && (
                         <p className='text-red-600 mt-4 text-center animate-pulse bg-red-100 p-2 rounded'>
                             {serverError}
@@ -85,7 +86,7 @@ const PasswordResetConfirm = () => {
                         data-aos='fade-up'
                         data-aos-duration='900'
                     />
-                    
+
                     {errors.password && (
                         <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
                             {errors.password.message}
@@ -122,7 +123,13 @@ const PasswordResetConfirm = () => {
                         data-aos='fade-up'
                         data-aos-duration='1200'
                     >
-                        {loading ? 'Resetting...' : 'Reset Password'}
+                        {loading ? (
+                            <span className='flex items-center gap-2'>
+                                Resetting...
+                                <LoaderPinwheel className='animate-spin text-success' />
+                            </span>
+                        ) : 'Reset Password'
+                        }
                     </Button>
 
                 </div>

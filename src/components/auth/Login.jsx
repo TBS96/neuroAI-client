@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from '../index'
-import { Eye, EyeClosed } from 'lucide-react';
+import { Eye, EyeClosed, LoaderPinwheel } from 'lucide-react';
 import { loginUser } from '../../store/slices/authSlice'
 
 function Login() {
@@ -162,7 +162,13 @@ function Login() {
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >
-                            {loading ? 'Signing in...' : 'Sign in'}
+                            {loading ? (
+                                <span className="flex items-center gap-2">
+                                    Signing in
+                                    <LoaderPinwheel className="animate-spin text-success" />
+                                </span>
+                            ) : 'Sign in'
+                            }
                         </Button>
                     </div>
                 </form>
