@@ -120,8 +120,14 @@ function Login() {
                                 type={showPass ? 'text' : 'password'}
                                 {...register('password', {
                                     required: 'Password must be atleast 8 characters',
-                                    maxLength: 16,
-                                    minLength: 8
+                                    minLength: {
+                                        value: 8,
+                                        message: 'Password must be atleast 8 characters'
+                                    },
+                                    maxLength: {
+                                        value: 16,
+                                        message: 'Password should not be more than 16 characters'
+                                    }
                                 })}
                             />
                             <button
