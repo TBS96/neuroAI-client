@@ -8,7 +8,7 @@ import { requestPasswordReset } from '../../store/slices/authSlice';
 
 const ForgottenPassword = () => {
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const dispatch = useDispatch();
 
@@ -68,7 +68,7 @@ const ForgottenPassword = () => {
                         placeholder='example@domain.com'
                         className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                         {...register('email', {
-                            required: true,
+                            required: 'Please enter a valid email address before you proceed...',
                             validate: {
                                 matchPattern: (value) => /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) || 'Email address must be a valid address',
                             }
@@ -76,6 +76,12 @@ const ForgottenPassword = () => {
                         data-aos='fade-up'
                         data-aos-duration='1000'
                     />
+
+                    {errors.email && (
+                        <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                            {errors.email.message}
+                        </p>
+                    )}
 
                     {successMessage && (
                         <p className='text-green-500 mt-8 text-center animate-pulse bg-green-100 p-2 rounded'>
