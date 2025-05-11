@@ -54,7 +54,6 @@ function Register() {
         }
         catch (err) {
             // const errorMessage = typeof err === 'object' ? (err.email ? err.email[0] : JSON.stringify(err)) : err;
-            setError(err);
             console.error(`Registration error: ${err}`);
             setServerError(err || 'Registration failed. Please try again.');
         }
@@ -146,13 +145,18 @@ function Register() {
                             {...register('dob', {
                                 required: 'Date of birth is required',
                                 validate: value => {
-                                    const today = new Date();
                                     const dob = new Date(value);
-                                    const age = today.getFullYear() - dob.getFullYear();
-                                    const monthDiff = today.getMonth() - dob.getMonth();
-                                    const dayDiff = today.getDate() - dob.getDate();
-                                    const isUnder16 = age < 16 || (age === 16 && monthDiff < 0 || (monthDiff === 0 && dayDiff < 0));
-                                    return isUnder16 ? 'You must be atleast 16 years old' : true;
+                                    const today = new Date();
+
+                                    const minAgeDate = new Date();
+                                    minAgeDate.setFullYear(today.getFullYear() - 16);
+
+                                    const maxAgeDate = new Date();
+                                    maxAgeDate.setFullYear(today.getFullYear() - 100);
+
+                                    if (dob > minAgeDate) return 'You must be at least 16 years old';
+                                    else if (dob < maxAgeDate) return 'You must be younger than 100 years old';
+                                    return true;
                                 }
                             })}
                         />
@@ -216,11 +220,11 @@ function Register() {
                                 data-aos='zoom-in-right'
                                 {...register('password', {
                                     required: 'Password is required',
-                                    maxLength: {
+                                    minLength: {
                                         value: 8,
                                         message: 'Password must be atleast 8 characters'
                                     },
-                                    minLength: {
+                                    maxLength: {
                                         value: 16,
                                         message: 'Password should not be more than 16 characters'
                                     },
