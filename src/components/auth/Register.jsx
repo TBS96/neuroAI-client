@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from '../index'
 import { Eye, EyeClosed } from 'lucide-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../store/slices/authSlice';
 
 function Register() {
@@ -12,28 +12,59 @@ function Register() {
 
     const dispatch = useDispatch();
 
-    const { register, handleSubmit, watch } = useForm();
+    const { loading, error } = useSelector(state => state.auth);
 
-    const [error, setError] = useState('');
+    const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm();
+
+    const [serverError, setServerError] = useState('');
+
+    const [successMessage, setSuccessMessage] = useState('');
 
     const [showPass, setShowPass] = useState(false);
 
-    const [showConfirmPass, setShowConfirmPass] = useState(false);
+    // const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+    const dobValue = watch('dob');
+
+    useEffect(() => {
+        if (dobValue) {
+            const today = new Date();
+            const birthDate = new Date(dobValue);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            if (age >= 0) {
+                setValue('age', age);
+            }
+        }
+    }, [dobValue, setValue]);
 
     const registerAccount = async (formData) => {
-        setError('');
+        setServerError('');
+        setSuccessMessage('');
 
         try {
             const responseUserData = await dispatch(registerUser(formData)).unwrap();
             console.log(`Registration successful: ${responseUserData}`);
-            navigate('/');
+            setSuccessMessage('Registration Successfull. Welcome!');
+            setTimeout(() => navigate('/'), 2500);
         }
         catch (err) {
             // const errorMessage = typeof err === 'object' ? (err.email ? err.email[0] : JSON.stringify(err)) : err;
-            setError(err.email);
+            setError(err);
             console.error(`Registration error: ${err}`);
+            setServerError(err || 'Registration failed. Please try again.');
         }
     };
+
+    useEffect(() => {
+        if (error) {
+            setSuccessMessage('');
+        }
+    }, [error]);
 
     return (
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0'>
@@ -51,9 +82,9 @@ function Register() {
                     </Link>
                 </p>
 
-                {error &&
+                {serverError &&
                     <p className='text-error mt-8 text-center bg-error-content animate-pulse'>
-                        {error}
+                        {serverError}
                     </p>
                 }
 
@@ -64,63 +95,119 @@ function Register() {
                             type='text'
                             placeholder='Full Name'
                             {...register('name', {
-                                required: true,
+                                required: 'Full Name is required',
                             })}
                         />
+
+                        {errors.name && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.name.message}
+                            </p>
+                        )}
+
                         <Input
                             label='Email: '
                             placeholder='example@domain.com'
                             type='email'
                             className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
-                                required: true,
+                                required: 'Email is required',
                                 validate: {
                                     matchPattern: (value) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(value) ||
                                         'Email address must be a valid address',
                                 }
                             })}
                         />
+
+                        {errors.email && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.email.message}
+                            </p>
+                        )}
+
                         <Input
                             label='Phone Number: '
                             placeholder='+91-XXXXXXXXXX'
                             type='tel'
                             {...register('phone_number', {
-                                required: true,
+                                required: 'Phone number is required',
                             })}
                         />
+
+                        {errors.phone_number && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.phone_number.message}
+                            </p>
+                        )}
+
                         <Input
                             label='Date of Birth: '
                             type='date'
                             {...register('dob', {
-                                required: true,
+                                required: 'Date of birth is required',
+                                validate: value => {
+                                    const today = new Date();
+                                    const dob = new Date(value);
+                                    const age = today.getFullYear() - dob.getFullYear();
+                                    const monthDiff = today.getMonth() - dob.getMonth();
+                                    const dayDiff = today.getDate() - dob.getDate();
+                                    const isUnder16 = age < 16 || (age === 16 && monthDiff < 0 || (monthDiff === 0 && dayDiff < 0));
+                                    return isUnder16 ? 'You must be atleast 16 years old' : true;
+                                }
                             })}
                         />
+
+                        {errors.dob && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.dob.message}
+                            </p>
+                        )}
+
                         <Input
                             label='Age: '
                             placeholder='Age'
                             type='number'
-                            min={10}
+                            disabled
                             {...register('age', {
-                                required: true,
+                                required: 'Age is required',
                             })}
                         />
+                        {errors.age && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.age.message}
+                            </p>
+                        )}
+
                         <Input
                             label='Address: '
                             placeholder='Street Address'
                             type='text'
                             autoComplete='street-address'
                             {...register('address', {
-                                required: true,
+                                required: 'Full address is required',
                             })}
                         />
+
+                        {errors.address && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.address.message}
+                            </p>
+                        )}
+
                         <Input
                             label='Occupation: '
                             placeholder='Occupation'
                             type='text'
                             {...register('occupation', {
-                                required: true,
+                                required: 'Occupation is required',
                             })}
                         />
+                        {errors.occupation && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.occupation.message}
+                            </p>
+                        )}
+
                         <div className='relative'>
                             <Input
                                 label='Password: '
@@ -128,9 +215,15 @@ function Register() {
                                 type={showPass ? 'text' : 'password'}
                                 data-aos='zoom-in-right'
                                 {...register('password', {
-                                    required: true,
-                                    maxLength: 16,
-                                    minLength: 6,
+                                    required: 'Password is required',
+                                    maxLength: {
+                                        value: 8,
+                                        message: 'Password must be atleast 8 characters'
+                                    },
+                                    minLength: {
+                                        value: 16,
+                                        message: 'Password should not be more than 16 characters'
+                                    },
                                 })}
                             />
                             <button
@@ -142,6 +235,13 @@ function Register() {
                                 {!showPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
                             </button>
                         </div>
+
+                        {errors.password && (
+                            <p className='text-red-600 mt-8 text-center animate-pulse bg-red-100 p-2 rounded'>
+                                {errors.password.message}
+                            </p>
+                        )}
+
                         {/* <div className='relative'>
                             <Input
                                 label='Confirm Password: '
@@ -184,8 +284,20 @@ function Register() {
                             </div>
                         </div>
 
-                        <Button type='submit' className='w-full' data-aos='fade-up'>
-                            Create Account
+                        {successMessage && (
+                            <p className='text-green-500 mt-4 text-center animate-pulse bg-green-100 p-2 rounded'>
+                                {successMessage}
+                            </p>
+                        )}
+
+                        <Button
+                            type='submit'
+                            disabled={loading}
+                            className='w-full'
+                            data-aos='fade-up'
+                            data-aos-duration='1200'
+                        >
+                            {loading ? 'Registering...' : 'Register'}
                         </Button>
                     </div>
                 </form>
