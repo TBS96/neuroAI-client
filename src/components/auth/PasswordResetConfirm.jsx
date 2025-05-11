@@ -73,9 +73,13 @@ const PasswordResetConfirm = () => {
                         {...register('password', {
                             required: 'Password is required',
                             minLength: {
-                                value: 6,
-                                message: 'Password must be atleast 6 characters'
-                            }
+                                value: 8,
+                                message: 'Password must be atleast 8 characters'
+                            },
+                            maxLength: {
+                                value: 16,
+                                message: 'Password should not be more than 16 characters'
+                            },
                         })}
                         className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                         data-aos='fade-up'
