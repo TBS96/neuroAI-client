@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { Logo } from '../index'
 import { useSelector } from 'react-redux';
-import LogoutBtn from './LogoutBtn';
 import UserBadge from './UserBadge';
+import { BrainIcon, BrainCircuitIcon } from 'lucide-react';
 
 const themes = ['light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'haloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter', 'dim', 'nord', 'sunset', 'caramellatte', 'abyss', 'silk'];
 
@@ -158,19 +158,11 @@ const Header = () => {
                     aria-expanded={menubar}
                     aria-label='Toggle Menu'
                 >
-                    <svg
-                        className='w-8 h-8 text-white'
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        stroke='currentColor'
-                    >
-                        {menubar ? (
-                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
-                        ) : (
-                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16m-7 6h7' />
-                        )}
-                    </svg>
+                    {menubar ?
+                        (<BrainCircuitIcon size={25} />)
+                        :
+                        (<BrainIcon size={25} className='animate-spin' />)
+                    }
                 </button>
             </nav>
 
