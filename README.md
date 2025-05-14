@@ -11,7 +11,7 @@ To run the project in your local machine:
 - Make sure you have NodeJS v18.x or above.
 - Run in terminal:
 ```bash
-cd neuroAI-client && npm i
+cd neuroAI-client && git checkout testing && npm i
 ```
 - This will install all the required pkgs as per `package.json` file.
 - Now run:
@@ -21,6 +21,10 @@ npm run dev -- --host
 - This will generate a url like this:
 ```bash
 http://localhost:5173/
+```
+- For dev purpose change the url in neuroAI-server/Mentalhealth/NeuroAI/`views.py` in class `RequestPasswordReset`:
+```bash
+reset_url = f'http://localhost:5173/password_reset/confirm/{token}'
 ```
 
 
@@ -65,12 +69,15 @@ npm i @vite-pwa/assets-generator -D
 ```bash
 npm i lucide-react
 ```
+```bash
+npm i react-icons
+```
 
 <details>
 <summary>Inline</summary>
 
 ```bash
-npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest react-simple-typewriter socket.io-client vite-plugin-pwa -D @vite-pwa/assets-generator -D lucide-react
+npm i -D tailwindcss postcss autoprefixer react-router-dom react-hook-form react-loading-indicators -D daisyui@latest react-simple-typewriter socket.io-client vite-plugin-pwa -D @vite-pwa/assets-generator -D lucide-react react-icons
 ```
 
 </details>
@@ -102,6 +109,8 @@ npm i express cors socket.io
 ### Folder structure
 ```bash
 .
+├── .env
+├── .env.sample
 ├── eslint.config.js
 ├── .gitignore
 ├── index.html
@@ -124,42 +133,71 @@ npm i express cors socket.io
 │   ├── questions.txt
 │   └── Results.jsx
 ├── src
+│   ├── api
+│   │   ├── api.js
+│   │   └── authApi.js
 │   ├── App.jsx
 │   ├── assets
 │   │   └── react.svg
 │   ├── components
-│   │   ├── Button.jsx
-│   │   ├── ChatBot.jsx
+│   │   ├── auth
+│   │   │   ├── AuthLayout.jsx
+│   │   │   ├── ForgottenPassword.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── PasswordResetConfirm.jsx
+│   │   │   └── Register.jsx
+│   │   ├── common
+│   │   │   ├── Button.jsx
+│   │   │   ├── Input.jsx
+│   │   │   └── Logo.jsx
 │   │   ├── container
 │   │   │   └── Container.jsx
+│   │   ├── Error.jsx
 │   │   ├── Footer
 │   │   │   └── Footer.jsx
 │   │   ├── Header
-│   │   │   └── Header.jsx
-│   │   ├── Home
-│   │   │   ├── FeaturesSection.jsx
-│   │   │   ├── HeroSection.jsx
-│   │   │   ├── HowItWorksSection.jsx
-│   │   │   └── TestimonialsSection.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── LogoutBtn.jsx
+│   │   │   └── UserBadge.jsx
 │   │   ├── index.js
-│   │   ├── Input.jsx
-│   │   ├── Login.jsx
-│   │   ├── Logo.jsx
-│   │   └── Signup.jsx
+│   │   └── routes
+│   │       ├── About.jsx
+│   │       ├── ChatBot.jsx
+│   │       ├── Contact.jsx
+│   │       ├── Home
+│   │       │   ├── FeaturesSection.jsx
+│   │       │   ├── HeroSection.jsx
+│   │       │   ├── HowItWorksSection.jsx
+│   │       │   └── TestimonialsSection.jsx
+│   │       └── UserProfile.jsx
+│   ├── conf
+│   │   └── conf.js
 │   ├── index.css
 │   ├── main.jsx
-│   └── pages
-│       ├── About.jsx
-│       ├── ChatBot.jsx
-│       ├── Contact.jsx
-│       ├── Home.jsx
-│       ├── index.js
-│       ├── Login.jsx
-│       └── Signup.jsx
+│   ├── pages
+│   │   ├── About.jsx
+│   │   ├── ChatBot.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Error.jsx
+│   │   ├── ForgottenPassword.jsx
+│   │   ├── Home.jsx
+│   │   ├── index.js
+│   │   ├── Login.jsx
+│   │   ├── PasswordResetConfirm.jsx
+│   │   ├── Register.jsx
+│   │   └── UserProfile.jsx
+│   └── store
+│       ├── slices
+│       │   └── authSlice.js
+│       └── store.js
 ├── vercel.json
 ├── vite.config.js
 └── .vscode
+    ├── settings.json
     └── tasks.json
 
-12 directories, 47 files
+19 directories, 68 files
 ```
+
+
+<!-- tree -a -I 'node_modules|.git' > README.mdx -->

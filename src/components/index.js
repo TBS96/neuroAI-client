@@ -1,21 +1,24 @@
-import Input from "./Input";
+import Input from "./common/Input";
 import Header from "./Header/Header";
 import Container from "./container/Container";
-import Button from "./Button";
+import Button from "./common/Button";
 import Footer from "./Footer/Footer";
-import Login from './Login';
-import Register from "./Register";
-import Logo from "./Logo";
-import ChatBot from "./ChatBot";
-import HeroSection from "./Home/HeroSection";
-import FeaturesSection from "./Home/FeaturesSection";
-import HowItWorksSection from "./Home/HowItWorksSection";
-import TestimonialsSection from "./Home/TestimonialsSection";
-import About from "./About";
-import Contact from "./Contact";
+import Login from './auth/Login';
+import Register from "./auth/Register";
+import AuthLayout from "./auth/AuthLayout";
+import Logo from "./common/Logo";
+import ChatBot from "./routes/ChatBot";
+import HeroSection from "./routes/Home/HeroSection";
+import FeaturesSection from "./routes/Home/FeaturesSection";
+import HowItWorksSection from "./routes/Home/HowItWorksSection";
+import TestimonialsSection from "./routes/Home/TestimonialsSection";
+import About from "./routes/About";
+import Contact from "./routes/Contact";
 import Error from "./Error";
-import ForgottenPassword from "./ForgottenPassword";
-
+import ForgottenPassword from "./auth/ForgottenPassword";
+import UserBadge from "./Header/UserBadge";
+import UserProfile from "./routes/UserProfile";
+import PasswordResetConfirm from "./auth/PasswordResetConfirm";
 
 export {
     Input,
@@ -34,5 +37,9 @@ export {
     About,
     Contact,
     Error,
-    ForgottenPassword
+    ForgottenPassword,
+    AuthLayout,
+    UserBadge,
+    UserProfile,
+    PasswordResetConfirm,
 }

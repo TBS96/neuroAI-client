@@ -2,8 +2,11 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Home, Login, Register, Contact, About, ChatBot, Error, ForgottenPassword } from './pages/index.js'
+import { Home, Login, Register, Contact, About, ChatBot, Error, ForgottenPassword, UserProfile, PasswordResetConfirm } from './pages/index.js'
 import Aos from 'aos'
+import { Provider } from 'react-redux'
+import store from './store/store.js'
+import { AuthLayout } from './components/index.js'
 
 
 Aos.init();
@@ -20,15 +23,43 @@ const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        )
       },
       {
-        path: '/forgotten-password',
-        element: <ForgottenPassword />
+        path: `/profile/:userName`,
+        element: (
+          <AuthLayout authentication>
+            <UserProfile />
+          </AuthLayout>
+        )
+      },
+      {
+        path: '/password_reset',
+        element: (
+          <AuthLayout authentication={false}>
+            <ForgottenPassword />
+          </AuthLayout>
+        )
+      },
+      {
+        path: '/password_reset/confirm/:token',
+        element: (
+          <AuthLayout authentication={false}>
+            <PasswordResetConfirm />
+          </AuthLayout>
+        )
       },
       {
         path: '/register',
-        element: <Register />
+        element: (
+          <AuthLayout authentication={false}>
+            <Register />
+          </AuthLayout>
+        )
       },
       {
         path: '/about',
@@ -40,7 +71,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/chatbot',
-        element: <ChatBot />
+        element: (
+          <AuthLayout authentication>
+            <ChatBot />
+          </AuthLayout>
+        )
       },
       {
         path: '*',
@@ -51,5 +86,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 )

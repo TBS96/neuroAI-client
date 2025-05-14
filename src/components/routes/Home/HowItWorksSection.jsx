@@ -11,9 +11,9 @@ const HowItWorksSection = () => {
                         {[
                             {
                                 number: '1',
-                                title: 'Sign Up',
+                                title: 'Register',
                                 desc: 'Create your account and complete a brief assessment.',
-                                link: '/signup',
+                                link: '/register',
                             },
                             {
                                 number: '2',
