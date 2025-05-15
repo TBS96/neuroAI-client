@@ -26,7 +26,7 @@ const FeaturesSection = () => {
                                 desc: '24/7 support at your fingertips, whenever and wherever you need it.',
                             },
                         ].map(({ img, title, desc }, index) => (
-                            <div key={index} data-aos='zoom-in-up'>
+                            <div key={index} data-aos='zoom-in-up' title={title}>
                                 <div className='bg-base-300 p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:cursor-pointer rounded-md text-left'>
                                     <img
                                         src={img}

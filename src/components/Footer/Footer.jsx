@@ -145,7 +145,7 @@ function Footer() {
                 {/* Upper Footer */}
                 <div className='flex flex-wrap justify-between items-center'>
                     {/* Logo */}
-                    <div className='max-w-[100px] md:w-1/3 mx-auto md:mx-[120px] pb-8 md:pb-0' onClick={() => navigate('/')}>
+                    <div className='max-w-[100px] md:w-1/3 mx-auto md:mx-[120px] pb-8 md:pb-0' onClick={() => navigate('/')} title='neuroAI | Home'>
                         <Logo width='100%' />
                     </div>
 
@@ -157,7 +157,7 @@ function Footer() {
                             <h3 className='font-semibold text-lg text-gray-400 uppercase my-4 md:my-0'>{title}</h3>
                             <ul className='mt-2'>
                                 {links.map(({name, url}, idx) => (
-                                    <li key={idx} className='mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300'>
+                                    <li key={idx} title={name} className='mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300'>
                                         <Link to={url}>
                                             {name}
                                         </Link>
@@ -179,7 +179,7 @@ function Footer() {
                             </h3>
                             <ul className='md:flex justify-center'>
                                 {links.map(({name, path, icon, btnColorClassName}) => (
-                                    <li key={name} className='p-4'>
+                                    <li key={name} className='p-4' title={name}>
                                         <Link
                                             to={path}
                                             className={`btn btn-soft ${btnColorClassName} hover:translate-x-1 hover:-translate-y-1 duration-200 transition-all ease-in-out`}
@@ -198,12 +198,12 @@ function Footer() {
                 <div className='mt-8 text-center border-t border-t-gray-700 pt-4 text-sm'>
                     <div>
                         &copy; {new Date().getFullYear()}{' '}
-                        <Link to='/' className='text-primary transition-all duration-200 hover:link font-medium'>
+                        <Link to='/' className='text-primary transition-all duration-200 hover:link font-medium' title='neuroAI | Home'>
                             neuroAI
                         </Link>{' '}
                         | All Rights Reserved by{' '}
                         {teamMembers.map(({name, url, className}, index) => (
-                            <div className='flex md:inline-flex justify-center' key={index}>
+                            <div className='flex md:inline-flex justify-center' key={index} title={name}>
                                 <Link
                                     to={url}
                                     className={className}
@@ -221,7 +221,7 @@ function Footer() {
                 <div className='my-4 border border-gray-700'></div>
                 <p className='mt-1 text-xs italic text-center'>
                     Crafted with care by <span className='font-semibold text-accent hover:link'>
-                        <Link to={teamMembers[2].url}>
+                        <Link to={teamMembers[2].url} title={teamMembers[2].name}>
                             {teamMembers[2].name}
                         </Link>
                     </span>

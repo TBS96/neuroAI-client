@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
 import { Button, Input } from '../index';
 import { useSelector } from 'react-redux';
+import { Send } from 'lucide-react';
 
 let socket;
 const CONNECTION_PORT = 'localhost:3001/';
@@ -95,17 +96,19 @@ const ChatBot = () => {
                         type='text'
                         onChange={(e) => { setMessage(e.target.value) }}
                         value={message}
-                        className='input join-item'
+                        className='input join-item rounded-l-full'
                         placeholder='Type a Message...'
+                        title='Type a Message...'
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') sendMessage();
                         }}
                     />
                     <Button
                         onClick={sendMessage}
+                        title='Send'
                         className='join-item rounded-r-full skeleton'
                     >
-                        Send
+                        <Send size={20} />
                     </Button>
                 </div>
 

@@ -25,7 +25,7 @@ const TestimonialsSection = () => {
                         ].map(({ quote, author, role }, index) => {
                             const aos = index === 0 ? 'fade-up' : 'fade-down'
                             return (
-                                <div key={index} data-aos={aos}>
+                                <div key={index} data-aos={aos} title={`${author}'s Tesmonial`}>
                                     <div className='p-6 text-justify skeleton shadow-md rounded-md hover:shadow-2xl transition-all duration-300 hover:rotate-2 hover:cursor-pointer'>
                                         <p className='italic'>
                                             '{quote}'

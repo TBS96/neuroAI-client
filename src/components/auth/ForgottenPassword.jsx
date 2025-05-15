@@ -66,11 +66,16 @@ const ForgottenPassword = () => {
                     <Input
                         type='email'
                         placeholder='example@domain.com'
+                        title='Email'
                         className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                         {...register('email', {
                             required: 'Please enter a valid email address before you proceed...',
-                            validate: {
-                                matchPattern: (value) => /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) || 'Email address must be a valid address',
+                            validate: (value) => {
+                                return (
+                                    [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g].every((pattern) =>
+                                        pattern.test(value)
+                                    ) || 'Email address must be a valid address'
+                                )
                             }
                         })}
                         data-aos='fade-up'
@@ -93,6 +98,7 @@ const ForgottenPassword = () => {
                         type='submit'
                         disabled={loading}
                         className='w-full'
+                        title={loading ? 'Sending...' : 'Send Reset Link'}
                         data-aos='fade-up'
                         data-aos-duration='1200'
                     >
@@ -105,7 +111,7 @@ const ForgottenPassword = () => {
                         }
                     </Button>
 
-                    <Link to='/login' className='btn btn-dash btn-sm group flex items-center gap-2' data-aos='fade-right' data-aos-duration='1200' data-aos-delay='2000'>
+                    <Link to='/login' className='btn btn-dash btn-sm group flex items-center gap-2' data-aos='fade-right' data-aos-duration='1200' data-aos-delay='2000' title='Go Back'>
                         <ArrowLeftCircle className='transition-all duration-300 group-hover:-translate-x-3' /> Go Back
                     </Link>
                 </div>

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from '../index'
-import { Eye, EyeClosed, LoaderPinwheel } from 'lucide-react';
+import { ArrowUpRight, Eye, EyeClosed, LoaderPinwheel } from 'lucide-react';
 import { loginUser } from '../../store/slices/authSlice'
 
 function Login() {
@@ -64,14 +64,14 @@ function Login() {
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0 scroll-smooth' id='signupTarget'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100/10 rounded-xl p-10 border border-black/10`}>
                 <div className='mb-2 flex justify-center'>
-                    <span className='inline-block w-full max-w-[100px]'>
+                    <span className='inline-block w-full max-w-[100px]' title='neuroAI | Home'>
                         <Logo width='100%' />
                     </span>
                 </div>
                 <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Sign in to your account</h2>
                 <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Don&apos;t have any account?&nbsp;
-                    <Link to='/register' className='font-medium text-primary transition-all duration-200 hover:link'>
+                    <Link to='/register' className='font-medium text-primary transition-all duration-200 hover:link' title='Register'>
                         Register
                     </Link>
                 </p>
@@ -91,11 +91,16 @@ function Login() {
                             label='Email: '
                             placeholder='example@domain.com'
                             type='email'
+                            title='Email'
                             className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
                                 required: 'Email is required',
-                                validate: {
-                                    matchPattern: (value) => /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) || 'Email address must be a valid address',
+                                validate: (value) => {
+                                    return (
+                                        [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g].every((pattern) =>
+                                            pattern.test(value)
+                                        ) || 'Email address must be a valid address'
+                                    )
                                 }
                             })}
                         />
@@ -117,6 +122,7 @@ function Login() {
                             <Input
                                 label='Password: '
                                 placeholder='••••••••'
+                                title='Password'
                                 type={showPass ? 'text' : 'password'}
                                 {...register('password', {
                                     required: 'Password must be atleast 8 characters',
@@ -127,12 +133,20 @@ function Login() {
                                     maxLength: {
                                         value: 16,
                                         message: 'Password should not be more than 16 characters'
-                                    }
+                                    },
+                                    validate: (value) => {
+                                        return (
+                                            [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%!^&*()_+\[\]{}|\\:;"'<>,.?/~`-]).*$/].every((pattern) =>
+                                                pattern.test(value)
+                                            ) || 'Must include at least: 8 characters, one uppercase letter, one lowercase letter, one number, one special character (!@#$%^&*)'
+                                        )
+                                    },
                                 })}
                             />
                             <button
                                 type='button'
                                 onClick={() => setShowPass(!showPass)}
+                                title={!showPass ? 'Show' : 'Hide'}
                                 className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all'
                             >
                                 {!showPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
@@ -145,8 +159,10 @@ function Login() {
                             </p>
                         )}
 
-                        <span className='relative flex items-center justify-end'>
-                            <Link to='/password_reset' className='link link-accent'>Forgotten Password?</Link>
+                        <span className='relative flex items-center justify-end' title='Forgot Password ?'>
+                            <Link to='/password_reset' className='link link-accent flex items-center gap-0.5'>
+                                Reset Password <ArrowUpRight />
+                            </Link>
                         </span>
 
                         {successMessage && (
@@ -158,14 +174,15 @@ function Login() {
                         <Button
                             type='submit'
                             disabled={loading}
+                            title={loading ? 'Signing in...' : 'Sign in'}
                             className='w-full'
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >
                             {loading ? (
-                                <span className="flex items-center gap-2">
-                                    Signing in
-                                    <LoaderPinwheel className="animate-spin text-success" />
+                                <span className='flex items-center gap-2'>
+                                    Signing in...
+                                    <LoaderPinwheel className='animate-spin text-success' />
                                 </span>
                             ) : 'Sign in'
                             }
@@ -173,21 +190,22 @@ function Login() {
                     </div>
                 </form>
 
-                <div className="join join-vertical bg-base-100 mt-5">
-                    <div className="collapse collapse-arrow join-item border-base-300 border">
-                        <input type="checkbox" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">How do I create an account?</div>
-                        <div className="collapse-content text-sm">Click the <a href='#signupTarget' className='font-bold text-primary link'>Sign Up</a> button in the top right corner and follow the registration process.</div>
+                <div className='join join-vertical bg-base-100 mt-5 rounded-xl'>
+                    <h2 className='text-center text-2xl font-bold my-2 italic animate-pulse'>Frequently Asked Questions (FAQ)</h2>
+                    <div className='collapse collapse-arrow join-item border-base-300 border'>
+                        <input type='checkbox' name='my-accordion-4' />
+                        <div className='collapse-title font-semibold'>How do I create an account?</div>
+                        <div className='collapse-content text-sm'>Click the <a href='#signupTarget' className='font-bold text-primary hover:link'>Sign Up</a> button in the top right corner and follow the registration process.</div>
                     </div>
-                    <div className="collapse collapse-arrow join-item border-base-300 border">
-                        <input type="checkbox" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">I forgot my password. What should I do?</div>
-                        <div className="collapse-content text-sm">Click on <span className='font-bold'>"Forgotten Password"</span> above and follow the instructions sent to your email.</div>
+                    <div className='collapse collapse-arrow join-item border-base-300 border'>
+                        <input type='checkbox' name='my-accordion-4' />
+                        <div className='collapse-title font-semibold'>I forgot my password. What should I do?</div>
+                        <div className='collapse-content text-sm'>Click on <span className='font-bold'>"Reset Password"</span> above and follow the instructions sent to your email.</div>
                     </div>
-                    <div className="collapse collapse-arrow join-item border-base-300 border">
-                        <input type="checkbox" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">How do I update my profile information?</div>
-                        <div className="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.</div>
+                    <div className='collapse collapse-arrow join-item border-base-300 border'>
+                        <input type='checkbox' name='my-accordion-4' />
+                        <div className='collapse-title font-semibold'>How do I update my profile information?</div>
+                        <div className='collapse-content text-sm'>Go to <span className='font-bold'>"View Profile"</span> and select <span className='font-bold'>"Edit Profile"</span> to make changes.</div>
                     </div>
                 </div>
 

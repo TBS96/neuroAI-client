@@ -76,7 +76,7 @@ function Register() {
                 <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Register to create an account</h2>
                 <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Already have an account?&nbsp;
-                    <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline'>
+                    <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline' title='Sign in'>
                         Sign In
                     </Link>
                 </p>
@@ -93,8 +93,12 @@ function Register() {
                             label='Full Name: '
                             type='text'
                             placeholder='Full Name'
+                            title='Full Name'
                             {...register('name', {
                                 required: 'Full Name is required',
+                                validate: (value) => {
+                                    return /^[A-Z][a-z]+( [A-Z][a-z]+){1,9}$/.test(value) ? true : 'Name must start with uppercase letters and contain only alphabets with at most 3 parts (e.g., Netaji Subhash Chandra Bose)'
+                                }
                             })}
                         />
 
@@ -108,12 +112,45 @@ function Register() {
                             label='Email: '
                             placeholder='example@domain.com'
                             type='email'
+                            title='Email'
                             className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
                                 required: 'Email is required',
-                                validate: {
-                                    matchPattern: (value) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(value) ||
-                                        'Email address must be a valid address',
+                                validate: (value) => {
+                                    // return (
+                                    //     [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g].every((pattern) =>
+                                    //         pattern.test(value)
+                                    //     ) || 'Email address must be a valid address'
+                                    // )
+                                    const allowedDomains = [
+                                        'gmail.com', 'gmail.co.in',
+                                        'yahoo.com', 'yahoo.co.in', 'yahoo.in', 'ymail.com',
+                                        'outlook.com', 'hotmail.com', 'live.com', 'msn.com',
+                                        'icloud.com', 'me.com',
+                                        'aol.com',
+                                        'zoho.com', 'zoho.in',
+                                        'protonmail.com',
+                                        'gmx.com', 'mail.com',
+                                        'yandex.com',
+                                        'inbox.com',
+                                        'tutanota.com',
+                                        'fastmail.com',
+                                        'hushmail.com',
+                                        'rediffmail.com', 'rediffmail.in'
+                                    ];
+                                    const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+
+                                    if (!emailRegex.test(value)) {
+                                        return 'Email address must be a valid address';
+                                    }
+
+                                    const domain = value.split('@')[1]?.toLowerCase();
+
+                                    if (!allowedDomains.includes(domain)) {
+                                        return 'Only genuine & common email providers are allowed (e.g., Gmail, Yahoo, Outlook, etc.)';
+                                    }
+
+                                    return true;
                                 }
                             })}
                         />
@@ -128,6 +165,7 @@ function Register() {
                             label='Phone Number: '
                             placeholder='+91-XXXXXXXXXX'
                             type='tel'
+                            title='Phone Number'
                             {...register('phone_number', {
                                 required: 'Phone number is required',
                             })}
@@ -141,6 +179,7 @@ function Register() {
 
                         <Input
                             label='Date of Birth: '
+                            title='Date of Birth'
                             type='date'
                             {...register('dob', {
                                 required: 'Date of birth is required',
@@ -170,6 +209,7 @@ function Register() {
                         <Input
                             label='Age: '
                             placeholder='Age'
+                            title='Age'
                             type='number'
                             disabled
                             {...register('age', {
@@ -185,6 +225,7 @@ function Register() {
                         <Input
                             label='Address: '
                             placeholder='Street Address'
+                            title='Address'
                             type='text'
                             autoComplete='street-address'
                             {...register('address', {
@@ -201,6 +242,7 @@ function Register() {
                         <Input
                             label='Occupation: '
                             placeholder='Occupation'
+                            title='Occupation'
                             type='text'
                             {...register('occupation', {
                                 required: 'Occupation is required',
@@ -216,6 +258,7 @@ function Register() {
                             <Input
                                 label='Password: '
                                 placeholder='••••••••'
+                                title='Password'
                                 type={showPass ? 'text' : 'password'}
                                 data-aos='zoom-in-right'
                                 {...register('password', {
@@ -228,11 +271,19 @@ function Register() {
                                         value: 16,
                                         message: 'Password should not be more than 16 characters'
                                     },
+                                    validate: (value) => {
+                                        return (
+                                            [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%!^&*()_+\[\]{}|\\:;"'<>,.?/~`-]).*$/].every((pattern) =>
+                                                pattern.test(value)
+                                            ) || 'Must include at least: 8 characters, one uppercase letter, one lowercase letter, one number, one special character (!@#$%^&*)'
+                                        )
+                                    },
                                 })}
                             />
                             <button
                                 type='button'
                                 onClick={() => setShowPass(!showPass)}
+                                title={!showPass ? 'Show' : 'Hide'}
                                 className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all'
                                 data-aos='fade-up'
                             >
@@ -271,7 +322,7 @@ function Register() {
                             </button>
                         </div> */}
 
-                        <div tabIndex={0} className="collapse collapse-plus bg-base-100 border-base-300 border" data-aos='zoom-in-right'>
+                        <div tabIndex={0} className="collapse collapse-plus bg-base-100 border-base-300 border" data-aos='zoom-in-right' title='Password Constraints -> Expand to Read'>
                             <input type="checkbox" className='peer' />
                             <div className="collapse-title font-semibold bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">Password Constraints</div>
                             <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
@@ -297,6 +348,7 @@ function Register() {
                         <Button
                             type='submit'
                             disabled={loading}
+                            title={loading ? 'Registering...' : 'Register'}
                             className='w-full'
                             data-aos='fade-up'
                             data-aos-duration='1200'
