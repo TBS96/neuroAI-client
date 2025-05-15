@@ -25,12 +25,12 @@ const HowItWorksSection = () => {
                                 number: '3',
                                 title: 'Get Result',
                                 desc: 'Get to know about your concerns towards better mental health.',
-                                link: '/',
+                                link: '/chatbot',
                             },
                         ].map(({ number, title, desc, link }, index) => {
                             const aos = index === 0 ? 'fade-up' : index === 1 ? 'zoom-in' : 'flip-up'
                             return (
-                                <div key={index} data-aos={aos} data-aos-delay={index * 200}>
+                                <div key={index} data-aos={aos} data-aos-delay={index * 200} title={title}>
                                     <div className='flex flex-col items-center bg-base-300 p-6 rounded-md shadow-md hover:shadow-2xl transition-all duration-300 hover:translate-x-4 hover:cursor-pointer'>
                                         <Link to={link} className='block w-full'>
                                             <div className='text-4xl font-bold bg-base-100 glass w-16 h-16 flex items-center justify-center rounded-full mb-4 mx-auto'>
