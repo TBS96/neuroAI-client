@@ -71,6 +71,7 @@ const PasswordResetConfirm = () => {
                     <Input
                         type='password'
                         placeholder='New Password'
+                        title='New Password'
                         {...register('password', {
                             required: 'Password is required',
                             minLength: {
@@ -102,7 +103,8 @@ const PasswordResetConfirm = () => {
 
                     <Input
                         type='password'
-                        placeholder='Confirm Password'
+                        placeholder='Confirm New Password'
+                        title='Confirm New Password'
                         {...register('confirmPassword', {
                             validate: (value) => value === watch('password') || 'Passwords do not match',
                         })}
@@ -126,6 +128,7 @@ const PasswordResetConfirm = () => {
                     <Button
                         type='submit'
                         disabled={loading}
+                        title={loading ? 'Resetting...' : 'Reset Password'}
                         className='w-full'
                         data-aos='fade-up'
                         data-aos-duration='1200'
