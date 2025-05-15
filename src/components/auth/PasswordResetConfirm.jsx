@@ -81,6 +81,13 @@ const PasswordResetConfirm = () => {
                                 value: 16,
                                 message: 'Password should not be more than 16 characters'
                             },
+                            validate: (value) => {
+                                return (
+                                    [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%!^&*()_+\[\]{}|\\:;"'<>,.?/~`-]).*$/].every((pattern) =>
+                                        pattern.test(value)
+                                    ) || 'Must include at least: 8 characters, one uppercase letter, one lowercase letter, one number, one special character (!@#$%^&*)'
+                                )
+                            },
                         })}
                         className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                         data-aos='fade-up'
