@@ -15,7 +15,7 @@ const UserProfile = () => {
                     <div className='flex flex-col items-center space-y-4'>
 
                         <div className='avatar'>
-                            <div className='w-24 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2'>
+                            <div className='w-24 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2' title={name}>
                                 <img
                                     src={`https://ui-avatars.com/api/?name=${name}&background=random`}
                                     alt='avatar'
@@ -26,35 +26,39 @@ const UserProfile = () => {
                         <h2 className='text-4xl font-bold text-center text-purple-700'>
                             {name}
                         </h2>
-                        <p className='text-sm'>📌 {occupation}</p>
+                        <p className='text-sm' title='Occupation'>📌 {occupation}</p>
 
                         <div className='divider' />
 
                         <div className='w-full space-y-3'>
                             <div className='flex justify-between'>
                                 <span className='font-semibold'>📧 Email:</span>
-                                <span>{email}</span>
+                                <span className='hover:link' title={email}>
+                                    <a href={`mailto:${email}`}>{email}</a>
+                                </span>
                             </div>
                             <div className='flex justify-between'>
                                 <span className='font-semibold'>📱 Phone:</span>
-                                <span>{phone_number}</span>
+                                <span className='hover:underline' title={phone_number}>
+                                    <a href={`tel:${phone_number}`}>{phone_number}</a>
+                                </span>
                             </div>
                             <div className='flex justify-between'>
                                 <span className='font-semibold'>🎂 DOB:</span>
-                                <span>{dob}</span>
+                                <span title={dob}>{dob}</span>
                             </div>
                             <div className='flex justify-between'>
                                 <span className='font-semibold'>🎈 Age:</span>
-                                <span>{age}</span>
+                                <span title={age}>{age}</span>
                             </div>
                             <div className='flex justify-between'>
                                 <span className='font-semibold'>🏠 Address:</span>
-                                <span className='text-right'>{address}</span>
+                                <span className='text-right' title={address}>{address}</span>
                             </div>
                         </div>
 
                         <div className='mt-6'>
-                            <span className='badge badge-success badge-lg p-4 text-white shadow-md'>
+                            <span className='badge badge-success badge-lg p-4 text-white shadow-md' title='Active User'>
                                 Profile Active
                             </span>
                         </div>
