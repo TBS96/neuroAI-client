@@ -136,10 +136,10 @@ function Login() {
                                     },
                                     validate: (value) => {
                                         return (
-                                            [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm].every((pattern) =>
+                                            [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%!^&*()_+\[\]{}|\\:;"'<>,.?/~`-]).*$/].every((pattern) =>
                                                 pattern.test(value)
                                             ) || 'Must include at least: 8 characters, one uppercase letter, one lowercase letter, one number, one special character (!@#$%^&*)'
-                                        );
+                                        )
                                     },
                                 })}
                             />
