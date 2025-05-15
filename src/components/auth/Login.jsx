@@ -174,14 +174,14 @@ function Login() {
                         <Button
                             type='submit'
                             disabled={loading}
-                            title={loading ? 'Signing in' : 'Sign in'}
+                            title={loading ? 'Signing in...' : 'Sign in'}
                             className='w-full'
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >
                             {loading ? (
                                 <span className='flex items-center gap-2'>
-                                    Signing in
+                                    Signing in...
                                     <LoaderPinwheel className='animate-spin text-success' />
                                 </span>
                             ) : 'Sign in'
