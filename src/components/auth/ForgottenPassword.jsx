@@ -69,8 +69,12 @@ const ForgottenPassword = () => {
                         className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                         {...register('email', {
                             required: 'Please enter a valid email address before you proceed...',
-                            validate: {
-                                matchPattern: (value) => /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) || 'Email address must be a valid address',
+                            validate: (value) => {
+                                return (
+                                    [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g].every((pattern) =>
+                                        pattern.test(value)
+                                    ) || 'Email address must be a valid address'
+                                )
                             }
                         })}
                         data-aos='fade-up'
