@@ -95,6 +95,9 @@ function Register() {
                             placeholder='Full Name'
                             {...register('name', {
                                 required: 'Full Name is required',
+                                validate: (value) => {
+                                    return /^[A-Z][a-z]+( [A-Z][a-z]+){1,9}$/.test(value) ? true : 'Name must start with uppercase letters and contain only alphabets with at most 3 parts (e.g., Netaji Subhash Chandra Bose)'
+                                }
                             })}
                         />
 
@@ -111,9 +114,41 @@ function Register() {
                             className={error ? 'validator bg-error focus:bg-yellow-500' : ''}
                             {...register('email', {
                                 required: 'Email is required',
-                                validate: {
-                                    matchPattern: (value) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i.test(value) ||
-                                        'Email address must be a valid address',
+                                validate: (value) => {
+                                    // return (
+                                    //     [/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g].every((pattern) =>
+                                    //         pattern.test(value)
+                                    //     ) || 'Email address must be a valid address'
+                                    // )
+                                    const allowedDomains = [
+                                        'gmail.com', 'gmail.co.in',
+                                        'yahoo.com', 'yahoo.co.in', 'yahoo.in', 'ymail.com',
+                                        'outlook.com', 'hotmail.com', 'live.com', 'msn.com',
+                                        'icloud.com', 'me.com',
+                                        'aol.com',
+                                        'zoho.com', 'zoho.in',
+                                        'protonmail.com',
+                                        'gmx.com', 'mail.com',
+                                        'yandex.com',
+                                        'inbox.com',
+                                        'tutanota.com',
+                                        'fastmail.com',
+                                        'hushmail.com',
+                                        'rediffmail.com', 'rediffmail.in'
+                                    ];
+                                    const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+
+                                    if (!emailRegex.test(value)) {
+                                        return 'Email address must be a valid address';
+                                    }
+
+                                    const domain = value.split('@')[1]?.toLowerCase();
+
+                                    if (!allowedDomains.includes(domain)) {
+                                        return 'Only genuine & common email providers are allowed (e.g., Gmail, Yahoo, Outlook, etc.)';
+                                    }
+
+                                    return true;
                                 }
                             })}
                         />
@@ -227,6 +262,13 @@ function Register() {
                                     maxLength: {
                                         value: 16,
                                         message: 'Password should not be more than 16 characters'
+                                    },
+                                    validate: (value) => {
+                                        return (
+                                            [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%!^&*()_+\[\]{}|\\:;"'<>,.?/~`-]).*$/].every((pattern) =>
+                                                pattern.test(value)
+                                            ) || 'Must include at least: 8 characters, one uppercase letter, one lowercase letter, one number, one special character (!@#$%^&*)'
+                                        )
                                     },
                                 })}
                             />
