@@ -20,7 +20,7 @@ const UserBadge = () => {
                         <div className='btn btn-circle ring ring-secondary ring-offset-base-100 ring-offset-2' title={userName}>
                             <img
                                 src={`https://ui-avatars.com/api/?name=${userName}&background=random`}
-                                alt='avatar'
+                                alt={userName}
                             />
                         </div>
                     </div>
