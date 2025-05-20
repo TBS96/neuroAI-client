@@ -4,13 +4,17 @@ import API from "./api";
 export const loginUserApi = async (credentials) => {
     try {
         const res = await API.post('/login/', credentials);
-        return { access: res.data.access, refresh: res.data.refresh, };
+        return {
+            access: res.data.access,
+            refresh: res.data.refresh,
+        };
     }
     catch (err) {
         console.error(`Login failed: ${err}`);
         const message = err.response?.data?.message || 'Login failed. Please check your credentials.';
         const customError = new Error(message);
-        customError.response = err.response; throw customError;
+        customError.response = err.response;
+        throw customError;
     }
 };
 
