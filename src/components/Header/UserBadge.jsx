@@ -15,7 +15,16 @@ const UserBadge = () => {
         <div className='drawer'>
             <input id='my-drawer' type='checkbox' className='drawer-toggle' />
             <div className='drawer-content' title={`Hi ${userName}! Click Me to View Your Profile or Logout`}>
-                <label htmlFor='my-drawer' className='btn font-bold px-5 py-1 ms-10 md:ms-40 rounded-2xl bg-base-300 drawer-button'>Hello {userName}!</label>
+                <label htmlFor='my-drawer' className='ms-10 md:ms-40 drawer-button'>
+                    <div className='avatar'>
+                        <div className='btn btn-circle ring ring-secondary ring-offset-base-100 ring-offset-2' title={userName}>
+                            <img
+                                src={`https://ui-avatars.com/api/?name=${userName}&background=random`}
+                                alt={userName}
+                            />
+                        </div>
+                    </div>
+                </label>
             </div>
 
             <div className='drawer-side'>
@@ -38,6 +47,6 @@ const UserBadge = () => {
 
 export default UserBadge
 
-{/* <Link to='/' className='btn btn-dash group flex items-center gap-2'> */}
-                {/* <ArrowLeftCircle className='transition-all duration-300 group-hover:-translate-x-3' /> Go back to Home */}
-            {/* </Link> */}
+{/* <Link to='/' className='btn btn-dash group flex items-center gap-2'> */ }
+{/* <ArrowLeftCircle className='transition-all duration-300 group-hover:-translate-x-3' /> Go back to Home */ }
+{/* </Link> */ }
