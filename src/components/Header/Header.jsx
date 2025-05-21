@@ -28,6 +28,11 @@ const Header = () => {
             active: true
         },
         {
+            name: 'Messages',
+            slug: '/chatbot',
+            active: authStatus,
+        },
+        {
             name: 'About',
             slug: '/about',
             active: true
