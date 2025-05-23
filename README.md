@@ -18,13 +18,16 @@ cd neuroAI-client && git checkout testing && npm i
 ```bash
 npm run dev -- --host
 ```
-- This will generate a url like this:
+- This will generate Local and Network urls as follows:
 ```bash
 http://localhost:5173/
 ```
+```bash
+http://192.168.0.102:5173/
+```
 - For dev purpose change the url in neuroAI-server/Mentalhealth/NeuroAI/`views.py` in class `RequestPasswordReset`:
 ```bash
-reset_url = f'http://localhost:5173/password_reset/confirm/{token}'
+reset_url = f'http://192.168.0.102:5173/password_reset/confirm/{token}'
 ```
 
 
