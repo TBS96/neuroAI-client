@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
     "@tailwindcss/vite": "^4.0.12",
+    "@vercel/speed-insights": "^1.2.0",
     "aos": "^2.3.4",
     "axios": "^1.9.0",
     "lucide-react": "^0.487.0",
