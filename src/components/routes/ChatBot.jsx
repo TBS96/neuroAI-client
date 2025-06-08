@@ -346,7 +346,6 @@ const ChatBot = () => {
                 {/* Messages area */}
                 <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
                     {messages.map(({ role, timeStamp, messageId, content }, index) => {
-                        // { role, timestamp, messageId, content }
                         const isCurrentUser = role === 'user';
                         const timestamp = new Date(timeStamp || Date.now()).toLocaleTimeString([], {
                             hour: '2-digit',
