@@ -5,7 +5,7 @@ const API = axios.create({
     baseURL: conf.backendUrl,
     headers: {
         'Content-Type': 'application/json'
-    }
+    },
 });
 
 // Add access tokens to every request automatically
