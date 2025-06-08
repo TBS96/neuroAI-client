@@ -345,25 +345,26 @@ const ChatBot = () => {
             <div className='h-[800px] border mx-auto w-full max-w-5xl md:max-w-6xl p-2 rounded-lg flex flex-col'>
                 {/* Messages area */}
                 <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
-                    {messages.map((msg, index) => {
-                        const isCurrentUser = msg.role === 'user';
-                        const timestamp = new Date(msg.timestamp || Date.now()).toLocaleTimeString([], {
+                    {messages.map(({ role, timeStamp, messageId, content }, index) => {
+                        // { role, timestamp, messageId, content }
+                        const isCurrentUser = role === 'user';
+                        const timestamp = new Date(timeStamp || Date.now()).toLocaleTimeString([], {
                             hour: '2-digit',
                             minute: '2-digit'
                         });
 
                         return (
                             <div
-                                key={msg.messageId || index}
+                                key={messageId || index}
                                 className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} my-2`}
                             >
                                 <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-success'}`}>
-                                    <span className='block font-semibold text-base-300 text-xs'>
+                                    <span className='block font-semibold text-base-300 text-xs' title={isCurrentUser ? userName : 'neuroAI'}>
                                         {isCurrentUser ? `You (${userName})` : 'neuroAI'}
                                     </span>
                                     <div className='flex flex-col gap-1'>
-                                        <span>{msg.content}</span>
-                                        <span className='text-xs text-base-100 self-end'>{timestamp}</span>
+                                        <span title={content}>{content}</span>
+                                        <span className='text-xs text-base-100 self-end' title={timestamp}>{timestamp}</span>
                                     </div>
                                 </div>
                             </div>
