@@ -303,6 +303,8 @@ const ChatBot = () => {
     // const [messageList, setMessageList] = useState([]);
     const chatContainerRef = useRef(null);
 
+    const [chatApiError, setChatApiError] = useState({});
+
     // Auto-scroll to bottom when messages change
     useEffect(() => {
         if (chatContainerRef.current) {
@@ -317,8 +319,8 @@ const ChatBot = () => {
             return;
         }
 
-        // Clear input immediately
         setMessage('');
+        setChatApiError('');
 
         try {
             // Optimistically add user message
@@ -328,6 +330,7 @@ const ChatBot = () => {
             await dispatch(sendMessage(trimmedMessage)).unwrap();
         } catch (error) {
             console.error('Failed to send message:', error);
+            setChatApiError(error);
             // Optionally show error to user
         }
     };
@@ -342,6 +345,11 @@ const ChatBot = () => {
 
     return (
         <div className='grid place-items-center tab-content overflow-x-auto scroll-auto p-2' data-aos='fade-up' data-aos-duration='1000'>
+            {chatApiError?.error && (
+                <p className='text-error my-4 text-center bg-error-content animate-pulse p-2 rounded' title={chatApiError.error}>
+                    {chatApiError.error}
+                </p>
+            )}
             <div className='h-[800px] border mx-auto w-full max-w-5xl md:max-w-6xl p-2 rounded-lg flex flex-col'>
                 {/* Messages area */}
                 <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
@@ -357,7 +365,7 @@ const ChatBot = () => {
                                 key={messageId || index}
                                 className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} my-2`}
                             >
-                                <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-success'}`}>
+                                <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-info'}`}>
                                     <span className='block font-semibold text-base-300 text-xs' title={isCurrentUser ? userName : 'neuroAI'}>
                                         {isCurrentUser ? `You (${userName})` : 'neuroAI'}
                                     </span>
