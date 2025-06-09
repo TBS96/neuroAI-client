@@ -284,7 +284,7 @@
 
 
 // Deepseek code:
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Send } from 'lucide-react';
 import { Button, Input } from '../index';
@@ -305,6 +305,13 @@ const ChatBot = () => {
     const chatContainerRef = useRef(null);
 
     const [chatApiError, setChatApiError] = useState({});
+
+    useEffect(() => {
+        if (chatApiError?.error) {
+            const errorModal = document.getElementById('errorModal');
+            if (errorModal) errorModal.showModal();
+        }
+    }, [chatApiError?.error]);
 
     // Auto-scroll to bottom when messages change
     useEffect(() => {
@@ -346,11 +353,17 @@ const ChatBot = () => {
 
     return (
         <div className='grid place-items-center tab-content overflow-x-auto scroll-auto p-2' data-aos='fade-up' data-aos-duration='1000'>
-            {chatApiError?.error && (
-                <p className='text-error my-4 text-center bg-error-content animate-pulse p-2 rounded' title={chatApiError.error}>
-                    {chatApiError.error}
-                </p>
-            )}
+            <dialog id='errorModal' className='modal'>
+                <div className='modal-box'>
+                    <h3 className='font-bold text-lg text-error'>Error!</h3>
+                    <p className='py-4'>{chatApiError?.error}</p>
+                    <div className='modal-action'>
+                        <form method='dialog'>
+                            <button className='btn'>Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
             <div className='h-[800px] border mx-auto w-full max-w-5xl md:max-w-6xl p-2 rounded-lg flex flex-col'>
                 {/* Messages area */}
                 <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
@@ -371,7 +384,7 @@ const ChatBot = () => {
                                         {isCurrentUser ? `You (${userName})` : 'neuroAI'}
                                     </span>
                                     <div className='flex flex-col gap-1'>
-                                        <ReactMarkdown children={content}  />
+                                        <ReactMarkdown children={content} />
                                         <span className='text-xs prose text-base-100 self-end' title={timestamp}>{timestamp}</span>
                                     </div>
                                 </div>
@@ -402,12 +415,14 @@ const ChatBot = () => {
                         placeholder='Type a message...'
                         onKeyDown={handleKeyDown}
                         disabled={status === 'loading'}
+                        title='Type a message...'
                     />
                     <Button
                         onClick={handleSendMessage}
                         className='join-item rounded-r-full'
-                        disabled={status === 'loading' || !message.trim()}
-                        aria-label="Send message"
+                        disabled={status === 'loading'}
+                        aria-label="Send Message"
+                        title='Send Message'
                     >
                         <Send size={20} />
                     </Button>
