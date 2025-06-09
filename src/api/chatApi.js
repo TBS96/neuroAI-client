@@ -28,5 +28,3 @@ export const sendMessageToChatbotApi = async (userInput) => {
         throw err;
     }
 };
-
-// const userFromStorage = JSON.parse(localStorage.getItem('authData'));

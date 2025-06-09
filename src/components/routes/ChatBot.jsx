@@ -289,6 +289,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Send } from 'lucide-react';
 import { Button, Input } from '../index';
 import { addUserMessage, sendMessage, selectAllMessages, selectChatStatus } from '../../store/slices/chatSlice';
+import ReactMarkdown from 'react-markdown'
 
 const ChatBot = () => {
 
@@ -365,13 +366,13 @@ const ChatBot = () => {
                                 key={messageId || index}
                                 className={`chat ${isCurrentUser ? 'chat-end' : 'chat-start'} my-2`}
                             >
-                                <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-info'}`}>
+                                <div className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble ${isCurrentUser ? 'chat-bubble-primary' : 'chat-bubble-info'}`} title={content}>
                                     <span className='block font-semibold text-base-300 text-xs' title={isCurrentUser ? userName : 'neuroAI'}>
                                         {isCurrentUser ? `You (${userName})` : 'neuroAI'}
                                     </span>
                                     <div className='flex flex-col gap-1'>
-                                        <span title={content}>{content}</span>
-                                        <span className='text-xs text-base-100 self-end' title={timestamp}>{timestamp}</span>
+                                        <ReactMarkdown children={content}  />
+                                        <span className='text-xs prose text-base-100 self-end' title={timestamp}>{timestamp}</span>
                                     </div>
                                 </div>
                             </div>
@@ -388,6 +389,7 @@ const ChatBot = () => {
                             </div>
                         </div>
                     )}
+
                 </div>
 
                 {/* Input area */}
@@ -430,6 +432,7 @@ const ChatBot = () => {
 
 export default ChatBot;
 
+// TODO: show modal for error message
 
 
 
