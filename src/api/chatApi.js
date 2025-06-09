@@ -4,6 +4,9 @@ export const sendMessageToChatbotApi = async (userInput) => {
     try {
         const response = await API.post('/chatbot/', {
             user_input: userInput,
+            // user_from_storage: JSON.parse(localStorage.getItem('authData')),
+            accessToken: JSON.parse(localStorage.getItem('authData'))?.accessToken || null,
+            refreshToken: JSON.parse(localStorage.getItem('authData'))?.refreshToken || null,
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -25,3 +28,5 @@ export const sendMessageToChatbotApi = async (userInput) => {
         throw err;
     }
 };
+
+// const userFromStorage = JSON.parse(localStorage.getItem('authData'));
