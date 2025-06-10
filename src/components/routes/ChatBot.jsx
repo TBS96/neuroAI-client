@@ -288,7 +288,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Send } from 'lucide-react';
 import { Button, Input } from '../index';
-import { addUserMessage, sendMessage, selectAllMessages, selectChatStatus } from '../../store/slices/chatSlice';
+import { addUserMessage, sendMessage, selectAllMessages, selectChatStatus, fetchChatHistory, prependMessages } from '../../store/slices/chatSlice';
 import ReactMarkdown from 'react-markdown'
 
 const ChatBot = () => {
@@ -306,6 +306,38 @@ const ChatBot = () => {
 
     const [chatApiError, setChatApiError] = useState({});
 
+    const [loadingOlderMessages, setLoadingOlderMessages] = useState(false);
+    // const [page, setPage] = useState(1);
+    // const [hasMoreOlder, setHasMoreOlder] = useState(true);
+
+
+    const handleLoadOlderMessages = async () => {
+        if (loadingOlderMessages) return;
+        // if (loadingOlderMessages || !hasMoreOlder) return;
+
+        setLoadingOlderMessages(true);
+
+        // try {
+        //     const olderMessages = await fetchChatHistoryApi(page);
+
+        //     if (olderMessages.length === 0) {
+        //         setHasMoreOlder(false);  // No more messages
+        //     } else {
+        //         dispatch(prependMessages(olderMessages));
+        //         setPage((prev) => prev + 1);
+        //     }
+        // } catch (err) {
+        //     console.error('Failed to load older messages', err);
+        // } finally {
+        //     setLoadingOlderMessages(false);
+        // }
+    };
+
+    const handleScrollToTop = (e) => {
+        const { scrollTop } = e.target;
+        if (scrollTop === 0) handleLoadOlderMessages();
+    };
+
     useEffect(() => {
         if (chatApiError?.error) {
             const errorModal = document.getElementById('errorModal');
@@ -319,6 +351,10 @@ const ChatBot = () => {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
     }, [messages]);
+
+    useEffect(() => {
+        dispatch(fetchChatHistory())
+    }, [dispatch]);
 
     const handleSendMessage = async () => {
         const trimmedMessage = message.trim();
@@ -366,7 +402,7 @@ const ChatBot = () => {
             </dialog>
             <div className='h-[800px] border mx-auto w-full max-w-5xl md:max-w-6xl p-2 rounded-lg flex flex-col'>
                 {/* Messages area */}
-                <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2'>
+                <div ref={chatContainerRef} className='flex-[80%] w-full overflow-y-auto p-4 space-y-2' onScroll={handleScrollToTop}>
                     {messages.map(({ role, timeStamp, messageId, content }, index) => {
                         const isCurrentUser = role === 'user';
                         const timestamp = new Date(timeStamp || Date.now()).toLocaleTimeString([], {

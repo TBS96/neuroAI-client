@@ -148,7 +148,7 @@
 
 // Test 3:
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { sendMessageToChatbotApi } from '../../api/chatApi';
+import { fetchChatHistoryApi, sendMessageToChatbotApi } from '../../api/chatApi';
 
 const messageInitialState = {
     messages: [],
@@ -162,6 +162,31 @@ export const sendMessage = createAsyncThunk('chat/sendMessage',
     async (messageContent, { rejectWithValue, getState }) => {
         try {
             return await sendMessageToChatbotApi(messageContent);
+        }
+        catch (err) {
+            return rejectWithValue(err?.response?.data || err.message);
+        }
+    }
+);
+
+// Thunk to call chat history
+export const fetchChatHistory = createAsyncThunk('chat/fetchChatHistory',
+    async (_, { rejectWithValue }) => {
+        try {
+            const data = await fetchChatHistoryApi();
+            const converted = data.flatMap(item => ([
+                {
+                    role: 'user',
+                    content: item.user,
+                    timestamp: Date.now(),
+                },
+                {
+                    role: 'assistant',
+                    content: item.response,
+                    timestamp: Date.now(),
+                },
+            ]));
+            return converted;
         }
         catch (err) {
             return rejectWithValue(err?.response?.data || err.message);
@@ -188,31 +213,47 @@ const chatSlice = createSlice({
         },
         // Reset the chat state
         resetChat: () => messageInitialState,
+        // Prepend old messages
+        prependMessages: (state, action) => {
+            state.messages = [...action.payload, ...state.messages];
+        },
     },
     extraReducers: (builder) => {
         builder
-        .addCase(sendMessage.pending, (state) => {
-            state.status = 'loading';
-        })
-        .addCase(sendMessage.fulfilled, (state, action) => {
-            state.status = 'succeeded';
-            state.messages.push({
-                ...action.payload,
-                timestamp: Date.now(),
-            });
-            // console.log(`AI response: ${action.payload.content}`);
-            console.log('AI response: ', action.payload);
-        })
-        .addCase(sendMessage.rejected, (state, action) => {
-            state.status = 'failed';
-            state.error = action.payload;
-            // You might want to mark the last user message as failed
-            const lastUserMessageIndex = state.messages.findLastIndex(msg => msg.role === 'user');
-        });
+            .addCase(sendMessage.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(sendMessage.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.messages.push({
+                    ...action.payload,
+                    timestamp: Date.now(),
+                });
+                // console.log(`AI response: ${action.payload.content}`);
+                console.log('AI response: ', action.payload);
+            })
+            .addCase(sendMessage.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+                // You might want to mark the last user message as failed
+                const lastUserMessageIndex = state.messages.findLastIndex(msg => msg.role === 'user');
+            })
+            .addCase(fetchChatHistory.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchChatHistory.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.messages = action.payload;
+                console.log('Loaded chat history: ', action.payload);
+            })
+            .addCase(fetchChatHistory.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            })
     }
 });
 
-export const { addMessage, addUserMessage, resetChat } = chatSlice.actions;
+export const { addMessage, addUserMessage, resetChat, prependMessages } = chatSlice.actions;
 
 // Selectors
 export const selectAllMessages = state => state.chat.messages;
