@@ -290,8 +290,20 @@ import { Send } from 'lucide-react';
 import { Button, Input } from '../index';
 import { addUserMessage, sendMessage, selectAllMessages, selectChatStatus, fetchChatHistory, prependMessages } from '../../store/slices/chatSlice';
 import ReactMarkdown from 'react-markdown'
+import { useFooterVisibility } from '../../context/FooterVisibilityContext.jsx';
 
 const ChatBot = () => {
+
+    const { hideFooter, showFooterFn } = useFooterVisibility();
+
+    useEffect(() => {
+        hideFooter();
+
+        return () => {
+            showFooterFn();
+        };
+    }, [hideFooter, showFooterFn]);
+    
 
     const dispatch = useDispatch();
 

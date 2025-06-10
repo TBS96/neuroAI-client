@@ -7,6 +7,7 @@ import Aos from 'aos'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { AuthLayout } from './components/index.js'
+import { FooterVisibilityProvider } from './context/FooterVisibilityContext.jsx'
 
 
 Aos.init();
@@ -87,6 +88,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <FooterVisibilityProvider>
+      <RouterProvider router={router} />
+    </FooterVisibilityProvider>
   </Provider>
 )

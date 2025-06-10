@@ -3,8 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Logo } from '../index'
 import { Facebook, Github, Linkedin, Mail } from 'lucide-react'
 import { BsTwitterX } from 'react-icons/bs'
+import { useFooterVisibility } from '../../context/FooterVisibilityContext'
 
 function Footer() {
+
+    const { showFooter } = useFooterVisibility();
+
+    if (!showFooter) return null;
 
     const navigate = useNavigate();
 
