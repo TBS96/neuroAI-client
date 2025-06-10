@@ -76,6 +76,7 @@ const Contact = () => {
                                                 className='size-24 border-r-4 rounded-r-full pr-2 pt-2 pb-2 object-cover'
                                                 data-aos='fade-down'
                                                 data-aos-delay='700'
+                                                loading='lazy'
                                             />
                                             <div data-aos='fade-up' data-aos-delay='700'>
                                                 <h3 className='text-xl font-extrabold text-accent'>
