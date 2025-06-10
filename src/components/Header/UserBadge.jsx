@@ -21,6 +21,7 @@ const UserBadge = () => {
                             <img
                                 src={`https://ui-avatars.com/api/?name=${userName}&background=random`}
                                 alt={userName}
+                                loading='lazy'
                             />
                         </div>
                     </div>

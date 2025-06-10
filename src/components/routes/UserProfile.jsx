@@ -19,6 +19,7 @@ const UserProfile = () => {
                                 <img
                                     src={`https://ui-avatars.com/api/?name=${name}&background=random`}
                                     alt='avatar'
+                                    loading='lazy'
                                 />
                             </div>
                         </div>
