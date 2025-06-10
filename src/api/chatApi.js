@@ -98,7 +98,7 @@ export const fetchChatHistoryApi = async (page = 1, pageSize=  20) => {
     //         content: item.response,
     //         timestamp: Date.now() - 99999,
     //     },
-    // ])
+    // ]).flat();
 };
 
 // Later, replace this with await API.get('/chat-history')
