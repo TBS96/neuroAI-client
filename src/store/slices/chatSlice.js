@@ -49,7 +49,7 @@ export const fetchChatHistory = createAsyncThunk('chat/fetchChatHistory',
     async (_, { rejectWithValue }) => {
         try {
             const data = await fetchChatHistoryApi(); // This gets the existing history
-            console.log(`Raw Data received from fetchChatHistoryApi: ${data}`);
+            // console.log(`Raw Data received from fetchChatHistoryApi: ${data}`);
 
             if (!Array.isArray(data)) {
                 console.error('Chat history API did not return an array:', data);
