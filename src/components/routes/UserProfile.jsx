@@ -1,12 +1,26 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
-// import { Navigate, useParams } from 'react-router-dom'
 
 const UserProfile = () => {
 
     const userData = useSelector(state => state.auth.userData);
 
-    const { name, email, phone_number, dob, age, address, occupation } = userData;
+    const {
+        name = 'Guest',
+        email = 'N/A',
+        phone_number = 'N/A',
+        dob = 'N/A',
+        age = 'N/A',
+        address = 'N/A',
+        occupation = 'N/A',
+    } = userData || {};
+
+    if (!userData) {
+        return (
+            <section className='min-h-screen grid place-items-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 py-16 px-4'>
+                <div className='text-center text-white text-xl font-semibol'>You are being logged out...</div>
+            </section>
+        )
+    }
 
     return (
         <section className='min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 py-16 px-4'>
