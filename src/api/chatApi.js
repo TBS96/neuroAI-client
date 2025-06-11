@@ -1,4 +1,3 @@
-import axios from 'axios';
 import API from './api';
 
 export const sendMessageToChatbotApi = async (userInput) => {
@@ -32,7 +31,8 @@ export const sendMessageToChatbotApi = async (userInput) => {
 
 export const fetchChatHistoryApi = async () => {
     try {
-        const response = await axios.get('/data/chatHistory.json');
+        const response = await API.get('/chat-history/');
+        // console.log(`Response from chatHistory API: ${response.data}`);
         return response.data;
     }
     catch (err) {
