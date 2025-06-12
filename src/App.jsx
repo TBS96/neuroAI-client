@@ -3,6 +3,7 @@ import { LifeLine } from 'react-loading-indicators'
 import { Container, Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
+import { SpeedInsights } from '@vercel/speed-insights/react'
 
 const App = () => {
 
@@ -31,6 +32,7 @@ const App = () => {
         className='!btn !btn-circle !bg-base-300 !text-orange-600'
       />
       <Footer />
+      <SpeedInsights />
     </div>
   ) : (
     <div className='grid place-content-center w-full min-h-screen'>

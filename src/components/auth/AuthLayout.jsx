@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
@@ -6,20 +6,35 @@ export default function Protected({ children, authentication = true }) {
 
     const navigate = useNavigate();
 
-    const [loader, setLoader] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     const authStatus = useSelector(state => state.auth.status);
-    // console.log(`Authenticated: ${authStatus}`)
+    // console.log(`Authenticated: ${authStatus}`);
 
     useEffect(() => {
+        // Condition 1: Protected route AND user is NOT authenticated
         if (authentication && !authStatus) {
-            navigate('/login/');
+            console.log('Protected route, user not authenticated. Navigating to /login.');
+            navigate('/login/', { replace: true }); // Use replace: true to prevent going back after logout
         }
+        // Condition 2: Non-protected route AND user IS authenticated (e.g., trying to visit /login or /signup while already logged in)
         else if (!authentication && authStatus) {
-            navigate('/');
+            console.log('Non-protected route, user authenticated. Navigating to /.');
+            setIsLoading(true);
+            navigate('/', { replace: true });
         }
-        setLoader(false);
+        else {
+            setIsLoading(false);
+        }
     }, [authStatus, navigate, authentication]);
 
-    return loader ? <p>Loading...</p> : <>{children}</>
+    if (isLoading) return (
+        <p className='flex justify-center items-center h-screen text-lg font-semibold text-gray-700'>Loading authentication...</p>
+    )
+    
+    if (authentication && !authStatus) return (
+        <p className='flex justify-center items-center h-screen text-lg font-semibold text-gray-700'>You are not authenticated. Redirecting...</p>
+    )
+
+    return <>{children}</>
 }

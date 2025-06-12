@@ -1,14 +1,11 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import LogoutBtn from './LogoutBtn';
-import { ArrowRight, ArrowRightCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const UserBadge = () => {
 
-    const userData = useSelector(state => state.auth.userData);
-    const userName = userData?.name || 'Guest';
-    // console.log(`Hello ${userData.email}`);
+    const userName = useSelector(state => state.auth.userData?.name || 'Guest');
 
     return (
 
@@ -21,6 +18,7 @@ const UserBadge = () => {
                             <img
                                 src={`https://ui-avatars.com/api/?name=${userName}&background=random`}
                                 alt={userName}
+                                loading='lazy'
                             />
                         </div>
                     </div>
@@ -46,7 +44,3 @@ const UserBadge = () => {
 }
 
 export default UserBadge
-
-{/* <Link to='/' className='btn btn-dash group flex items-center gap-2'> */ }
-{/* <ArrowLeftCircle className='transition-all duration-300 group-hover:-translate-x-3' /> Go back to Home */ }
-{/* </Link> */ }
