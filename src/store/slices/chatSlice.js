@@ -116,7 +116,7 @@ const chatSlice = createSlice({
             .addCase(sendMessage.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 // Add BOTH user and bot message to state after successful API and save
-                state.messages.push(action.payload.userMessage);
+                // state.messages.push(action.payload.userMessage);     // root cause of glitch: userMessage rendered twice
                 state.messages.push(action.payload.botMessage);
                 // console.log(`User and AI response added to state: ${action.payload}`);
             })
