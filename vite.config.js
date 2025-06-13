@@ -10,6 +10,12 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: {
+        cleanupOutdatedCaches: true
+      },
+      devOptions: {
+        enabled: true
+      },
       manifest: {
         name: 'neuroAI',
         short_name: 'neuroAI',
