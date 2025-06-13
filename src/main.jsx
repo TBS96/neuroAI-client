@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { AuthLayout } from './components/index.js'
 import { FooterVisibilityProvider } from './context/FooterVisibilityContext.jsx'
+import './registerSW.js'
 
 
 Aos.init();
