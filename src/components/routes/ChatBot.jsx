@@ -117,19 +117,21 @@ const ChatBot = () => {
                             >
                                 <div
                                     className={`wrap-break-word max-w-xs p-3 rounded-lg chat-bubble ${isCurrentUser
-                                            ? 'chat-bubble-primary'
-                                            : isError
-                                                ? 'chat-bubble-error'
-                                                : 'chat-bubble-info'
+                                        ? 'chat-bubble-primary'
+                                        : isError
+                                            ? 'chat-bubble-error'
+                                            : 'chat-bubble-info'
                                         }`}
                                 >
-                                    <span className='block font-semibold text-base-300 text-xs'>
+                                    <span className='block font-semibold text-base-300 text-xs' title={isCurrentUser ? `You (${userName})` : 'neuroAI'}>
                                         {isCurrentUser ? `You (${userName})` : 'neuroAI'}
                                     </span>
                                     <div className='flex flex-col gap-1'>
-                                        <ReactMarkdown>
-                                            {content}
-                                        </ReactMarkdown>
+                                        <div title={content}>
+                                            <ReactMarkdown>
+                                                {content}
+                                            </ReactMarkdown>
+                                        </div>
 
                                         <span className='text-xs prose text-base-100 self-end' title={timestamp}>{timestamp}</span>
                                     </div>
