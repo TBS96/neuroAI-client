@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import { Logo } from '../index'
 import { useSelector } from 'react-redux';
 import UserBadge from './UserBadge';
-import { BrainIcon, BrainCircuitIcon, Notebook, House, BadgeInfo, Contact, Sun, MoonStar, ChevronDown } from 'lucide-react';
+import { BrainIcon, BrainCircuitIcon, Notebook, House, Mail, BadgeInfo, Contact, Sun, MoonStar, ChevronDown } from 'lucide-react';
 
 const themes = ['light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'haloween', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter', 'dim', 'nord', 'sunset', 'caramellatte', 'abyss', 'silk'];
 
@@ -32,7 +32,7 @@ const Header = () => {
             name: 'Messages',
             slug: '/chatbot',
             active: authStatus,
-            icon: (<House size={20} className='transition-all duration-300 group-hover:-translate-x-2' />)
+            icon: (<Mail size={20} className='transition-all duration-300 group-hover:-translate-x-2' />)
         },
         {
             name: 'About',
