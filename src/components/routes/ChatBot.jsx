@@ -95,12 +95,12 @@ const ChatBot = () => {
 
     return (
         <div className='fixed inset-0 bg-base-200 flex justify-center items-center z-0 pt-16' data-aos='fade-up' data-aos-duration='1000'>
-            <div className='flex flex-col w-full h-full max-w-5xl md:max-w-6xl p-2'>
+            <div className='flex flex-col w-full max-w-5xl md:max-w-6xl h-full overflow-hidden p-2'>
 
                 {/* Messages area */}
                 <div
                     ref={chatContainerRef}
-                    className='flex-1 min-h-0 overflow-y-auto p-4 space-y-2'
+                    className='flex-1 overflow-y-auto p-4 space-y-2 min-h-0'
                     onScroll={handleScrollToTop}
                 >
                     {messages.map(({ role, timeStamp, messageId, content, isError }, index) => {
