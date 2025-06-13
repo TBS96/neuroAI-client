@@ -11,7 +11,7 @@ const messageInitialState = {
 
 // Thunk to send message to chatbot API
 export const sendMessage = createAsyncThunk('chat/sendMessage',
-    async (messageContent, { rejectWithValue, dispatch, getState }) => {
+    async (messageContent, { rejectWithValue }) => {
         try {
             const aiResponse = await sendMessageToChatbotApi(messageContent);
 
@@ -122,11 +122,14 @@ const chatSlice = createSlice({
             })
             .addCase(sendMessage.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.payload;
+                // state.error = action.payload;
+                state.error = `NeuroAI couldn't process your message. Please try again.`;
                 state.messages.push({
-                    role: 'system',
-                    content: `Error: ${action.payload}. Please try again.`,
-                    timestamp: Date.now()
+                    role: 'assistant',
+                    // content: `Error: ${action.payload}. Please try again.`,
+                    content: `⚠️ NeuroAI couldn't process your request. Please try again.`,
+                    timestamp: Date.now(),
+                    isError: true
                 });
                 console.error(`Failed to send message or save history: ${action.payload}`);
             })
