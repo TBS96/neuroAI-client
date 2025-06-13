@@ -194,7 +194,7 @@ const ChatBot = () => {
             {/* Empty input modal */}
             <dialog id='emptyInputAreaModal' className='modal'>
                 <div className='modal-box'>
-                    <h3 className='font-bold text-lg'>Warning!</h3>
+                    <h3 className='font-bold text-lg text-warning'>Warning!</h3>
                     <p className='py-4'>Please enter a message before sending.</p>
                     <div className='modal-action'>
                         <form method='dialog'>
