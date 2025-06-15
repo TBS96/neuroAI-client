@@ -72,7 +72,7 @@ const Header = () => {
                 {authStatus && <UserBadge />}
 
                 {/* Theme Dropdown (Mobile & Tablet) */}
-                <div className='dropdown dropdown-center md:hidden tooltip tooltip-right' data-tip='Themes'>
+                <div className='dropdown dropdown-center md:hidden tooltip tooltip-left' data-tip='Themes'>
                     <div tabIndex={0} role='button' className='btn btn-ghost transition-all duration-300 hover:rotate-5'>
                         <MoonStar size={20} />
                         <ChevronDown size={20} />
@@ -119,7 +119,7 @@ const Header = () => {
                 </ul>
 
                 {/* Desktop Theme Dropdown (Right Side) */}
-                <div className='dropdown dropdown-center dropdown-hover hidden md:block tooltip tooltip-right' data-tip='Themes'>
+                <div className='dropdown dropdown-center dropdown-hover hidden md:block tooltip tooltip-left' data-tip='Themes'>
                     <div tabIndex={0} role='button' className='btn btn-ghost transition-all duration-300 hover:rotate-5'>
                         <Sun size={20} className='transition-all duration-300 hover:rotate-180' />
                         <ChevronDown size={20} />
@@ -166,7 +166,7 @@ const Header = () => {
                             <NavLink
                                 to={slug}
                                 className={({ isActive }) =>
-                                    `btn btn-block btn-ghost group flex items-center gap-2 my-2 text-center transition tooltip tooltip-right ${isActive ? 'bg-base-300' : ''
+                                    `btn btn-block btn-ghost group flex items-center gap-2 my-2 text-center transition tooltip ${isActive ? 'bg-base-300' : ''
                                     }`
                                 }
                                 data-tip={name}

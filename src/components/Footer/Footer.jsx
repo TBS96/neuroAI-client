@@ -230,7 +230,7 @@ function Footer() {
                 <div className='my-4 border border-gray-700'></div>
                 <p className='mt-1 text-xs italic text-center'>
                     Crafted with care by <span className='font-semibold text-accent hover:link'>
-                        <Link to={teamMembers[2].url} className='tooltip tooltip-right' data-tip={teamMembers[2].name}>
+                        <Link to={teamMembers[2].url} className='tooltip' data-tip={teamMembers[2].name}>
                             {teamMembers[2].name}
                         </Link>
                     </span>
