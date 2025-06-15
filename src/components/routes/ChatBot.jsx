@@ -4,6 +4,7 @@ import { Send } from 'lucide-react';
 import { Button, Input } from '../index'
 import { addUserMessage, sendMessage, selectAllMessages, selectChatStatus, selectChatError, fetchChatHistory, prependMessages } from '../../store/slices/chatSlice'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { useFooterVisibility } from '../../context/FooterVisibilityContext.jsx'
 
 const ChatBot = () => {
@@ -128,7 +129,27 @@ const ChatBot = () => {
                                     </span>
                                     <div className='flex flex-col gap-1'>
                                         <div title={content}>
-                                            <ReactMarkdown>
+                                            <ReactMarkdown 
+                                                remarkPlugins={[remarkGfm]}
+                                                components={{
+                                                    code({ inline, className, children, ...props }) {
+                                                        return inline ? (
+                                                            <code className='bg-primary/60 px-1 rounded text-sm break-words'>
+                                                                {children}
+                                                            </code>
+                                                        ) : (
+                                                            <pre className='bg-primary/50 p-3 rounded-md overflow-x-auto text-sm max-w-full'>
+                                                                <code className={className} {...props}> 
+                                                                    {children}
+                                                                </code>
+                                                            </pre>
+                                                        )
+                                                    },
+                                                    p({children}) {
+                                                        return <p className='break-words'>{children}</p>
+                                                    }
+                                                }}
+                                            >
                                                 {content}
                                             </ReactMarkdown>
                                         </div>
