@@ -28,7 +28,7 @@ const HeroSection = () => {
                             Neuro AI supports you on your journey toward better mental health.
                         </p>
                         <div className='mt-6' data-aos='fade-up' data-aos-delay='700'>
-                            <Link to='/chatbot' title='Test Your Mental Health Now!'>
+                            <Link to='/chatbot' className='tooltip tooltip-bottom' data-tip='Test Your Mental Health Now!'>
                                 <Button className='btn-primary font-medium md:text-lg capitalize md:uppercase'>
                                     Test your mental health now!
                                 </Button>
