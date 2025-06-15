@@ -174,8 +174,8 @@ function Login() {
                         <Button
                             type='submit'
                             disabled={loading}
-                            title={loading ? 'Signing in...' : 'Sign in'}
-                            className='w-full'
+                            className='w-full tooltip'
+                            data-tip={loading ? 'Signing in...' : 'Sign in'}
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >
