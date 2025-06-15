@@ -67,7 +67,7 @@ const Contact = () => {
                         {teamMembers.map(({ github, image, name, role, roll, mail }, index) => {
                             const aos = index === 0 ? 'fade-up' : index === 1 ? 'zoom-in' : index === 2 ? 'zoom-in-right' : index === 3 ? 'zoom-out' : 'flip-down';
                             return (
-                                <div key={index} data-aos={aos} title={name}>
+                                <div key={index} data-aos={aos} className='tooltip' data-tip={name}>
                                     <div className={`group p-6 rounded-lg shadow-lg skeleton hover:shadow-2xl hover:translate-x-1 hover:-translate-y-1 transition-all duration-300 ease-in-out`}>
                                         <div className='flex items-center space-x-4'>
                                             <img
