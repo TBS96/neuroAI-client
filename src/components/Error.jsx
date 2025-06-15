@@ -8,7 +8,7 @@ const Error = () => {
             <AlertOctagon size={150} />
             <h1 className='text-2xl md:text-4xl font-bold my-4'>This content isn't available at the moment</h1>
             <p className='text-xl mb-6'>When this happens, it's usually because the owner only shared it with a small group of people or changed who can see it, or it's been deleted.</p>
-            <Link to='/' className='btn btn-dash group flex items-center gap-2'>
+            <Link to='/' className='btn btn-dash group flex items-center gap-2 tooltip tooltip-bottom' data-tip='Go Back to Home'>
                 <ArrowLeftCircle className='transition-all duration-300 group-hover:-translate-x-3' /> Go back to Home
             </Link>
         </div>
