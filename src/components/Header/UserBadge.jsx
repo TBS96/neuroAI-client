@@ -28,7 +28,7 @@ const UserBadge = () => {
             <div className='drawer-side'>
                 <label htmlFor='my-drawer' aria-label='close sidebar' className='drawer-overlay'></label>
                 <ul className='menu glass text-base-content min-h-full w-80 p-4'>
-                    <li title='View Profile'>
+                    <li className='tooltip tooltip-right' data-tip='View Profile'>
                         <Link to={`/profile/${userName}`} className='btn btn-block mb-2 group flex items-center gap-2'>
                             View Profile <ArrowRight className='transition-all duration-300 group-hover:translate-x-3' />
                         </Link>
