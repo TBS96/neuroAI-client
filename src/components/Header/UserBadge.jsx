@@ -13,8 +13,8 @@ const UserBadge = () => {
             <input id='my-drawer' type='checkbox' className='drawer-toggle' />
             <div className='drawer-content' title={`Hi ${userName}! Click Me to View Your Profile or Logout`}>
                 <label htmlFor='my-drawer' className='ms-10 md:ms-40 drawer-button'>
-                    <div className='avatar'>
-                        <div className='btn btn-circle ring ring-secondary ring-offset-base-100 ring-offset-2' title={userName}>
+                    <div className='avatar tooltip tooltip-right' data-tip={userName}>
+                        <div className='btn btn-circle ring ring-secondary ring-offset-base-100 ring-offset-2'>
                             <img
                                 src={`https://ui-avatars.com/api/?name=${userName}&background=random`}
                                 alt={userName}
@@ -28,7 +28,7 @@ const UserBadge = () => {
             <div className='drawer-side'>
                 <label htmlFor='my-drawer' aria-label='close sidebar' className='drawer-overlay'></label>
                 <ul className='menu glass text-base-content min-h-full w-80 p-4'>
-                    <li title='View Profile'>
+                    <li className='tooltip tooltip-right' data-tip='View Profile'>
                         <Link to={`/profile/${userName}`} className='btn btn-block mb-2 group flex items-center gap-2'>
                             View Profile <ArrowRight className='transition-all duration-300 group-hover:translate-x-3' />
                         </Link>

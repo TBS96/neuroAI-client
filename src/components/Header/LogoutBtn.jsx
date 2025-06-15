@@ -32,14 +32,14 @@ function LogoutBtn() {
     return (
         <>
             <div className='dropdown dropdown-bottom'>
-                <div tabIndex={0} role='button' className='btn btn-dash btn-block btn-error mb-2 md:mb-0' title='Logout'>
+                <div tabIndex={0} role='button' className='btn btn-dash btn-block btn-error mb-2 md:mb-0 tooltip tooltip-right' data-tip='Logout'>
                     Logout <LogOut size={20} className=' ms-2' />
                 </div>
                 <ul tabIndex={0} className='dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-sm'>
-                    <li title='Confirm Logout'>
+                    <li className='tooltip tooltip-right' data-tip='Confirm Logout'>
                         <button onClick={logoutHandler} className='btn btn-sm btn-error w-full mb-2'>Confirm Logout</button>
                     </li>
-                    <li title='Cancel'>
+                    <li className='tooltip tooltip-right' data-tip='Cancel'>
                         <button onClick={closeDropdown} className='btn btn-outline btn-sm w-full'>Cancel</button>
                     </li>
                 </ul>

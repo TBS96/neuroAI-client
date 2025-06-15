@@ -65,14 +65,14 @@ const Header = () => {
         <header className='w-full bg-gray-900/10 backdrop-blur-sm shadow-black/30 shadow-2xl sticky top-0 z-50'>
             <nav className='max-w-7xl mx-auto px-4 py-4 flex justify-between items-center'>
                 {/* Logo */}
-                <div onClick={() => navigate('/')} className='max-w-[100px]' title='neuroAI | Home'>
+                <div onClick={() => navigate('/')} className='max-w-[100px] tooltip tooltip-bottom' data-tip='neuroAI | Home'>
                     <Logo width='100%' />
                 </div>
 
                 {authStatus && <UserBadge />}
 
                 {/* Theme Dropdown (Mobile & Tablet) */}
-                <div className='dropdown dropdown-center md:hidden' title='Themes'>
+                <div className='dropdown dropdown-center md:hidden tooltip tooltip-left' data-tip='Themes'>
                     <div tabIndex={0} role='button' className='btn btn-ghost transition-all duration-300 hover:rotate-5'>
                         <MoonStar size={20} />
                         <ChevronDown size={20} />
@@ -102,11 +102,11 @@ const Header = () => {
                             <li key={slug}>
                                 <NavLink
                                     to={slug}
-                                    title={name}
                                     className={({ isActive }) =>
-                                        `btn btn-block btn-ghost group flex items-center gap-2 transition ${isActive ? 'bg-base-300 underline underline-offset-4' : 'hover:underline hover:underline-offset-4'}`}
+                                        `btn btn-block btn-ghost group flex items-center gap-2 transition tooltip tooltip-left ${isActive ? 'bg-base-300 underline underline-offset-4' : 'hover:underline hover:underline-offset-4'}`}
+                                    data-tip={name}
                                 >
-                                    {icon} {name}
+                                    {icon}
                                 </NavLink>
                             </li>
                         ) : null
@@ -119,10 +119,9 @@ const Header = () => {
                 </ul>
 
                 {/* Desktop Theme Dropdown (Right Side) */}
-                <div className='dropdown dropdown-center hidden md:block' title='Themes'>
+                <div className='dropdown dropdown-center dropdown-hover hidden md:block tooltip tooltip-left' data-tip='Themes'>
                     <div tabIndex={0} role='button' className='btn btn-ghost transition-all duration-300 hover:rotate-5'>
                         <Sun size={20} className='transition-all duration-300 hover:rotate-180' />
-
                         <ChevronDown size={20} />
                     </div>
                     <ul tabIndex={0} className='dropdown-content h-60 overflow-auto bg-base-300/90 rounded-box w-40 p-2 shadow-2xl'>
@@ -145,10 +144,11 @@ const Header = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className='md:hidden focus:outline-none cursor-pointer transition-all duration-300 hover:rotate-30'
+                    className='md:hidden focus:outline-none cursor-pointer transition-all duration-300 hover:rotate-30 tooltip tooltip-left'
                     onClick={() => setMenubar(!menubar)}
                     aria-expanded={menubar}
                     aria-label='Toggle Menu'
+                    data-tip='Toggle Menu'
                 >
                     {menubar ?
                         (<BrainCircuitIcon size={25} />)
@@ -165,11 +165,11 @@ const Header = () => {
                         <li key={slug}>
                             <NavLink
                                 to={slug}
-                                title={name}
                                 className={({ isActive }) =>
-                                    `btn btn-block btn-ghost group flex items-center gap-2 my-2 text-center transition ${isActive ? 'bg-base-300' : ''
+                                    `btn btn-block btn-ghost group flex items-center gap-2 my-2 text-center transition tooltip ${isActive ? 'bg-base-300' : ''
                                     }`
                                 }
+                                data-tip={name}
                                 onClick={() => setMenubar(false)}
                             >
                                 {name} {icon}

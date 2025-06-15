@@ -97,8 +97,8 @@ const ForgottenPassword = () => {
                     <Button
                         type='submit'
                         disabled={loading}
-                        className='w-full'
-                        title={loading ? 'Sending...' : 'Send Reset Link'}
+                        className='w-full tooltip'
+                        data-tip={loading ? 'Sending...' : 'Send Reset Link'}
                         data-aos='fade-up'
                         data-aos-duration='1200'
                     >
@@ -111,7 +111,7 @@ const ForgottenPassword = () => {
                         }
                     </Button>
 
-                    <Link to='/login' className='btn btn-dash btn-sm group flex items-center gap-2' data-aos='fade-right' data-aos-duration='1200' data-aos-delay='2000' title='Go Back'>
+                    <Link to='/login' className='btn btn-dash btn-sm group flex items-center gap-2 tooltip tooltip-bottom' data-aos='fade-right' data-aos-duration='1200' data-aos-delay='2000' data-tip='Go Back'>
                         <ArrowLeftCircle className='transition-all duration-300 group-hover:-translate-x-3' /> Go Back
                     </Link>
                 </div>

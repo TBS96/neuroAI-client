@@ -64,14 +64,14 @@ function Login() {
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0 scroll-smooth' id='signupTarget'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100/10 rounded-xl p-10 border border-black/10`}>
                 <div className='mb-2 flex justify-center'>
-                    <span className='inline-block w-full max-w-[100px]' title='neuroAI | Home'>
+                    <span className='inline-block w-full max-w-[100px] tooltip' data-tip='neuroAI | Home'>
                         <Logo width='100%' />
                     </span>
                 </div>
                 <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Sign in to your account</h2>
                 <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Don&apos;t have any account?&nbsp;
-                    <Link to='/register' className='font-medium text-primary transition-all duration-200 hover:link' title='Register'>
+                    <Link to='/register' className='font-medium text-primary transition-all duration-200 hover:link tooltip tooltip-bottom' data-tip='Register'>
                         Register
                     </Link>
                 </p>
@@ -146,8 +146,8 @@ function Login() {
                             <button
                                 type='button'
                                 onClick={() => setShowPass(!showPass)}
-                                title={!showPass ? 'Show' : 'Hide'}
-                                className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all'
+                                className='absolute right-3 top-1/2 hover:cursor-pointer translate-y-[1px] duration-300 transition-all tooltip tooltip-left'
+                                data-tip={!showPass ? 'Show' : 'Hide'}
                             >
                                 {!showPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
                             </button>
@@ -174,8 +174,8 @@ function Login() {
                         <Button
                             type='submit'
                             disabled={loading}
-                            title={loading ? 'Signing in...' : 'Sign in'}
-                            className='w-full'
+                            className='w-full tooltip'
+                            data-tip={loading ? 'Signing in...' : 'Sign in'}
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >

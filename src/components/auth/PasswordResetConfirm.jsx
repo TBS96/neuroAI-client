@@ -128,8 +128,8 @@ const PasswordResetConfirm = () => {
                     <Button
                         type='submit'
                         disabled={loading}
-                        title={loading ? 'Resetting...' : 'Reset Password'}
-                        className='w-full'
+                        className='w-full tooltip tooltip-bottom'
+                        data-tip={loading ? 'Resetting...' : 'Reset Password'}
                         data-aos='fade-up'
                         data-aos-duration='1200'
                     >

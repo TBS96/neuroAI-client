@@ -69,14 +69,14 @@ function Register() {
         <div className='flex items-center justify-center w-full my-8 px-4 sm:px-0'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100/5 rounded-xl p-10 border border-black/10`}>
                 <div className='mb-2 flex justify-center'>
-                    <span className='inline-block w-full max-w-[100px]'>
+                    <span className='inline-block w-full max-w-[100px] tooltip' data-tip='neuroAI | Home'>
                         <Logo width='100%' />
                     </span>
                 </div>
                 <h2 className='text-center text-2xl font-bold leading-tight' data-aos='fade-up'>Register to create an account</h2>
                 <p className='mt-2 text-center text-base text-base-content/45' data-aos='zoom-in-right'>
                     Already have an account?&nbsp;
-                    <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline' title='Sign in'>
+                    <Link to='/login' className='font-medium text-primary transition-all duration-200 hover:underline tooltip tooltip-bottom' data-tip='Sign in'>
                         Sign In
                     </Link>
                 </p>
@@ -283,8 +283,8 @@ function Register() {
                             <button
                                 type='button'
                                 onClick={() => setShowPass(!showPass)}
-                                title={!showPass ? 'Show' : 'Hide'}
-                                className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all'
+                                className='absolute right-3 top-1/2 hover:cursor-pointer active:translate-y-[1px] duration-300 transition-all tooltip tooltip-left'
+                                data-tip={!showPass ? 'Show' : 'Hide'}
                                 data-aos='fade-up'
                             >
                                 {!showPass ? <EyeClosed size={25} className='text-secondary' /> : <Eye size={25} className='text-primary' />}
@@ -348,8 +348,8 @@ function Register() {
                         <Button
                             type='submit'
                             disabled={loading}
-                            title={loading ? 'Registering...' : 'Register'}
-                            className='w-full'
+                            className='w-full tooltip'
+                            data-tip={loading ? 'Registering...' : 'Register'}
                             data-aos='fade-up'
                             data-aos-duration='1200'
                         >

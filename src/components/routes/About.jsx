@@ -7,7 +7,7 @@ const About = () => {
                 className='hero min-h-screen bg-cover bg-center flex items-center justify-center text-center hero-overlay'
                 style={{ backgroundImage: "url('https://i.ibb.co/h1ms14V/team.png')" }}
             >
-                <div className='md:hero-content bg-base-300/90 p-8 rounded-md hover:glass duration-300 transition-all ease-in-out hover:shadow-2xl animate-pulse hover:animate-none mx-4' title='neuroAI | Revolutionizing Artificial Intelligence through neuro-inspired algorithms.'>
+                <div className='md:hero-content bg-base-300/90 p-8 rounded-md hover:glass duration-300 transition-all ease-in-out hover:shadow-2xl animate-pulse hover:animate-none mx-4 tooltip' data-tip='neuroAI | Revolutionizing Artificial Intelligence through neuro-inspired algorithms.'>
                     <h2 className='text-4xl sm:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500' data-aos='fade-up' data-aos-delay='700'>
                         neuroAI
                     </h2>
@@ -39,7 +39,7 @@ const About = () => {
                         ].map(({ title, desc }, index) => {
                             const aos = index === 0 ? 'fade-down' : 'fade-up';
                             return (
-                                <div key={index} data-aos={aos} data-aos-delay='700' title={title}>
+                                <div key={index} data-aos={aos} data-aos-delay='700' className='tooltip tooltip-bottom' data-tip={title}>
                                     <div className='p-6 skeleton shadow-md rounded-md text-left hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:cursor-pointer'
                                     >
                                         <h3 className='text-2xl text-accent font-semibold mb-4'>{title}</h3>

@@ -187,15 +187,17 @@ const ChatBot = () => {
                             disabled={status === 'loading'}
                             title='Type a message...'
                         />
-                        <Button
-                            onClick={handleSendMessage}
-                            className='absolute right-2 top-1/2 -translate-y-1/2 rounded-full btn-sm btn-circle'
-                            disabled={status === 'loading'}
-                            aria-label='Send Message'
-                            title='Send Message'
-                        >
-                            <Send size={18} />
-                        </Button>
+                        <div className='tooltip absolute right-2 top-1/2 -translate-y-1/2' data-tip='Send'>
+                            <Button
+                                onClick={handleSendMessage}
+                                className='rounded-full btn-sm btn-circle'
+                                disabled={status === 'loading'}
+                                aria-label='Send Message'
+                                title='Send Message'
+                            >
+                                <Send size={18} />
+                            </Button>
+                        </div>
                     </div>
                 </div>
 
@@ -208,7 +210,9 @@ const ChatBot = () => {
                     <p className='py-4'>{chatError}</p>
                     <div className='modal-action'>
                         <form method='dialog'>
-                            <button className='btn'>Close</button>
+                            <div className='tooltip' data-tip='Close'>
+                                <button className='btn'>Close</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -221,7 +225,9 @@ const ChatBot = () => {
                     <p className='py-4'>Please enter a message before sending.</p>
                     <div className='modal-action'>
                         <form method='dialog'>
-                            <button className='btn'>Close</button>
+                            <div className='tooltip' data-tip='Close'>
+                                <button className='btn'>Close</button>
+                            </div>
                         </form>
                     </div>
                 </div>
