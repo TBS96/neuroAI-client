@@ -72,7 +72,7 @@ const Header = () => {
                 {authStatus && <UserBadge />}
 
                 {/* Theme Dropdown (Mobile & Tablet) */}
-                <div className='dropdown dropdown-center md:hidden' title='Themes'>
+                <div className='dropdown dropdown-center md:hidden tooltip tooltip-right' data-tip='Themes'>
                     <div tabIndex={0} role='button' className='btn btn-ghost transition-all duration-300 hover:rotate-5'>
                         <MoonStar size={20} />
                         <ChevronDown size={20} />
@@ -102,7 +102,6 @@ const Header = () => {
                             <li key={slug}>
                                 <NavLink
                                     to={slug}
-                                    title={name}
                                     className={({ isActive }) =>
                                         `btn btn-block btn-ghost group flex items-center gap-2 transition tooltip tooltip-left ${isActive ? 'bg-base-300 underline underline-offset-4' : 'hover:underline hover:underline-offset-4'}`}
                                     data-tip={name}
@@ -145,10 +144,11 @@ const Header = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className='md:hidden focus:outline-none cursor-pointer transition-all duration-300 hover:rotate-30'
+                    className='md:hidden focus:outline-none cursor-pointer transition-all duration-300 hover:rotate-30 tooltip tooltip-left'
                     onClick={() => setMenubar(!menubar)}
                     aria-expanded={menubar}
                     aria-label='Toggle Menu'
+                    data-tip='Toggle Menu'
                 >
                     {menubar ?
                         (<BrainCircuitIcon size={25} />)
@@ -165,7 +165,6 @@ const Header = () => {
                         <li key={slug}>
                             <NavLink
                                 to={slug}
-                                title={name}
                                 className={({ isActive }) =>
                                     `btn btn-block btn-ghost group flex items-center gap-2 my-2 text-center transition tooltip tooltip-right ${isActive ? 'bg-base-300' : ''
                                     }`
