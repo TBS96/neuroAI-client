@@ -129,7 +129,7 @@ const ChatBot = () => {
                                     </span>
                                     <div className='flex flex-col gap-1'>
                                         <div title={content}>
-                                            <ReactMarkdown 
+                                            <ReactMarkdown
                                                 remarkPlugins={[remarkGfm]}
                                                 components={{
                                                     code({ inline, className, children, ...props }) {
@@ -139,13 +139,13 @@ const ChatBot = () => {
                                                             </code>
                                                         ) : (
                                                             <pre className='bg-primary/50 p-3 rounded-md overflow-x-auto text-sm max-w-full'>
-                                                                <code className={className} {...props}> 
+                                                                <code className={className} {...props}>
                                                                     {children}
                                                                 </code>
                                                             </pre>
                                                         )
                                                     },
-                                                    p({children}) {
+                                                    p({ children }) {
                                                         return <p className='break-words'>{children}</p>
                                                     }
                                                 }}
@@ -175,13 +175,13 @@ const ChatBot = () => {
                 </div>
 
                 {/* Input area */}
-                <div className='bg-base-100 p-2 border-t'>
-                    <div className='join w-full'>
+                <div className='p-2 border-t'>
+                    <div className='relative w-full'>
                         <Input
                             type='text'
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
-                            className='input join-item w-full rounded-l-full'
+                            className='input w-full rounded-full pr-12'
                             placeholder='Type a message...'
                             onKeyDown={handleKeyDown}
                             disabled={status === 'loading'}
@@ -189,12 +189,12 @@ const ChatBot = () => {
                         />
                         <Button
                             onClick={handleSendMessage}
-                            className='join-item rounded-r-full'
+                            className='absolute right-2 top-1/2 -translate-y-1/2 rounded-full btn-sm btn-circle'
                             disabled={status === 'loading'}
                             aria-label='Send Message'
                             title='Send Message'
                         >
-                            <Send size={20} />
+                            <Send size={18} />
                         </Button>
                     </div>
                 </div>
