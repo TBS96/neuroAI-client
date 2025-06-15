@@ -150,20 +150,20 @@ function Footer() {
                 {/* Upper Footer */}
                 <div className='flex flex-wrap justify-between items-center'>
                     {/* Logo */}
-                    <div className='max-w-[100px] md:w-1/3 mx-auto md:mx-[120px] pb-8 md:pb-0' onClick={() => navigate('/')} title='neuroAI | Home'>
+                    <div className='max-w-[100px] md:w-1/3 mx-auto md:mx-[120px] pb-8 md:pb-0 tooltip' onClick={() => navigate('/')} data-tip='neuroAI | Home'>
                         <Logo width='100%' />
                     </div>
 
                     <div className='border-b md:border-none border-b-gray-700 w-full md:w-0'></div>
 
                     {/* Footer Sections */}
-                    {additionalLinks.map(({links, title}, index) => (
+                    {additionalLinks.map(({ links, title }, index) => (
                         <div key={index} className='w-full md:w-auto text-center'>
                             <h3 className='font-semibold text-lg text-gray-400 uppercase my-4 md:my-0'>{title}</h3>
                             <ul className='mt-2'>
-                                {links.map(({name, url}, idx) => (
-                                    <li key={idx} title={name} className='mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300'>
-                                        <Link to={url}>
+                                {links.map(({ name, url }, idx) => (
+                                    <li key={idx} className='mt-1 hover:underline underline-offset-4 hover:translate-x-2 transition-all duration-300'>
+                                        <Link to={url} className='tooltip tooltip-left' data-tip={name}>
                                             {name}
                                         </Link>
                                     </li>
@@ -177,18 +177,19 @@ function Footer() {
 
                 {/* Social Links */}
                 <div className='flex flex-wrap justify-center mt-8'>
-                    {footerLinks.map(({links, title}) => (
+                    {footerLinks.map(({ links, title }) => (
                         <div key={title} className='text-center'>
                             <h3 className='text-gray-400 uppercase font-semibold mb-4'>
                                 {title}
                             </h3>
                             <ul className='md:flex justify-center'>
-                                {links.map(({name, path, icon, btnColorClassName}) => (
-                                    <li key={name} className='p-4' title={name}>
+                                {links.map(({ name, path, icon, btnColorClassName }) => (
+                                    <li key={name} className='p-4'>
                                         <Link
                                             to={path}
-                                            className={`btn btn-soft ${btnColorClassName} hover:translate-x-1 hover:-translate-y-1 duration-200 transition-all ease-in-out`}
+                                            className={`btn btn-soft ${btnColorClassName} hover:translate-x-1 hover:-translate-y-1 duration-200 transition-all ease-in-out tooltip`}
                                             target='_blank'
+                                            data-tip={name}
                                         >
                                             {icon}
                                         </Link>
@@ -203,11 +204,14 @@ function Footer() {
                 <div className='mt-8 text-center border-t border-t-gray-700 pt-4 text-sm'>
                     <div>
                         &copy; {new Date().getFullYear()}{' '}
-                        <Link to='/' className='text-primary transition-all duration-200 hover:link font-medium' title='neuroAI | Home'>
-                            neuroAI
-                        </Link>{' '}
+                        <div className='tooltip'>
+                            <div className='tooltip-content'>
+                                <div className='text-base-400 -rotate-3 text-xl font-black'>neuroAI | Home</div>
+                            </div>
+                            <Link to='/' className="text-primary transition-all duration-200 hover:link font-medium">neuroAI</Link>
+                        </div>{' '}
                         | All Rights Reserved by{' '}
-                        {teamMembers.map(({name, url, className}, index) => (
+                        {teamMembers.map(({ name, url, className }, index) => (
                             <div className='flex md:inline-flex justify-center' key={index} title={name}>
                                 <Link
                                     to={url}
@@ -222,7 +226,7 @@ function Footer() {
                         ))}
                     </div>
                 </div>
-                
+
                 <div className='my-4 border border-gray-700'></div>
                 <p className='mt-1 text-xs italic text-center'>
                     Crafted with care by <span className='font-semibold text-accent hover:link'>
