@@ -13,8 +13,8 @@ const UserBadge = () => {
             <input id='my-drawer' type='checkbox' className='drawer-toggle' />
             <div className='drawer-content' title={`Hi ${userName}! Click Me to View Your Profile or Logout`}>
                 <label htmlFor='my-drawer' className='ms-10 md:ms-40 drawer-button'>
-                    <div className='avatar'>
-                        <div className='btn btn-circle ring ring-secondary ring-offset-base-100 ring-offset-2' title={userName}>
+                    <div className='avatar tooltip tooltip-right' data-tip={userName}>
+                        <div className='btn btn-circle ring ring-secondary ring-offset-base-100 ring-offset-2'>
                             <img
                                 src={`https://ui-avatars.com/api/?name=${userName}&background=random`}
                                 alt={userName}
