@@ -115,33 +115,18 @@ function Footer() {
         },
     ];
 
-    const teamMembers = [
-        {
-            name: 'Mahvish Ruhi',
-            url: 'https://github.com/Mahvish16',
-            className: 'btn btn-ghost btn-block btn-secondary hover:underline underline-offset-4 decoration-error',
-        },
-        {
-            name: 'Sayan Bhattacharya',
-            url: 'https://github.com/Sayan-ezioo',
-            className: 'btn btn-ghost btn-block btn-success hover:underline underline-offset-4 decoration-violet-500',
-        },
-        {
-            name: 'Prantik Ghosh',
-            url: 'https://github.com/tbs96',
-            className: 'btn btn-ghost btn-block btn-primary hover:underline underline-offset-4 decoration-amber-500',
-        },
-        {
-            name: 'Sanchita Kar',
-            url: 'https://github.com/',
-            className: 'btn btn-ghost btn-block btn-warning hover:underline underline-offset-4 decoration-pink-500',
-        },
-        {
-            name: 'Arghyakamal Ghosh',
-            url: 'https://github.com/',
-            className: 'btn btn-ghost btn-block btn-info hover:underline underline-offset-4 decoration-green-500',
-        },
-    ];
+    // const teamMembers = [
+    //     {
+    //         name: 'Prantik Ghosh',
+    //         url: 'https://github.com/tbs96',
+    //         className: 'btn btn-ghost btn-block btn-primary hover:underline underline-offset-4 decoration-amber-500',
+    //     },
+    //     {
+    //         name: 'Sayan Bhattacharya',
+    //         url: 'https://github.com/Sayan-ezioo',
+    //         className: 'btn btn-ghost btn-block btn-success hover:underline underline-offset-4 decoration-violet-500',
+    //     },
+    // ];
 
     return (
         <footer className='bg-slate-900/60 backdrop-blur-sm py-10 border-t-2 border-t-gray-700 rounded-t-4xl' data-aos='fade-up'>
@@ -204,14 +189,10 @@ function Footer() {
                 <div className='mt-8 text-center border-t border-t-gray-700 pt-4 text-sm'>
                     <div>
                         &copy; {new Date().getFullYear()}{' '}
-                        <div className='tooltip'>
-                            <div className='tooltip-content'>
-                                <div className='text-base-400 -rotate-3 text-xl font-black'>neuroAI | Home</div>
-                            </div>
-                            <Link to='/' className="text-primary transition-all duration-200 hover:link font-medium">neuroAI</Link>
-                        </div>{' '}
-                        | All Rights Reserved by{' '}
-                        {teamMembers.map(({ name, url, className }, index) => (
+                        <Link to='/' className='text-primary transition-all duration-200 hover:link font-medium tooltip' data-tip='neuroAI'>neuroAI</Link>
+                        {' '}
+                        | All Rights Reserved{' '}
+                        {/* {teamMembers.map(({ name, url, className }, index) => (
                             <div className='flex md:inline-flex justify-center tooltip' key={index} data-tip={name}>
                                 <Link
                                     to={url}
@@ -223,15 +204,15 @@ function Footer() {
                                 </Link>
                                 {index < teamMembers.length - 1 && ' '}
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
 
                 <div className='my-4 border border-gray-700'></div>
                 <p className='mt-1 text-xs italic text-center'>
                     Crafted with care by <span className='font-semibold text-accent hover:link'>
-                        <Link to={teamMembers[2].url} className='tooltip' data-tip={teamMembers[2].name}>
-                            {teamMembers[2].name}
+                        <Link to='https://github.com/tbs96' className='tooltip' data-tip='Prantik Ghosh'>
+                            Prantik Ghosh
                         </Link>
                     </span>
                 </p>
