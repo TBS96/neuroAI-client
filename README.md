@@ -121,6 +121,8 @@ npm i express cors socket.io
 ├── package-lock.json
 ├── public
 │   ├── apple-touch-icon-180x180.png
+│   ├── data
+│   │   └── chatHistory.json
 │   ├── favicon.ico
 │   ├── maskable-icon-512x512.png
 │   ├── neuroAI-icon.svg
@@ -128,17 +130,11 @@ npm i express cors socket.io
 │   ├── pwa-512x512.png
 │   └── pwa-64x64.png
 ├── README.md
-├── Reports_PPT
-│   ├── Personalised mental health assistant app With AI-Powered chatbot-final.pptx
-│   ├── Personalized Mental Health Assistant.docx
-│   ├── Personalized Mental Health Assistant.pdf
-│   ├── Questions.jsx
-│   ├── questions.txt
-│   └── Results.jsx
 ├── src
 │   ├── api
 │   │   ├── api.js
-│   │   └── authApi.js
+│   │   ├── authApi.js
+│   │   └── chatApi.js
 │   ├── App.jsx
 │   ├── assets
 │   │   └── react.svg
@@ -175,6 +171,8 @@ npm i express cors socket.io
 │   │       └── UserProfile.jsx
 │   ├── conf
 │   │   └── conf.js
+│   ├── context
+│   │   └── FooterVisibilityContext.jsx
 │   ├── index.css
 │   ├── main.jsx
 │   ├── pages
@@ -189,9 +187,11 @@ npm i express cors socket.io
 │   │   ├── PasswordResetConfirm.jsx
 │   │   ├── Register.jsx
 │   │   └── UserProfile.jsx
+│   ├── registerSW.js
 │   └── store
 │       ├── slices
-│       │   └── authSlice.js
+│       │   ├── authSlice.js
+│       │   └── chatSlice.js
 │       └── store.js
 ├── vercel.json
 ├── vite.config.js
@@ -199,8 +199,8 @@ npm i express cors socket.io
     ├── settings.json
     └── tasks.json
 
-19 directories, 68 files
+20 directories, 67 files
 ```
 
 
-<!-- tree -a -I 'node_modules|.git' > README.mdx -->
+<!-- tree -a -I 'node_modules|.git|dev-dist|Reports_PPT' > README.mdx -->
