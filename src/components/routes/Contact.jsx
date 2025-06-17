@@ -5,7 +5,6 @@ import { Github, Mail } from 'lucide-react'
 const teamMembers = [
     {
         name: 'Sayan Bhattacharya',
-        roll: '23000122060, CSE',
         role: 'Backend Developer',
         github: 'https://github.com/Sayan-ezioo',
         mail: 'mailto:bhattacharyasayan6@gmail.com',
@@ -14,7 +13,6 @@ const teamMembers = [
     },
     {
         name: 'Prantik Ghosh',
-        roll: '23000122059, CSE',
         role: 'Frontend Developer',
         github: 'https://github.com/tbs96',
         mail: 'mailto:prantik.fdev@gmail.com',
@@ -23,7 +21,6 @@ const teamMembers = [
     },
     {
         name: 'Mahvish Ruhi',
-        roll: '23000121025, CSE',
         role: 'Backend Developer',
         github: 'https://github.com/Mahvish16',
         mail: 'mailto:mahvish.ruhi@gmail.com',
@@ -32,7 +29,6 @@ const teamMembers = [
     },
     {
         name: 'Arghyakamal Ghosh',
-        roll: '23000121026, CSE',
         role: 'Q/A Engineer',
         github: 'https://github.com/',
         mail: 'mailto:arghyakamalghosh19@gmail.com',
@@ -41,7 +37,6 @@ const teamMembers = [
     },
     {
         name: 'Sanchita Kar',
-        roll: '23000121019, CSE',
         role: 'Documentation Engineer',
         github: 'https://github.com/',
         mail: 'mailto:karsanchita50@gmail.com',
@@ -64,7 +59,7 @@ const Contact = () => {
                         Dedicated professionals working together to build great experiences.
                     </p>
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'>
-                        {teamMembers.map(({ github, image, name, role, roll, mail }, index) => {
+                        {teamMembers.map(({ github, image, name, role, mail }, index) => {
                             const aos = index === 0 ? 'fade-down' : index === 1 ? 'zoom-in' : index === 2 ? 'zoom-in-right' : index === 3 ? 'zoom-out' : 'flip-down';
                             const aosDuration = index === 1 ? '1500' : '1100';
                             return (
@@ -83,9 +78,6 @@ const Contact = () => {
                                                 <h3 className='text-xl font-extrabold text-accent'>
                                                     {name}
                                                 </h3>
-                                                <p className='text-sm font-medium'>
-                                                    {roll}
-                                                </p>
                                                 <p className='mt-2 font-bold text-info'>
                                                     {role}
                                                 </p>
