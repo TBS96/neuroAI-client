@@ -7,6 +7,7 @@ const API = axios.create({
         'Content-Type': 'application/json'
     },
 });
+console.log(API.defaults.baseURL + 'api/token/refresh/');
 
 // Add access tokens to every request automatically
 API.interceptors.request.use(
@@ -88,9 +89,11 @@ API.interceptors.response.use(
                 }
 
                 // Attempt to refresh the access token
-                const res = await axios.post(`${conf.backendUrl}/api/token/refresh/`, {
+                const res = await axios.post(`${conf.backendUrl}api/token/refresh/`, {
                     refresh: refreshToken
                 });
+
+                // console.log(`${conf.backendUrl}api/token/refresh/`)
 
                 // On success, update the stored authData object with the new access token
                 const newAccessToken = res.data.access;
