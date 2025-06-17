@@ -7,7 +7,7 @@ const API = axios.create({
         'Content-Type': 'application/json'
     },
 });
-console.log(API.defaults.baseURL + 'api/token/refresh/');
+// console.log(API.defaults.baseURL + 'api/token/refresh/');
 
 // Add access tokens to every request automatically
 API.interceptors.request.use(
