@@ -1,4 +1,4 @@
-# neuroAI(client) - Personal Mental Health Assistant - (src wip)
+# neuroAI(client) - Personal Mental Health Assistant
 
 ## Prerequisites to be installed on your machine:
 - Git
